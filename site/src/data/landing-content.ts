@@ -133,7 +133,7 @@ export const landingEn: LandingContent = {
   },
 
   proofPoints: [
-    { figure: '$75K+', label: 'Cumulative B2B SaaS revenue from Mexican SMEs' },
+    { figure: '100K MXN', label: 'Peak monthly revenue per active client' },
     { figure: '7', label: 'Production deployments across 5 verticals' },
     { figure: 'EN · ES', label: 'Native bilingual technical discovery & delivery' },
   ],
@@ -142,7 +142,7 @@ export const landingEn: LandingContent = {
     eyebrow: 'About',
     title: 'A bilingual operator, not a contractor.',
     paragraphs: [
-      "I'm a technical sales professional based on the Texas–Tamaulipas border. Since 2024 I've run Areté Soluciones S.A. de C.V., an incorporated Mexican B2B firm with seven production systems across notarial, hospital, restaurants, communities, and professional-services verticals. $75K+ cumulative revenue, up to 100K MXN per month per client. Each engagement starts with MEDDIC-style discovery in English and Spanish, and ends with a production deployment I still operate today.",
+      "I'm a technical sales professional based on the Texas–Tamaulipas border. Since 2024 I've run Areté Soluciones S.A. de C.V., an incorporated Mexican B2B firm with seven production systems across notarial, hospital, restaurants, communities, and professional-services verticals. Up to 100K MXN per month per client, growing MRR. Each engagement starts with MEDDIC-style discovery in English and Spanish, and ends with a production deployment I still operate today.",
       "I'm bringing that same consultative motion — understand the buyer, map requirements, deliver in production — to a Sales Engineer or Solutions Consultant role at a B2B SaaS or AI infrastructure company expanding into Latin America. The portable demo kit (live YOLOv8 inference on a Raspberry Pi 5) travels with me.",
     ],
   },
@@ -156,7 +156,7 @@ export const landingEn: LandingContent = {
         period: '2024 – Present',
         title: 'Founder & CEO — Areté Soluciones S.A. de C.V.',
         description:
-          'Seven production B2B SaaS systems for Mexican SMEs across notarial, hospital, restaurants, communities, and professional services. $75K+ cumulative revenue. Full ownership: discovery → architecture → demo → POC → production. All bilingual delivery.',
+          'Seven production B2B SaaS systems for Mexican SMEs across notarial, hospital, restaurants, communities, and professional services. Growing MRR. Full ownership: discovery → architecture → demo → POC → production. All bilingual delivery.',
         icon: 'code',
       },
       {
@@ -395,7 +395,7 @@ export const landingEs: LandingContent = {
   },
 
   proofPoints: [
-    { figure: '$75K+', label: 'Ingresos B2B SaaS acumulados con PyMEs mexicanas' },
+    { figure: '100K MXN', label: 'Ingreso mensual máximo por cliente activo' },
     { figure: '7', label: 'Sistemas en producción a través de 5 verticales' },
     { figure: 'EN · ES', label: 'Discovery técnico y entrega en ambos idiomas nativos' },
   ],
@@ -404,7 +404,7 @@ export const landingEs: LandingContent = {
     eyebrow: 'Sobre mí',
     title: 'Un operador bilingüe, no un contratista.',
     paragraphs: [
-      'Profesional de ventas técnicas en la frontera Texas–Tamaulipas. Desde 2024 opero Areté Soluciones S.A. de C.V., empresa mexicana B2B con siete sistemas en producción a través de notarías, hospitales, restaurantes, comunidades y servicios profesionales. $75K+ de ingresos acumulados, hasta 100K MXN por mes por cliente. Cada engagement arranca con discovery estilo MEDDIC en inglés y español, y termina con un despliegue en producción que aún opero hoy.',
+      'Profesional de ventas técnicas en la frontera Texas–Tamaulipas. Desde 2024 opero Areté Soluciones S.A. de C.V., empresa mexicana B2B con siete sistemas en producción a través de notarías, hospitales, restaurantes, comunidades y servicios profesionales. Hasta 100K MXN por mes por cliente, MRR en crecimiento. Cada engagement arranca con discovery estilo MEDDIC en inglés y español, y termina con un despliegue en producción que aún opero hoy.',
       'Traigo ese mismo método consultivo — entender al comprador, mapear los requerimientos, entregar en producción — a un rol de Sales Engineer o Solutions Consultant en una empresa de B2B SaaS o infraestructura de IA que se expande hacia América Latina. El kit portátil de demos (inferencia YOLOv8 en vivo sobre Raspberry Pi 5) viaja conmigo.',
     ],
   },
@@ -418,7 +418,7 @@ export const landingEs: LandingContent = {
         period: '2024 – Presente',
         title: 'Fundador y CEO — Areté Soluciones S.A. de C.V.',
         description:
-          'Siete sistemas B2B SaaS en producción para PyMEs mexicanas en notarías, hospitales, restaurantes, comunidades y servicios profesionales. $75K+ acumulados. Propiedad completa: discovery → arquitectura → demo → POC → producción. Entrega bilingüe.',
+          'Siete sistemas B2B SaaS en producción para PyMEs mexicanas en notarías, hospitales, restaurantes, comunidades y servicios profesionales. MRR en crecimiento. Propiedad completa: discovery → arquitectura → demo → POC → producción. Entrega bilingüe.',
         icon: 'code',
       },
       {

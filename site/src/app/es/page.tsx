@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     alternateLocale: 'en_US',
     title: 'Manuel Flores — Sales Engineer para expansión LATAM',
     description:
-      'Sales Engineer bilingüe EN/ES · Fundador de Areté Soluciones · 7 sistemas B2B SaaS en producción · $75K+ en ingresos · Embedded Vision Summit 2026.',
+      'Sales Engineer bilingüe EN/ES · Fundador de Areté Soluciones · 7 sistemas B2B SaaS en producción · MRR en crecimiento · Embedded Vision Summit 2026.',
     url: 'https://manuelflores.me/es',
     siteName: 'Manuel Flores',
   },
