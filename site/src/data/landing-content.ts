@@ -6,6 +6,10 @@
  *
  * Numbers (revenue, deployments, FPS, etc.) live here and are pulled into
  * both /  and /es pages so they cannot drift.
+ *
+ * v2 — May 2026: tightened for SE/SC job-hunt positioning. ACV now expressed
+ * in USD ($60K) instead of MXN ceiling. Location reflects Medellín relocation.
+ * Deployments count locked to 7 (matches Areté showcase docs exactly).
  */
 
 export interface ProjectContent {
@@ -123,27 +127,27 @@ export const landingEn: LandingContent = {
   hero: {
     eyebrow: 'Sales Engineer · Solutions Consultant',
     headline: {
-      lead: 'I help companies sell technology into ',
+      lead: 'I help B2B SaaS companies sell into ',
       emphasis: 'Latin America.',
     },
     subtitle:
-      'Bilingual EN/ES native · US–Mexico dual citizen · Founder of Areté Soluciones · Selected to demo Edge AI at the Embedded Vision Summit, Santa Clara 2026.',
+      'Bilingual EN/ES native · US–Mexico dual citizen · Founder of Areté Soluciones (7 production B2B SaaS systems, ACV up to $60K USD) · Selected to demo Edge AI live at the Embedded Vision Summit, Santa Clara, May 2026.',
     primaryCta: 'See the work',
     secondaryCta: 'Get in touch',
   },
 
   proofPoints: [
-    { figure: '100K MXN', label: 'Peak monthly revenue per active client' },
-    { figure: '7', label: 'Production deployments across 5 verticals' },
-    { figure: 'EN · ES', label: 'Native bilingual technical discovery & delivery' },
+    { figure: '$60K', label: 'USD annual contract value, per client' },
+    { figure: '7', label: 'Production deployments across 5 regulated verticals' },
+    { figure: 'EN · ES', label: 'Native bilingual technical discovery and live demo' },
   ],
 
   about: {
     eyebrow: 'About',
     title: 'A bilingual operator, not a contractor.',
     paragraphs: [
-      "I'm a technical sales professional based on the Texas–Tamaulipas border. Since 2024 I've run Areté Soluciones S.A. de C.V., an incorporated Mexican B2B firm with seven production systems across notarial, hospital, restaurants, communities, and professional-services verticals. Up to 100K MXN per month per client, growing MRR. Each engagement starts with MEDDIC-style discovery in English and Spanish, and ends with a production deployment I still operate today.",
-      "I'm bringing that same consultative motion — understand the buyer, map requirements, deliver in production — to a Sales Engineer or Solutions Consultant role at a B2B SaaS or AI infrastructure company expanding into Latin America. The portable demo kit (live YOLOv8 inference on a Raspberry Pi 5) travels with me.",
+      "I'm a technical sales professional based between the Texas–Tamaulipas border and Medellín, Colombia. Since 2024 I've run Areté Soluciones S.A. de C.V., an incorporated Mexican B2B firm with seven production systems across notarial, hospital, restaurants, communities, and practitioner-operations verticals. Per-client annual contract values reach $60K USD. Every engagement starts with MEDDIC discovery in English and Spanish, and ends with a production deployment I still operate today.",
+      "I'm bringing that same consultative motion — discover the buyer, map requirements, ship to production — to a Sales Engineer or Solutions Consultant role at a B2B SaaS or AI-infrastructure company expanding into Latin America. The portable demo kit (live YOLOv8 inference on a Raspberry Pi 5, shown at the Embedded Vision Summit) travels with me.",
     ],
   },
 
@@ -154,9 +158,9 @@ export const landingEn: LandingContent = {
       {
         key: 'exp1',
         period: '2024 – Present',
-        title: 'Founder & CEO — Areté Soluciones S.A. de C.V.',
+        title: 'Founder & Principal Solutions Architect — Areté Soluciones S.A. de C.V.',
         description:
-          'Seven production B2B SaaS systems for Mexican SMEs across notarial, hospital, restaurants, communities, and professional services. Growing MRR. Full ownership: discovery → architecture → demo → POC → production. All bilingual delivery.',
+          'Seven production B2B SaaS systems for Mexican SMEs across notarial, hospital, restaurants, communities, and practitioner-operations verticals. Per-client ACV up to $60K USD. Full ownership: MEDDIC discovery → architecture → demo → POC → production. Bilingual delivery in every engagement.',
         icon: 'code',
       },
       {
@@ -236,7 +240,7 @@ export const landingEn: LandingContent = {
         client: 'Private Hospital · Northern Mexico',
         sector: 'Hospital Operations',
         description:
-          'Supplier price catalog with anomaly detection. Rust + Axum + SQLite deployed as a single-binary Windows Service inside the hospital IT environment. Bilingual import pipelines, audit logging from day one, automated price-change alerts to procurement and the CFO.',
+          'Supplier price catalog with anomaly detection. Rust + Axum + SQLite deployed as a single-binary Windows Service inside the hospital IT environment. Bilingual import pipelines, audit logging from day one, automated price-change alerts to procurement and the CFO. POC-to-production in 8 weeks.',
         tech: tech.proj5,
         kind: 'arete-case',
       },
@@ -246,7 +250,7 @@ export const landingEn: LandingContent = {
         client: 'Notarial Office · Ciudad Victoria',
         sector: 'Notarial · LegalTech',
         description:
-          'Case management platform for a Mexican notary office. Next.js 14, PostgreSQL, Prisma. Optimistic locking, full audit log (bitácora), 13+ data models, SAT compliance roadmap. POC converted to production contract in 6 weeks.',
+          'Multi-tenant case management platform. Reframed the buyer\'s stated need (case tracking) into the real problem (LFPIORPI Art. 17 PLD audit defensibility). Next.js 14 + PostgreSQL + Prisma with optimistic locking, immutable audit bitácora, 13+ regulatory data models, SAT compliance roadmap. POC-to-production in 6 weeks.',
         tech: tech.proj4,
         kind: 'arete-case',
       },
@@ -256,7 +260,7 @@ export const landingEn: LandingContent = {
         client: 'Multi-Unit Restaurants · 6 franchise locations',
         sector: 'Restaurants · BI',
         description:
-          '10-tier business intelligence platform. 100+ REST API endpoints, 20+ KPIs, real-time WebSocket monitoring, ML-driven anomaly detection, predictive sales forecasting. Engagement expanded 3x after MEDDIC discovery surfaced inventory forecasting as the real pain.',
+          '10-tier business intelligence platform. 100+ REST API endpoints, 20+ KPIs, real-time WebSocket monitoring, ML-driven anomaly detection, predictive sales forecasting. MEDDIC discovery surfaced inventory forecasting as the real pain; engagement scoped 3× larger than initial RFP.',
         tech: ['Next.js', 'FastAPI', 'Postgres', 'WebSocket', 'ML'],
         kind: 'arete-case',
       },
@@ -266,7 +270,7 @@ export const landingEn: LandingContent = {
         client: 'Neighborhood Association · Mexico',
         sector: 'Community Management · Civic FinTech',
         description:
-          'Six-board-member committee, divided on going digital. Reframed via Challenger: the problem was not billing, it was that owners did not trust where the money went. Built the transparency portal as the visible champion artifact. Stripe Mexico + OXXO + SPEI live in five weeks. Dunning automation cut collection time by ~40%.',
+          'Six-board-member committee, divided on going digital. Reframed via Challenger: the problem was not billing, it was that owners did not trust where the money went. Built the transparency portal as the visible champion artifact. Stripe Mexico + OXXO + SPEI live in five weeks. Dunning automation cut collection time ~40%.',
         tech: ['Next.js', 'Supabase', 'Stripe MX', 'Claude API', 'OXXO', 'SPEI'],
         kind: 'arete-case',
       },
@@ -360,7 +364,7 @@ export const landingEn: LandingContent = {
     subtitle:
       'Looking for a bilingual Sales Engineer or Solutions Consultant for your LATAM expansion? I respond within one business day.',
     locationLabel: 'Based in',
-    location: 'Texas–Tamaulipas border · US / Mexico',
+    location: 'Texas–Tamaulipas border · Relocating to Medellín, Colombia',
   },
 
   footer: 'Manuel Flores. Founder, Areté Soluciones S.A. de C.V.',
@@ -385,27 +389,27 @@ export const landingEs: LandingContent = {
   hero: {
     eyebrow: 'Sales Engineer · Solutions Consultant',
     headline: {
-      lead: 'Ayudo a empresas a vender tecnología en ',
+      lead: 'Ayudo a empresas B2B SaaS a vender en ',
       emphasis: 'América Latina.',
     },
     subtitle:
-      'Nativo bilingüe EN/ES · Doble ciudadano US–México · Fundador de Areté Soluciones · Seleccionado para demo Edge AI en el Embedded Vision Summit, Santa Clara 2026.',
+      'Nativo bilingüe EN/ES · Doble ciudadano US–México · Fundador de Areté Soluciones (7 sistemas B2B SaaS en producción, ACV hasta $60K USD por cliente) · Seleccionado para demo Edge AI en vivo en el Embedded Vision Summit, Santa Clara, mayo 2026.',
     primaryCta: 'Ver el trabajo',
     secondaryCta: 'Conversemos',
   },
 
   proofPoints: [
-    { figure: '100K MXN', label: 'Ingreso mensual máximo por cliente activo' },
-    { figure: '7', label: 'Sistemas en producción a través de 5 verticales' },
-    { figure: 'EN · ES', label: 'Discovery técnico y entrega en ambos idiomas nativos' },
+    { figure: '$60K', label: 'USD valor de contrato anual, por cliente' },
+    { figure: '7', label: 'Sistemas en producción a través de 5 verticales reguladas' },
+    { figure: 'EN · ES', label: 'Discovery técnico y demo en vivo en ambos idiomas nativos' },
   ],
 
   about: {
     eyebrow: 'Sobre mí',
     title: 'Un operador bilingüe, no un contratista.',
     paragraphs: [
-      'Profesional de ventas técnicas en la frontera Texas–Tamaulipas. Desde 2024 opero Areté Soluciones S.A. de C.V., empresa mexicana B2B con siete sistemas en producción a través de notarías, hospitales, restaurantes, comunidades y servicios profesionales. Hasta 100K MXN por mes por cliente, MRR en crecimiento. Cada engagement arranca con discovery estilo MEDDIC en inglés y español, y termina con un despliegue en producción que aún opero hoy.',
-      'Traigo ese mismo método consultivo — entender al comprador, mapear los requerimientos, entregar en producción — a un rol de Sales Engineer o Solutions Consultant en una empresa de B2B SaaS o infraestructura de IA que se expande hacia América Latina. El kit portátil de demos (inferencia YOLOv8 en vivo sobre Raspberry Pi 5) viaja conmigo.',
+      'Profesional de ventas técnicas con base entre la frontera Texas–Tamaulipas y Medellín, Colombia. Desde 2024 opero Areté Soluciones S.A. de C.V., empresa mexicana B2B con siete sistemas en producción a través de notarías, hospitales, restaurantes, comunidades y operaciones de profesionistas. Valor de contrato anual hasta $60K USD por cliente. Cada engagement arranca con discovery MEDDIC en inglés y español, y termina con un despliegue en producción que aún opero hoy.',
+      'Traigo ese mismo método consultivo — entender al comprador, mapear los requerimientos, entregar en producción — a un rol de Sales Engineer o Solutions Consultant en una empresa de B2B SaaS o infraestructura de IA que se expande hacia América Latina. El kit portátil de demos (inferencia YOLOv8 en vivo sobre Raspberry Pi 5, mostrado en el Embedded Vision Summit) viaja conmigo.',
     ],
   },
 
@@ -416,9 +420,9 @@ export const landingEs: LandingContent = {
       {
         key: 'exp1',
         period: '2024 – Presente',
-        title: 'Fundador y CEO — Areté Soluciones S.A. de C.V.',
+        title: 'Fundador y Arquitecto Principal de Soluciones — Areté Soluciones S.A. de C.V.',
         description:
-          'Siete sistemas B2B SaaS en producción para PyMEs mexicanas en notarías, hospitales, restaurantes, comunidades y servicios profesionales. MRR en crecimiento. Propiedad completa: discovery → arquitectura → demo → POC → producción. Entrega bilingüe.',
+          'Siete sistemas B2B SaaS en producción para PyMEs mexicanas en notarías, hospitales, restaurantes, comunidades y operaciones de profesionistas. ACV hasta $60K USD por cliente. Propiedad completa: discovery MEDDIC → arquitectura → demo → POC → producción. Entrega bilingüe en cada engagement.',
         icon: 'code',
       },
       {
@@ -498,7 +502,7 @@ export const landingEs: LandingContent = {
         client: 'Hospital privado · Norte de México',
         sector: 'Operaciones hospitalarias',
         description:
-          'Catálogo de precios de proveedores con detección de anomalías. Rust + Axum + SQLite desplegado como Windows Service single-binary dentro del entorno IT del hospital. Pipelines de importación bilingües, bitácora desde día uno, alertas automáticas de variación de precio al área de compras y CFO.',
+          'Catálogo de precios de proveedores con detección de anomalías. Rust + Axum + SQLite desplegado como Windows Service single-binary dentro del entorno IT del hospital. Pipelines de importación bilingües, bitácora desde día uno, alertas automáticas de variación de precio al área de compras y CFO. POC a producción en 8 semanas.',
         tech: tech.proj5,
         kind: 'arete-case',
       },
@@ -508,7 +512,7 @@ export const landingEs: LandingContent = {
         client: 'Notaría · Ciudad Victoria',
         sector: 'Notarial · LegalTech',
         description:
-          'Plataforma de gestión de casos para una notaría mexicana. Next.js 14, PostgreSQL, Prisma. Bloqueo optimista, bitácora completa, 13+ modelos de datos, hoja de ruta de cumplimiento SAT. POC convertido a contrato de producción en 6 semanas.',
+          'Plataforma multi-tenant de gestión de casos. Reframé la necesidad declarada (tracking de casos) en el problema real (defensibilidad de auditoría PLD bajo LFPIORPI Art. 17). Next.js 14 + PostgreSQL + Prisma con bloqueo optimista, bitácora inmutable, 13+ modelos regulatorios, hoja de ruta de cumplimiento SAT. POC a producción en 6 semanas.',
         tech: tech.proj4,
         kind: 'arete-case',
       },
@@ -518,7 +522,7 @@ export const landingEs: LandingContent = {
         client: 'Multi-Unit Restaurants · 6 franquicias',
         sector: 'Restaurantes · BI',
         description:
-          'Plataforma de inteligencia de negocios de 10 niveles. 100+ endpoints REST, 20+ KPIs, monitoreo en tiempo real vía WebSocket, detección de anomalías con ML, pronóstico predictivo de ventas. Engagement expandido 3x después de que discovery MEDDIC reveló que el verdadero dolor era pronóstico de inventario.',
+          'Plataforma de inteligencia de negocios de 10 niveles. 100+ endpoints REST, 20+ KPIs, monitoreo en tiempo real vía WebSocket, detección de anomalías con ML, pronóstico predictivo de ventas. Discovery MEDDIC reveló que el dolor real era pronóstico de inventario; engagement escaló 3× del RFP original.',
         tech: ['Next.js', 'FastAPI', 'Postgres', 'WebSocket', 'ML'],
         kind: 'arete-case',
       },
@@ -622,7 +626,7 @@ export const landingEs: LandingContent = {
     subtitle:
       '¿Buscas un Sales Engineer o Solutions Consultant bilingüe para tu expansión LATAM? Respondo en un día hábil.',
     locationLabel: 'Basado en',
-    location: 'Frontera Texas–Tamaulipas · US / México',
+    location: 'Frontera Texas–Tamaulipas · Reubicándome en Medellín, Colombia',
   },
 
   footer: 'Manuel Flores. Fundador, Areté Soluciones S.A. de C.V.',

@@ -1,94 +1,110 @@
-# Manuel Flores — Canonical CV (source of truth)
+# Manuel Flores — Canonical CV (source of truth, v2 — May 2026)
 
-This is the canonical CV in markdown. When tailoring for a specific JD (Phase 2), pick one of the three variants in `references/cv-tailoring.md` and swap the top 3–5 Areté bullets. Do not modify this file in-line; treat it as read-only ground truth.
+> Updated in line with `arete/strategic_masterplan/04_cv_overhaul_corporate_strategy.md`. Refined for Sales Engineer / Solutions Consultant roles at B2B SaaS + AI-infra companies expanding into LATAM. **Claim count corrected to 7 production deployments** (matches Areté showcase docs exactly). When tailoring for a specific JD, use the variants in `references/cv-tailoring.md`.
 
 ---
 
 ## MANUEL FLORES
 
-**Sales Engineer | Solutions Engineer | Pre-Sales Consultant**
+**Sales Engineer · Solutions Consultant · Pre-Sales · Solutions Architect**
 
-Founder & CEO, Areté Soluciones S.A. de C.V. | Bilingual EN/ES Native | US-Mexico Dual Citizen
+Bilingual EN/ES Native · US-Mexico Dual Citizen · Founder, Areté Soluciones S.A. de C.V.
 
-Ciudad Victoria, Tamaulipas, Mexico | Manuelfa92@gmail.com | +52 834 196 3524
+manuelfa92@gmail.com · +52 834 196 3524 · manuelflores.me · linkedin.com/in/manuel-flores-90653060
 
-manuelflores.me | linkedin.com/in/manuel-flores-90653060
+Cd. Victoria, Tamaulipas, Mexico · Open to remote LATAM · Relocating to Medellín, Colombia 2026-27
 
 ---
 
 ## PROFESSIONAL SUMMARY
 
-Bilingual Sales Engineer and Solutions Consultant with proven success delivering technical pre-sales engagements across LATAM and US-Mexico markets. Founder and CEO of **Areté Soluciones S.A. de C.V.**, an incorporated Mexican B2B technology firm generating up to **100,000 MXN per month per client** and **$75,000+ in cumulative revenue** across **7 production deployments** in Notarial, Hospital, Restaurants, Communities, and Professional Services verticals. Native English/Spanish speaker with deep expertise in technical discovery, live product demonstrations, proof of concept (POC) delivery, RFP response, solution architecture, and consultative selling using MEDDIC, Challenger, and Command of the Message frameworks. Hands-on technical fluency in B2B SaaS, Cloud, REST APIs, and Edge AI — selected to deliver live machine learning inference demonstration at the **Embedded Vision Summit (Santa Clara, May 2026)**. Targeting Sales Engineer and Solutions Engineer roles at B2B SaaS companies expanding into Latin America.
+Bilingual Sales Engineer and Solutions Consultant with 8+ years across Business Development, Project Management, and technical pre-sales. Founder of **Areté Soluciones S.A. de C.V.** — an incorporated Mexican B2B firm that shipped **7 production systems across 5 regulated verticals**: Notarial / LegalTech, Hospital Operations, Multi-Unit Restaurants BI, Civic FinTech, Practitioner Operations. Per-client annual contract value up to **$60K USD**. Full personal ownership of MEDDIC discovery, solution architecture, live demonstrations, POC delivery, and production deployment in English and Spanish. **Selected to demonstrate live Edge AI inference at the Embedded Vision Summit, Santa Clara, May 2026.** Targeting Sales Engineer and Solutions Consultant roles at B2B SaaS and AI-infrastructure companies expanding into Latin America.
 
 ---
 
 ## CORE COMPETENCIES
 
-**Sales Engineering:** Technical Discovery, Product Demonstrations, Proof of Concept (POC), POC-to-Production, RFP/RFI Response, Solution Architecture, Technical Win, Pre-Sales Engineering, Post-Sales Implementation, Customer Success, Stakeholder Management, Sales Cycle Management, Objection Handling, Competitive Positioning, Technical Validation, Demo-to-Close
+**Pre-Sales Engineering** — Technical Discovery · Live Product Demonstrations · POC Design and Delivery · POC-to-Production Conversion · RFP/RFI Response · Solution Architecture · Reference Architecture · Competitive Positioning · Technical Win · Objection Handling · Demo-to-Close
 
-**Sales Methodologies:** MEDDIC, MEDDPICC, SPIN Selling, Challenger Sale, Solution Selling, Value-Based Selling, Consultative Selling, Gap Selling, Command of the Message, Great Demo!, Demonstrating to Win, JOLT Effect, Crossing the Chasm
+**Sales Methodologies (applied, not just studied)** — MEDDIC · MEDDPICC · Challenger Sale · Command of the Message · Great Demo! · JOLT Effect · Gap Selling · SPIN Selling · Solution Selling · Cialdini Principled Influence
 
-**Technical Stack:** JavaScript, TypeScript, Python, Node.js, React, Next.js, FastAPI, REST APIs, GraphQL, PostgreSQL, SQL, Supabase, Prisma, Drizzle ORM, Docker, Git, Linux, AWS, Vercel, Stripe, Anthropic Claude API, OpenAI API, Rust, Tailwind CSS
+**Technical Stack (shipped in production)** — TypeScript · Python · Rust · Next.js (14, 15, 16) · React 19 · FastAPI · Axum · Node.js · PostgreSQL · Supabase · Prisma · Drizzle ORM · Docker · Linux · AWS · Vercel · Railway · Stripe (incl. Stripe MX, OXXO, SPEI) · Anthropic Claude API (prompt caching, tool use, agentic workflows) · OpenAI API · pgvector RAG · WhatsApp Business Cloud API direct
 
-**AI / Machine Learning:** Computer Vision, YOLOv8, ONNX Runtime, TensorFlow Lite (TFLite), INT8 Quantization, Edge AI, On-Device Inference, Large Language Models (LLM), Retrieval-Augmented Generation (RAG), Vector Databases (pgvector), Prompt Engineering, llama.cpp, Whisper.cpp
+**Edge AI / Machine Learning** — YOLOv8 · ONNX Runtime · INT8 Quantization · TensorFlow Lite · On-Device Inference · Computer Vision · LLM RAG · Vector Databases · llama.cpp · Whisper.cpp · production-scale prompt engineering
 
-**Industries:** B2B SaaS, Enterprise Software, Cloud Services, AI Infrastructure, Edge AI / Computer Vision, FinTech, Notarial / LegalTech, Healthcare / Hospital Operations, Multi-Unit Restaurants, Community Management, Professional Services, Cross-Border Trade, Nearshoring, Latin America (LATAM), Mexico SME Market, US-Mexico Corridor
+**Domain Depth** — B2B SaaS · AI Infrastructure · LegalTech (Mexican notarial law, LFPIORPI Art. 17, LFPDPPP 2025) · Healthcare Operations (NOM-024 SSA3) · Multi-Unit Restaurants (CFDI 4.0, IMSS) · LATAM FinTech (Belvo open banking, SPEI, OXXO, RESICO) · Mexican fiscal stack (SAT, CFDI 4.0) · Cross-border US-Mexico-Colombia
 
-**Languages:** English (Native), Spanish (Native) — fully bilingual technical discovery, demonstrations, and customer-facing delivery
+**Languages** — English (Native) · Spanish (Native) — fully bilingual technical discovery, live demo, RFP response, and customer-facing delivery
 
 ---
 
 ## PROFESSIONAL EXPERIENCE
 
-### Founder & Chief Executive Officer — Areté Soluciones S.A. de C.V. (01/2024 – Present)
+### Founder & Principal Solutions Architect — Areté Soluciones S.A. de C.V.
 
-Ciudad Victoria, Mexico (Remote, LATAM)
+*Cd. Victoria, Mexico (remote LATAM) · 01/2024 – Present*
 
-- Founded and incorporated B2B technology consultancy serving small and medium enterprises (SMEs) across Northern Mexico; engagements average up to **100,000 MXN per month per client** with full ownership of pre-sales discovery, technical architecture, live product demonstrations, proof of concept delivery, and post-sale account expansion.
-- Delivered **7 production SaaS systems** generating **$75,000+ in cumulative revenue** across Notarial, Hospital, Restaurants, Communities, and Professional Services verticals; ran MEDDIC-style technical discovery in English and Spanish to translate business requirements into scoped technical solutions and accelerate sales cycles.
-- **Hospital La Salle (Hospital operations, 100+ bed private hospital):** Architected supplier price catalog and anomaly detection system using Rust, Axum, and SQLite; deployed as single-binary Windows Service with bilingual import pipelines and automated price-change alerting.
-- **Notaría 45 (Notarial / LegalTech):** Delivered case management platform on Next.js 14, PostgreSQL, and Prisma for Mexican notary office; implemented optimistic locking, full audit logging (bitácora), 13+ data models, and Mexican tax authority (SAT) compliance roadmap.
-- **Gorditas Doña Tota (Multi-Unit Restaurants BI):** Shipped 10-tier business intelligence platform processing data from **6 franchise locations**; built 100+ REST API endpoints, 20+ KPIs, real-time WebSocket monitoring, ML-driven anomaly detection, and predictive sales forecasting on FastAPI and React.
-- **Comunidad BI (Community management / Civic FinTech):** Built Next.js, Supabase, and Stripe Mexico platform for neighborhood association; delivered Claude-powered PDF importer, automated dunning across WhatsApp and email, OXXO/SPEI/credit card payment processing, and public transparency portal.
-- **Edge AI Demonstration Suite:** Selected to demonstrate live at the **Embedded Vision Summit (Santa Clara, May 2026)**. Built VisionGuard (YOLOv8 INT8 manufacturing defect detection at 12 FPS on Raspberry Pi 5) and LoanSight (Belvo-style open-banking underwriting for Mexican SMB lenders) as bilingual public sales demos.
-- Operate as the **sole bilingual EN/ES bridge** between US-aligned stakeholders and Spanish-speaking operators across 5 verticals; carry portable Raspberry Pi 5 demo kit to prospect meetings and conferences for tangible on-device inference demonstrations.
+Built and operate a fully-incorporated Mexican B2B technology firm with **7 production systems** across 5 regulated verticals. Personal ownership of every pre-sales cycle: discovery in EN or ES, architecture proposal, live demo, POC, production handoff, post-sale expansion. Per-client ACV up to **$60K USD**.
 
-### Business Development Partner — WORKOWHOLE Studio (01/2021 – 12/2023)
+- **Hospital La Salle — Hospital Operations (100+ bed private hospital):** Discovery surfaced that procurement was bleeding on unjustified supplier price increases. Architected single-binary Windows Service in **Rust + Axum + SQLite** — deployable inside the hospital's internal IT environment with zero external dependencies. Bilingual import pipelines from supplier-submitted Excel catalogs (hash-validated). Automated price-change alerts to procurement + CFO. POC-to-production in 8 weeks. Closed: $70K MXN setup + $1.5K MXN/month maintenance. *Stack: Rust 2021, Axum, SQLite WAL, Argon2, tower-sessions, HTMX, Askama, full audit logging.*
 
-Remote (Tech & Creative Clients)
+- **Notaría 45 — LegalTech / Mexican notarial law:** Reframed the buyer's stated need (case tracking) into the real problem (LFPIORPI Art. 17 PLD audit defensibility under reform 16-jul-2025). Architected multi-tenant SaaS on **Next.js 14 + PostgreSQL + Prisma** with optimistic locking, immutable audit bitácora, 13+ regulatory data models, CFDI 4.0 + complemento Notarios Públicos generation, DeclaraNot XML export. POC-to-production in 6 weeks. *Stack: Next.js 14 App Router, Supabase, Prisma, Zod, NextAuth, Anthropic Claude Haiku for WhatsApp intake.*
 
-- Owned **12+ enterprise client accounts** as primary technical liaison between business stakeholders and design/engineering teams; translated customer requirements into actionable technical specifications and managed cross-functional delivery.
-- Managed Agile/Scrum delivery (sprint planning, backlog prioritization, scope negotiation) across multiple concurrent projects; improved on-time delivery rate from approximately 70% to **90%+** across the account portfolio.
-- Tracked customer lifetime value (CLV), customer satisfaction (CSAT), and retention metrics; built repeatable consultative sales motion that grew average contract value by **35%** through upsell and cross-sell identification.
+- **Gorditas Doña Tota — Multi-Unit Restaurants BI (6 franchise locations):** MEDDIC discovery surfaced that the economic buyer's real pain wasn't reporting — it was inventory forecast accuracy. Engagement scoped 3× larger than initial RFP. Shipped 10-tier BI platform: **100+ REST API endpoints, 20+ KPIs, real-time WebSocket monitoring, ML-driven anomaly detection, predictive sales forecasting**. *Stack: FastAPI, React, PostgreSQL + TimescaleDB, Railway, DuckDB for analytics, pandas + openpyxl for adaptive Excel ingestion.*
 
-### Project Manager — Token Engineering Commons (06/2020 – 12/2021)
+- **Comunidad BI — Civic FinTech (neighborhood association):** Six-board-member committee divided on going digital. Reframed via Challenger: the problem wasn't billing, it was that owners didn't trust where the money went. Built the public transparency portal as the visible champion artifact. **Next.js + Supabase + Stripe Mexico** with OXXO, SPEI, and tarjeta live in 5 weeks. Claude-powered PDF import. Automated 7-stage dunning across WhatsApp + email. Collection time cut ~40%. *Stack: Next.js 14, Supabase RLS, Stripe MX, Twilio WhatsApp, Resend, JWT-signed authless payment links.*
 
-Remote (Distributed Systems Nonprofit)
+- **Laura Zanuna — Practitioner Operations (EU-based, multi-currency):** Single-practitioner spiritual-coaching platform replacing Calendly + Acuity + Stripe + Mailchimp + HubSpot + a notebook. **Multi-currency** (EUR + USD) with Stripe Adaptive Pricing. **AES-256-encrypted** clinical notes with versioned encryption keys. JWT magic-link booking (zero client passwords). Three-mode calendar with day-blocking conflict API. Gmail OAuth + Google Docs API integration. Claude-powered AI-suggested email replies in 3 tones. **GDPR-compliant audit log + soft-delete + consent versioning** from day one. 50+ production deployments. *Stack: Next.js 14, Supabase, Stripe, Resend, React Email, Upstash Redis rate limiting.*
 
-- Coordinated technical delivery across **5 distributed working groups** with no formal authority; **promoted from intern to Project Manager within 4 months** based on cross-functional leadership performance.
-- Authored technical onboarding and architecture documentation adopted as standard reference material for **200+ contributors**; translated complex distributed systems and infrastructure concepts for non-technical stakeholders.
+- **VisionGuard — Edge AI · Manufacturing QA:** Built portable bilingual sales demo. **YOLOv8 INT8-quantized object detection** running on-device at **12 FPS on Raspberry Pi 5** ARM Cortex-A76. **Selected for live demonstration at Embedded Vision Summit, Santa Clara, May 2026.** Demo kit travels to prospect meetings as tangible "this works here, not in a slide."
 
-### Business Development Manager — Autonio Foundation (01/2018 – 12/2019)
+- **LoanSight — LATAM FinTech reference demo:** Belvo-style open-banking underwriting demo for Mexican SMB lenders. Mock-connect bank, stream 12 months of CFDI + cash transactions, score via 5 transparent rules in <10 seconds. Built specifically for SE/SC interviews at Belvo, Plaid LATAM, Truora, Pomelo, DEUNA. *Stack: Next.js 16, TypeScript strict, Drizzle ORM, Zod, Tailwind 4, shadcn/ui.*
 
-Remote (Early-Stage FinTech Startup)
+**Sole bilingual EN/ES bridge** across all 7 engagements between US-aligned stakeholders and Spanish-speaking operators. MEDDIC qualification in both languages. Portable demo kit (Pi 5 + monitor + cell hotspot) at every prospect meeting.
 
-- Led early-stage business development at pre-product-market-fit FinTech startup; raised **$40,000 in crowdfunding without a pitch deck**, closed **$35,000 in product sales with zero marketing spend**, and pioneered new revenue channels through strategic account management and consultative selling.
+### Business Development Partner — Workowhole Studio
 
-### Research Associate & Business Development — Cryptonomex Inc. (01/2017 – 12/2017)
+*Remote, tech & creative clients · 01/2021 – 12/2023*
 
-Remote (Distributed Systems Research Firm)
+- Owned **12+ enterprise client accounts** as primary technical liaison between business stakeholders and design/engineering teams. Translated requirements into technical specifications and managed cross-functional delivery.
+- Improved on-time delivery rate across portfolio from ~70% to **90%+** via Agile/Scrum discipline.
+- Tracked CLV, CSAT, retention. Repeatable consultative motion grew average contract value **35%** through upsell and cross-sell identification.
 
-- Synthesized emerging distributed systems and infrastructure technologies into executive summaries that informed product roadmap decisions; built new lead generation channels and contributed to early business development pipeline.
+### Project Manager — Token Engineering Commons
+
+*Remote, distributed systems nonprofit · 06/2020 – 12/2021*
+
+- Coordinated technical delivery across **5 distributed working groups** with no formal authority.
+- **Promoted from intern to PM in 4 months** based on cross-functional leadership performance.
+- Authored technical onboarding and architecture documentation adopted as reference material for **200+ contributors**.
+
+### Business Development Manager — Autonio Foundation
+
+*Remote, early-stage FinTech · 01/2018 – 12/2019*
+
+- Raised **$40,000 in crowdfunding without a pitch deck.**
+- Closed **$35,000 in product sales with zero marketing spend.**
+- Pioneered new revenue channels via strategic account management and consultative selling.
+
+### Research Associate & Business Development — Cryptonomex Inc.
+
+*Remote, distributed systems research · 01/2017 – 12/2017*
+
+- Synthesized emerging distributed systems and infrastructure research into executive summaries that informed product roadmap. Built new lead-generation channels.
 
 ---
 
 ## KEY PROJECTS & TECHNICAL INITIATIVES
 
-- **VisionGuard (Manufacturing QA):** YOLOv8 INT8-quantized object detection running on-device at 12 frames per second on Raspberry Pi 5 ARM Cortex-A76 inference; selected for live demonstration at Embedded Vision Summit, Santa Clara, May 2026. Live bilingual demo at manuelflores.me/demos/visionguard.
-- **LoanSight (LATAM FinTech):** Belvo-style open-banking underwriting demo for Mexican SMB lenders. Mock-connect a prospect's bank, stream 12 months of CFDI / cash transactions, get a scored decision via 5 transparent underwriting rules in under 10 seconds. Built for SE interviews at Belvo, Plaid LATAM, Truora, Pomelo, DEUNA. Live at manuelflores.me/demos/loansight.
-- **Sales Job Tracker (B2B SaaS Reference Implementation):** Architected as personal technical showcase demonstrating enterprise-tier patterns — PostgreSQL with row-level security, REST API design, pgvector retrieval, and agentic workflow state machines. Backs the manuelflores.me public portfolio.
-- **Knowledge Engine (Sales Methodology Mastery):** Private spaced-repetition learning system ingesting 22-book sales methodology library (SPIN, Challenger, MEDDIC, JOLT, Cialdini, Great Demo!) to systematically reinforce SE/SC fluency.
-- **Warm-First Outreach System:** Adaptive 15-state machine with cold-apply gate and influence-ranked contact prioritization; deployed against 33 LATAM-expanding B2B SaaS companies and 37 named decision-makers.
+- **VisionGuard (Manufacturing QA):** YOLOv8 INT8-quantized object detection, 12 FPS on Raspberry Pi 5 ARM Cortex-A76 on-device inference. *Selected for live demonstration at Embedded Vision Summit, Santa Clara, May 2026.* Live bilingual public demo at manuelflores.me/demos/visionguard.
+
+- **LoanSight (LATAM FinTech):** Belvo-style open-banking underwriting demo. CFDI + bank-transaction ingestion, 5-rule transparent scoring, <10s decision. Live at manuelflores.me/demos/loansight.
+
+- **Sales Job Tracker (B2B SaaS reference implementation):** Personal BI dashboard, 28-table Postgres schema, 45+ API routes, Supabase auth, pgvector retrieval, agentic state machines for outreach pipeline. Backs the manuelflores.me public portfolio.
+
+- **Knowledge Engine (Sales methodology mastery):** Private spaced-repetition system ingesting a 22-book sales methodology library (SPIN, Challenger, MEDDIC, JOLT, Cialdini, Great Demo!) for systematic SE/SC fluency reinforcement.
+
+- **Warm-First Outreach System:** Adaptive 15-state machine with cold-apply gate and influence-ranked contact prioritization. Deployed against 33 LATAM-expanding B2B SaaS companies and 37 named decision-makers.
 
 ---
 
