@@ -4,12 +4,14 @@
  * One source of truth, two language variants. Keep the EN and ES versions
  * in lock-step — anything in EN must have its ES counterpart, and vice versa.
  *
- * Numbers (revenue, deployments, FPS, etc.) live here and are pulled into
- * both /  and /es pages so they cannot drift.
+ * Numbers live here and are pulled into both /  and /es pages so they cannot
+ * drift.
  *
- * v2 — May 2026: tightened for SE/SC job-hunt positioning. ACV now expressed
- * in USD ($60K) instead of MXN ceiling. Location reflects Medellín relocation.
- * Deployments count locked to 7 (matches Areté showcase docs exactly).
+ * v3 — July 2026: repositioned for Forward Deployed Engineer / AI-agent roles.
+ * Honesty pass applied — Areté is an independent practice (not incorporated);
+ * removed unverified speaking claims, fabricated/dead projects, and all
+ * unverified dollar/ACV figures. Real Areté client work and self-built AI
+ * projects only; every claim is disk-backed and defensible.
  */
 
 export interface ProjectContent {
@@ -23,7 +25,7 @@ export interface ProjectContent {
   /** Optional external or internal URL. Internal paths start with "/". */
   url?: string;
   /** Whether this project is an Areté production deployment (case study) or a
-   *  standalone public sales demo. Used for ordering and labels. */
+   *  standalone self-built demo / personal build. Used for ordering and labels. */
   kind: 'arete-case' | 'public-demo' | 'personal';
 }
 
@@ -98,14 +100,14 @@ export interface LandingContent {
 
 // Shared tech stacks (not translated).
 const tech = {
-  proj1: ['Next.js', 'Supabase', 'TypeScript', 'Vercel'],
-  proj2: ['Next.js', 'Supabase', 'Tailwind CSS', 'Vercel'],
-  proj3: ['Next.js', 'Supabase', 'WhatsApp API', 'Vercel'],
-  proj4: ['Next.js', 'Supabase', 'TypeScript'],
-  proj5: ['Rust', 'Axum', 'SQLite', 'Windows Service'],
-  proj6: ['Next.js', 'TypeScript', 'Supabase', 'Drizzle ORM', 'Recharts'],
-  proj7: ['YOLOv8', 'ONNX', 'INT8 quant', 'Raspberry Pi 5'],
-  proj8: ['Next.js', 'TypeScript', 'Drizzle ORM', 'Zod', 'Tailwind'],
+  claims: ['Next.js', 'TypeScript', 'PostgreSQL / Supabase', 'Anthropic Claude API'],
+  voice: ['Twilio ConversationRelay', 'Node / TypeScript', 'Fastify WebSocket', 'Anthropic Claude API'],
+  laura: ['Next.js', 'Supabase', 'Stripe', 'Google APIs', 'Anthropic Claude API'],
+  notaria: ['Next.js 15', 'Supabase', 'Drizzle ORM', 'Postgres RLS'],
+  hospital: ['Rust', 'Axum', 'SQLite', 'Windows Service'],
+  gorditas: ['FastAPI', 'React', 'PostgreSQL', 'WebSockets'],
+  areteos: ['Rust', 'Axum', 'SQLite', 'HTMX', 'Claude API'],
+  rag: ['Next.js', 'Supabase', 'pgvector', 'Claude API', 'Zod'],
 };
 
 // ============================================================
@@ -125,29 +127,29 @@ export const landingEn: LandingContent = {
   },
 
   hero: {
-    eyebrow: 'Sales Engineer · Solutions Consultant',
+    eyebrow: 'Forward Deployed Engineer · AI Agents & LLM Applications',
     headline: {
-      lead: 'I help B2B SaaS companies sell into ',
-      emphasis: 'Latin America.',
+      lead: "I turn a customer's messy reality into ",
+      emphasis: 'production AI systems.',
     },
     subtitle:
-      'Bilingual EN/ES native · US–Mexico dual citizen · Founder of Areté Soluciones (7 production B2B SaaS systems, ACV up to $60K USD) · Selected to demo Edge AI live at the Embedded Vision Summit, Santa Clara, May 2026.',
+      'Forward-deployed, customer-facing engineer and full-stack builder. I own the technical relationship from first demo to production — building LLM / agent systems on the Anthropic Claude API and wiring them into real customer operations. Bilingual EN/ES native, US–Mexico dual citizen.',
     primaryCta: 'See the work',
     secondaryCta: 'Get in touch',
   },
 
   proofPoints: [
-    { figure: '$60K', label: 'USD annual contract value, per client' },
-    { figure: '7', label: 'Production deployments across 5 regulated verticals' },
-    { figure: 'EN · ES', label: 'Native bilingual technical discovery and live demo' },
+    { figure: 'Demo → Prod', label: 'Sole technical owner of every engagement — discovery, build, integration, handover' },
+    { figure: 'Claude API', label: 'Daily: tool_use extraction, RAG, agent design, human-in-the-loop review' },
+    { figure: 'EN · ES', label: 'Native bilingual technical discovery and live delivery' },
   ],
 
   about: {
     eyebrow: 'About',
-    title: 'A bilingual operator, not a contractor.',
+    title: 'An operator who ships, end to end.',
     paragraphs: [
-      "I'm a technical sales professional based between the Texas–Tamaulipas border and Medellín, Colombia. Since 2024 I've run Areté Soluciones S.A. de C.V., an incorporated Mexican B2B firm with seven production systems across notarial, hospital, restaurants, communities, and practitioner-operations verticals. Per-client annual contract values reach $60K USD. Every engagement starts with MEDDIC discovery in English and Spanish, and ends with a production deployment I still operate today.",
-      "I'm bringing that same consultative motion — discover the buyer, map requirements, ship to production — to a Sales Engineer or Solutions Consultant role at a B2B SaaS or AI-infrastructure company expanding into Latin America. The portable demo kit (live YOLOv8 inference on a Raspberry Pi 5, shown at the Embedded Vision Summit) travels with me.",
+      "I'm a forward-deployed, customer-facing engineer. Through Areté Soluciones — my independent technology practice — I've shipped production systems across five verticals: legal/notarial, hospital operations, multi-location restaurants, parking and facilities, and practitioner operations. On every engagement I'm the sole technical operator: discovery in English or Spanish, architecture, build, integration against the customer's own systems, and a production deployment I still run today.",
+      "That work is increasingly AI-forward. I build LLM and agent systems on the Anthropic Claude API — forced-schema extraction, retrieval-augmented generation, confidence-gated human-in-the-loop review, and real-time voice agents — and wire them into messy, real-world operations via REST APIs, webhooks, and OAuth. I'm bringing that same loop — embed, discover, build, ship, own it — to a Forward Deployed Engineer role at an AI product company.",
     ],
   },
 
@@ -158,9 +160,9 @@ export const landingEn: LandingContent = {
       {
         key: 'exp1',
         period: '2024 – Present',
-        title: 'Founder & Principal Solutions Architect — Areté Soluciones S.A. de C.V.',
+        title: 'Founder & Lead Engineer — Areté Soluciones (independent practice)',
         description:
-          'Seven production B2B SaaS systems for Mexican SMEs across notarial, hospital, restaurants, communities, and practitioner-operations verticals. Per-client ACV up to $60K USD. Full ownership: MEDDIC discovery → architecture → demo → POC → production. Bilingual delivery in every engagement.',
+          "Independent technology practice. Sole technical owner across discovery, architecture, build, integration, and production deployment on every engagement — customer-facing from first call to handover, in English or Spanish, across notarial, hospital, restaurant, facilities, and practitioner-operations verticals. Increasingly focused on LLM / agent systems on the Anthropic Claude API.",
         icon: 'code',
       },
       {
@@ -168,7 +170,7 @@ export const landingEn: LandingContent = {
         period: '2021 – 2023',
         title: 'Business Development Partner — Workowhole Studio',
         description:
-          'Owned 12+ enterprise client accounts as primary technical liaison between business stakeholders and design/engineering teams. Agile/Scrum delivery; improved on-time delivery rate from ~70% to 90%+. Grew average contract value 35%.',
+          'Owned 12+ enterprise client accounts as the primary technical liaison between business stakeholders and design/engineering teams. Translated requirements into technical specifications; improved on-time delivery from ~70% to 90%+ through sprint discipline.',
         icon: 'briefcase',
       },
       {
@@ -176,7 +178,7 @@ export const landingEn: LandingContent = {
         period: '2020 – 2021',
         title: 'Project Manager — Token Engineering Commons',
         description:
-          'Promoted from intern to PM in 4 months. Coordinated 5 distributed working groups with no formal authority. Technical onboarding documentation adopted as reference for 200+ contributors.',
+          'Promoted from intern to PM in 4 months. Coordinated 5 distributed working groups with no formal authority. Authored technical onboarding documentation adopted as reference for 200+ contributors.',
         icon: 'users',
       },
       {
@@ -192,7 +194,7 @@ export const landingEn: LandingContent = {
         period: '2017',
         title: 'Research Associate — Cryptonomex Inc.',
         description:
-          'Synthesized emerging distributed systems and infrastructure research into executive summaries that informed product roadmap decisions.',
+          'Synthesized emerging distributed-systems and infrastructure research into executive summaries that informed product-roadmap decisions.',
         icon: 'briefcase',
       },
       {
@@ -200,7 +202,7 @@ export const landingEn: LandingContent = {
         period: '2016',
         title: 'BA Rhetoric & Writing — The University of Texas at Austin',
         description:
-          'Communication, persuasion, structured argumentation — the foundation of consultative selling.',
+          'Communication, persuasion, structured argumentation — the foundation of translating complex technical systems for non-technical stakeholders.',
         icon: 'grad',
       },
     ],
@@ -208,147 +210,141 @@ export const landingEn: LandingContent = {
 
   work: {
     eyebrow: 'Selected work',
-    title: 'Seven production systems. Two public demos.',
+    title: 'Two AI agents. Production systems across five verticals.',
     subtitle:
-      'Each engagement framed through the SE lens: discover the pain, architect the solution, ship to production, stay accountable.',
+      "Each one owned end to end — discover the real problem, architect it, ship it into the customer's world, stay accountable.",
     projects: [
       {
-        key: 'proj7',
-        name: 'VisionGuard',
-        client: 'Embedded Vision Summit · Santa Clara 2026',
-        sector: 'Edge AI · Manufacturing QA',
+        key: 'claims',
+        name: 'AI Claims-Operations Agent',
+        client: 'Self-directed build · AI claims automation',
+        sector: 'Insurance · LLM Agents',
         description:
-          'YOLOv8 INT8-quantized object detection running on-device at 12 FPS on a Raspberry Pi 5. Selected for live demonstration at the Embedded Vision Summit. Portable bilingual demo kit that travels to every prospect meeting.',
-        tech: tech.proj7,
-        url: '/demos/visionguard',
+          "A two-agent slice of an AI claims-automation product. A Claim Intaker turns a messy workers'-comp First Notice of Loss (FNOL) packet into a structured, confidence-scored record via Claude tool_use forced-schema extraction — low-confidence fields route to a human review queue instead of silently populating the record. A Case Copilot answers adjuster questions grounded only in that claim's documents, every answer citing its source, deferring compensability to the licensed adjuster. Built to prove the forward-deployed loop end to end.",
+        tech: tech.claims,
         kind: 'public-demo',
       },
       {
-        key: 'proj8',
-        name: 'LoanSight',
-        client: 'LATAM FinTech · Open Banking',
-        sector: 'FinTech · SMB Underwriting',
+        key: 'voice',
+        name: 'Voice Interview Agent',
+        client: 'Self-directed build · real-time voice × LLM',
+        sector: 'Voice AI · Telephony',
         description:
-          "Belvo-style open-banking underwriting demo for Mexican SMB lenders. Connect a mock bank, stream 12 months of CFDI/cash transactions, score the application via 5 transparent rules — under 10 seconds. Built for SE interviews at Belvo, Plaid LATAM, Truora, Pomelo, DEUNA.",
-        tech: tech.proj8,
-        url: '/demos/loansight',
+          'A two-way voice AI phone agent that runs adaptive mock interviews over a live phone call and returns rubric-scored written feedback. Twilio ConversationRelay (Deepgram STT / ElevenLabs TTS) streamed through a Node/TypeScript Fastify WebSocket server into the Anthropic Claude Messages API, with real-time barge-in turn-taking and Haiku/Sonnet inference-tier routing. End to end: telephony leg to LLM brain to structured output.',
+        tech: tech.voice,
         kind: 'public-demo',
       },
       {
-        key: 'proj5',
+        key: 'laura',
+        name: 'Laura Zanuna',
+        client: 'Practitioner Operations · EU',
+        sector: 'Full-Stack SaaS · Live Payments',
+        description:
+          'A ~75,000-line full-stack platform replacing Calendly, Acuity, Stripe, and Mailchimp for a single practitioner — running live on production Stripe. Multi-currency (EUR/USD) payments and invoicing, JWT magic-link booking, a three-mode calendar with a day-blocking conflict API, deep third-party integrations (Gmail OAuth + Google APIs, Stripe webhooks, Resend), background job queue, rate limiting, and Claude-powered email-reply drafting.',
+        tech: tech.laura,
+        kind: 'arete-case',
+      },
+      {
+        key: 'notaria',
+        name: 'Notaría — Semáforo Infonavit',
+        client: 'Notarial Office · Ciudad Victoria',
+        sector: 'LegalTech · Regulated Ops',
+        description:
+          'A multi-tenant, row-level-security-isolated SaaS tracking Infonavit mortgage trámites on a traffic-light SLA dashboard, with an append-only, trigger-enforced Postgres audit log — the auditable, nothing-silently-overwritten pattern that regulated back-office work demands.',
+        tech: tech.notaria,
+        kind: 'arete-case',
+      },
+      {
+        key: 'hospital',
         name: 'Hospital La Salle',
         client: 'Private Hospital · Northern Mexico',
         sector: 'Hospital Operations',
         description:
-          'Supplier price catalog with anomaly detection. Rust + Axum + SQLite deployed as a single-binary Windows Service inside the hospital IT environment. Bilingual import pipelines, audit logging from day one, automated price-change alerts to procurement and the CFO. POC-to-production in 8 weeks.',
-        tech: tech.proj5,
+          "A single-binary Rust/Axum/SQLite Windows Service deployed inside the hospital's locked-down, change-controlled IT environment. Hash-validated catalog import pipeline, automated price-change flagging for the purchasing team, and full audit logging. Delivered and invoiced.",
+        tech: tech.hospital,
         kind: 'arete-case',
       },
       {
-        key: 'proj4',
-        name: 'Notaría 45',
-        client: 'Notarial Office · Ciudad Victoria',
-        sector: 'Notarial · LegalTech',
-        description:
-          'Multi-tenant case management platform. Reframed the buyer\'s stated need (case tracking) into the real problem (LFPIORPI Art. 17 PLD audit defensibility). Next.js 14 + PostgreSQL + Prisma with optimistic locking, immutable audit bitácora, 13+ regulatory data models, SAT compliance roadmap. POC-to-production in 6 weeks.',
-        tech: tech.proj4,
-        kind: 'arete-case',
-      },
-      {
-        key: 'proj1',
+        key: 'gorditas',
         name: 'Gorditas Doña Tota',
-        client: 'Multi-Unit Restaurants · 6 franchise locations',
-        sector: 'Restaurants · BI',
+        client: 'Multi-Location Restaurants · 6 locations',
+        sector: 'Operational BI',
         description:
-          '10-tier business intelligence platform. 100+ REST API endpoints, 20+ KPIs, real-time WebSocket monitoring, ML-driven anomaly detection, predictive sales forecasting. MEDDIC discovery surfaced inventory forecasting as the real pain; engagement scoped 3× larger than initial RFP.',
-        tech: ['Next.js', 'FastAPI', 'Postgres', 'WebSocket', 'ML'],
+          'A FastAPI + React operational-BI platform — 110 REST API endpoints, 38 KPIs, real-time WebSocket monitoring, and statistical (Z-score) anomaly detection over inventory and sales data. MEDDIC discovery surfaced inventory forecasting as the real pain and scoped the engagement well beyond the initial RFP.',
+        tech: tech.gorditas,
         kind: 'arete-case',
       },
       {
-        key: 'proj2',
-        name: 'Comunidad BI',
-        client: 'Neighborhood Association · Mexico',
-        sector: 'Community Management · Civic FinTech',
+        key: 'areteos',
+        name: 'Areté OS',
+        client: 'Personal · the system that runs my practice',
+        sector: 'Rust · Offline-First',
         description:
-          'Six-board-member committee, divided on going digital. Reframed via Challenger: the problem was not billing, it was that owners did not trust where the money went. Built the transparency portal as the visible champion artifact. Stripe Mexico + OXXO + SPEI live in five weeks. Dunning automation cut collection time ~40%.',
-        tech: ['Next.js', 'Supabase', 'Stripe MX', 'Claude API', 'OXXO', 'SPEI'],
-        kind: 'arete-case',
-      },
-      {
-        key: 'proj6',
-        name: 'Sales Job Tracker',
-        client: 'Personal · BI for technical sales pipeline',
-        sector: 'B2B SaaS Reference Implementation',
-        description:
-          'Personal BI dashboard for managing a technical-sales job search: outreach pipeline (Kanban), target-company research hub, conference tracker, interview-prep system, analytics. 28-table Postgres schema, 45+ API routes, Supabase auth, pgvector, agentic state machines. Backs this portfolio.',
-        tech: tech.proj6,
+          "The operating system I built to run my own practice: one self-contained Rust binary combining a strategy view, lightweight ERP, and CRM over a single local database, working fully offline. Money is stored as integer cents and every payment is an append-only ledger entry that can't be silently edited. Claude is integrated where it helps and disables cleanly when there's no connection.",
+        tech: tech.areteos,
         kind: 'personal',
       },
       {
-        key: 'proj3',
-        name: 'Creatif',
-        client: 'Consumer Product Startup',
-        sector: 'E-Commerce',
+        key: 'rag',
+        name: 'RAG Job-Search Pipeline',
+        client: 'Personal · reference build',
+        sector: 'RAG · Claude Tooling',
         description:
-          'Discovery revealed conversion bottlenecks were in the WhatsApp handoff, not the funnel. Built a landing page with WhatsApp Business integration for lead capture plus a full admin portal: accounting, CRM, order management, product catalog, marketing analytics.',
-        tech: tech.proj3,
-        url: 'creatif.contact',
-        kind: 'arete-case',
+          'A Next.js / Supabase application with pgvector retrieval (Voyage AI embeddings) and a Claude-API pipeline — tool-calling with Zod-validated structured output — covering triage, outreach drafting, interview-kit generation, and mock-interview sessions. The same RAG + tool-use + structured-validation patterns as the claims agent.',
+        tech: tech.rag,
+        kind: 'personal',
       },
     ],
   },
 
   skills: {
     eyebrow: 'Skills',
-    title: 'What I bring to the conversation.',
+    title: 'What I bring to the build.',
     groups: [
       {
-        title: 'Sales Engineering',
+        title: 'AI / LLM Engineering',
         items: [
-          'Technical Discovery',
-          'Live Product Demos',
-          'POC → Production',
-          'RFP / RFI Response',
-          'Solution Architecture',
-          'Objection Handling',
-          'Competitive Positioning',
+          'Anthropic Claude API',
+          'tool_use · forced-schema extraction',
+          'Prompt engineering · agent design',
+          'RAG (pgvector · Postgres FTS)',
+          'Human-in-the-loop review',
+          'Grounded / cited retrieval',
+          'Zod-validated structured output',
+          'Real-time voice agents (Twilio)',
         ],
       },
       {
-        title: 'Sales Methodology',
-        items: [
-          'MEDDIC · MEDDPICC',
-          'Challenger Sale',
-          'Command of the Message',
-          'SPIN Selling',
-          'Solution Selling',
-          'Gap Selling',
-          'JOLT Effect',
-          'Great Demo!',
-        ],
-      },
-      {
-        title: 'Technical',
+        title: 'Engineering',
         items: [
           'TypeScript · Python · Rust',
           'Next.js · FastAPI · Axum',
-          'PostgreSQL · Supabase',
-          'AWS · Vercel · Docker',
-          'Anthropic / OpenAI APIs',
-          'pgvector RAG · Agents',
-          'YOLOv8 · ONNX · INT8',
-          'Stripe Mexico · CFDI · SAT',
+          'PostgreSQL · Supabase (RLS)',
+          'REST · webhooks · WebSockets',
+          'Node.js · Fastify',
+          'Schema design · migrations',
         ],
       },
       {
-        title: 'Domain',
+        title: 'Integrations & Delivery',
         items: [
-          'B2B SaaS · AI Infrastructure',
-          'Edge AI · Computer Vision',
-          'LATAM Channel',
-          'US–Mexico Corridor',
-          'Mexican SME Market',
-          'FinTech · Open Banking (LATAM)',
+          'OAuth (Gmail / Google APIs)',
+          'Stripe (live, multi-currency)',
+          'Third-party API integration',
+          'Docker · AWS · Vercel · Railway',
+          'Locked-down customer environments',
+          'POC → production ownership',
+        ],
+      },
+      {
+        title: 'Customer-Facing',
+        items: [
+          'Technical discovery (EN / ES)',
+          'Solution architecture',
+          'Live demonstrations',
+          'Documentation & handover',
+          'MEDDIC qualification',
+          'Bilingual stakeholder management',
         ],
       },
       {
@@ -362,12 +358,12 @@ export const landingEn: LandingContent = {
     eyebrow: 'Contact',
     title: 'Let us talk.',
     subtitle:
-      'Looking for a bilingual Sales Engineer or Solutions Consultant for your LATAM expansion? I respond within one business day.',
+      'Looking for a Forward Deployed Engineer who can embed with your customers and take AI systems from first demo to production? I respond within one business day.',
     locationLabel: 'Based in',
-    location: 'Texas–Tamaulipas border · Relocating to Medellín, Colombia',
+    location: 'Ciudad Victoria, Mexico · US–Mexico dual citizen · Open to US relocation or remote (US hours)',
   },
 
-  footer: 'Manuel Flores. Founder, Areté Soluciones S.A. de C.V.',
+  footer: 'Manuel Flores. Founder, Areté Soluciones (independent practice).',
 };
 
 // ============================================================
@@ -387,29 +383,29 @@ export const landingEs: LandingContent = {
   },
 
   hero: {
-    eyebrow: 'Sales Engineer · Solutions Consultant',
+    eyebrow: 'Forward Deployed Engineer · Agentes de IA y Aplicaciones LLM',
     headline: {
-      lead: 'Ayudo a empresas B2B SaaS a vender en ',
-      emphasis: 'América Latina.',
+      lead: 'Convierto la realidad desordenada de un cliente en ',
+      emphasis: 'sistemas de IA en producción.',
     },
     subtitle:
-      'Nativo bilingüe EN/ES · Doble ciudadano US–México · Fundador de Areté Soluciones (7 sistemas B2B SaaS en producción, ACV hasta $60K USD por cliente) · Seleccionado para demo Edge AI en vivo en el Embedded Vision Summit, Santa Clara, mayo 2026.',
+      'Ingeniero forward-deployed, de cara al cliente y full-stack. Soy dueño de la relación técnica desde el primer demo hasta producción — construyo sistemas LLM / de agentes sobre la API de Anthropic Claude y los integro con las operaciones reales del cliente. Nativo bilingüe EN/ES, doble ciudadano US–México.',
     primaryCta: 'Ver el trabajo',
     secondaryCta: 'Conversemos',
   },
 
   proofPoints: [
-    { figure: '$60K', label: 'USD valor de contrato anual, por cliente' },
-    { figure: '7', label: 'Sistemas en producción a través de 5 verticales reguladas' },
-    { figure: 'EN · ES', label: 'Discovery técnico y demo en vivo en ambos idiomas nativos' },
+    { figure: 'Demo → Prod', label: 'Dueño técnico único de cada engagement — discovery, build, integración, entrega' },
+    { figure: 'Claude API', label: 'A diario: extracción con tool_use, RAG, diseño de agentes, revisión human-in-the-loop' },
+    { figure: 'EN · ES', label: 'Discovery técnico y entrega en vivo, nativo en ambos idiomas' },
   ],
 
   about: {
     eyebrow: 'Sobre mí',
-    title: 'Un operador bilingüe, no un contratista.',
+    title: 'Un operador que entrega, de principio a fin.',
     paragraphs: [
-      'Profesional de ventas técnicas con base entre la frontera Texas–Tamaulipas y Medellín, Colombia. Desde 2024 opero Areté Soluciones S.A. de C.V., empresa mexicana B2B con siete sistemas en producción a través de notarías, hospitales, restaurantes, comunidades y operaciones de profesionistas. Valor de contrato anual hasta $60K USD por cliente. Cada engagement arranca con discovery MEDDIC en inglés y español, y termina con un despliegue en producción que aún opero hoy.',
-      'Traigo ese mismo método consultivo — entender al comprador, mapear los requerimientos, entregar en producción — a un rol de Sales Engineer o Solutions Consultant en una empresa de B2B SaaS o infraestructura de IA que se expande hacia América Latina. El kit portátil de demos (inferencia YOLOv8 en vivo sobre Raspberry Pi 5, mostrado en el Embedded Vision Summit) viaja conmigo.',
+      'Soy un ingeniero forward-deployed, de cara al cliente. A través de Areté Soluciones — mi práctica tecnológica independiente — he entregado sistemas en producción a través de cinco verticales: legal/notarial, operaciones hospitalarias, restaurantes multi-sucursal, estacionamientos y facilities, y operaciones de profesionistas. En cada engagement soy el operador técnico único: discovery en inglés o español, arquitectura, build, integración contra los propios sistemas del cliente, y un despliegue en producción que aún opero hoy.',
+      'Ese trabajo es cada vez más AI-forward. Construyo sistemas LLM y de agentes sobre la API de Anthropic Claude — extracción con esquema forzado, generación aumentada por recuperación (RAG), revisión human-in-the-loop condicionada por confianza, y agentes de voz en tiempo real — y los integro con operaciones reales vía REST APIs, webhooks y OAuth. Traigo ese mismo ciclo — integrarme, descubrir, construir, entregar, ser responsable — a un rol de Forward Deployed Engineer en una empresa de producto de IA.',
     ],
   },
 
@@ -420,9 +416,9 @@ export const landingEs: LandingContent = {
       {
         key: 'exp1',
         period: '2024 – Presente',
-        title: 'Fundador y Arquitecto Principal de Soluciones — Areté Soluciones S.A. de C.V.',
+        title: 'Fundador e Ingeniero Principal — Areté Soluciones (práctica independiente)',
         description:
-          'Siete sistemas B2B SaaS en producción para PyMEs mexicanas en notarías, hospitales, restaurantes, comunidades y operaciones de profesionistas. ACV hasta $60K USD por cliente. Propiedad completa: discovery MEDDIC → arquitectura → demo → POC → producción. Entrega bilingüe en cada engagement.',
+          'Práctica tecnológica independiente. Dueño técnico único de discovery, arquitectura, build, integración y despliegue en producción en cada engagement — de cara al cliente desde la primera llamada hasta la entrega, en inglés o español, a través de verticales notarial, hospitalaria, restaurantes, facilities y operaciones de profesionistas. Cada vez más enfocado en sistemas LLM / de agentes sobre la API de Anthropic Claude.',
         icon: 'code',
       },
       {
@@ -430,7 +426,7 @@ export const landingEs: LandingContent = {
         period: '2021 – 2023',
         title: 'Business Development Partner — Workowhole Studio',
         description:
-          'Manejé 12+ cuentas enterprise como enlace técnico entre stakeholders de negocio y equipos de diseño e ingeniería. Entrega Agile/Scrum; mejoré la tasa de entrega a tiempo de ~70% a 90%+. Crecí el valor promedio de contrato 35%.',
+          'Manejé 12+ cuentas enterprise como enlace técnico principal entre stakeholders de negocio y equipos de diseño e ingeniería. Traduje requerimientos a especificaciones técnicas; mejoré la entrega a tiempo de ~70% a 90%+ con disciplina de sprints.',
         icon: 'briefcase',
       },
       {
@@ -462,7 +458,7 @@ export const landingEs: LandingContent = {
         period: '2016',
         title: 'BA Retórica y Escritura — The University of Texas at Austin',
         description:
-          'Comunicación, persuasión, argumentación estructurada — los fundamentos de la venta consultiva.',
+          'Comunicación, persuasión, argumentación estructurada — la base para traducir sistemas técnicos complejos a stakeholders no técnicos.',
         icon: 'grad',
       },
     ],
@@ -470,147 +466,141 @@ export const landingEs: LandingContent = {
 
   work: {
     eyebrow: 'Trabajo seleccionado',
-    title: 'Siete sistemas en producción. Dos demos públicos.',
+    title: 'Dos agentes de IA. Sistemas en producción en cinco verticales.',
     subtitle:
-      'Cada engagement enmarcado con lente de Sales Engineer: descubrir el dolor, arquitectar la solución, llevar a producción, mantenerse responsable.',
+      'Cada uno con propiedad de principio a fin — descubrir el problema real, arquitectarlo, llevarlo al mundo del cliente, mantenerse responsable.',
     projects: [
       {
-        key: 'proj7',
-        name: 'VisionGuard',
-        client: 'Embedded Vision Summit · Santa Clara 2026',
-        sector: 'Edge AI · Manufactura',
+        key: 'claims',
+        name: 'Agente de Operaciones de Reclamos con IA',
+        client: 'Proyecto propio · automatización de reclamos con IA',
+        sector: 'Seguros · Agentes LLM',
         description:
-          'Detección de objetos YOLOv8 cuantizado INT8 corriendo on-device a 12 FPS sobre Raspberry Pi 5. Seleccionado para demo en vivo en el Embedded Vision Summit. Kit portátil bilingüe que viaja a cada reunión con prospecto.',
-        tech: tech.proj7,
-        url: '/demos/visionguard',
+          'Un slice de dos agentes de un producto de automatización de reclamos. Un Claim Intaker convierte un paquete desordenado de First Notice of Loss (FNOL) de compensación laboral en un registro estructurado y calificado por confianza vía extracción con esquema forzado (tool_use) de Claude — los campos de baja confianza pasan a una cola de revisión humana en lugar de poblar el registro en silencio. Un Case Copilot responde preguntas del ajustador basándose solo en los documentos de ese reclamo, cada respuesta citando su fuente, difiriendo la compensabilidad al ajustador con licencia. Construido para probar el ciclo forward-deployed de principio a fin.',
+        tech: tech.claims,
         kind: 'public-demo',
       },
       {
-        key: 'proj8',
-        name: 'LoanSight',
-        client: 'FinTech LATAM · Open Banking',
-        sector: 'FinTech · Underwriting PyME',
+        key: 'voice',
+        name: 'Agente de Voz para Entrevistas',
+        client: 'Proyecto propio · voz en tiempo real × LLM',
+        sector: 'IA de Voz · Telefonía',
         description:
-          'Demo de underwriting estilo Belvo para prestamistas PyME mexicanos. Conecta un banco simulado, jala 12 meses de transacciones CFDI/efectivo, puntúa la solicitud vía 5 reglas transparentes — todo en menos de 10 segundos. Construido para entrevistas SE en Belvo, Plaid LATAM, Truora, Pomelo, DEUNA.',
-        tech: tech.proj8,
-        url: '/demos/loansight',
+          'Un agente de voz telefónico bidireccional que conduce entrevistas de práctica adaptativas en una llamada real y devuelve retroalimentación escrita calificada por rúbrica. Twilio ConversationRelay (Deepgram STT / ElevenLabs TTS) transmitido a través de un servidor WebSocket Fastify en Node/TypeScript hacia la API de Mensajes de Anthropic Claude, con barge-in en tiempo real y ruteo por nivel de inferencia Haiku/Sonnet. De extremo a extremo: de la pata de telefonía al cerebro LLM a la salida estructurada.',
+        tech: tech.voice,
         kind: 'public-demo',
       },
       {
-        key: 'proj5',
+        key: 'laura',
+        name: 'Laura Zanuna',
+        client: 'Operaciones de Profesionista · UE',
+        sector: 'SaaS Full-Stack · Pagos en Vivo',
+        description:
+          'Una plataforma full-stack de ~75,000 líneas que reemplaza Calendly, Acuity, Stripe y Mailchimp para una sola profesionista — corriendo en vivo sobre Stripe de producción. Pagos y facturación multi-moneda (EUR/USD), reserva por magic-link JWT, calendario de tres modos con API de conflictos por bloqueo de día, integraciones profundas de terceros (Gmail OAuth + Google APIs, webhooks de Stripe, Resend), cola de trabajos en segundo plano, rate limiting, y redacción de respuestas de email con Claude.',
+        tech: tech.laura,
+        kind: 'arete-case',
+      },
+      {
+        key: 'notaria',
+        name: 'Notaría — Semáforo Infonavit',
+        client: 'Notaría · Ciudad Victoria',
+        sector: 'LegalTech · Operaciones Reguladas',
+        description:
+          'Un SaaS multi-tenant, aislado con row-level security, que rastrea trámites de crédito Infonavit en un tablero de SLA tipo semáforo, con una bitácora de auditoría append-only forzada por trigger en Postgres — el patrón auditable, nada-se-sobrescribe-en-silencio, que exige el trabajo de back-office regulado.',
+        tech: tech.notaria,
+        kind: 'arete-case',
+      },
+      {
+        key: 'hospital',
         name: 'Hospital La Salle',
         client: 'Hospital privado · Norte de México',
-        sector: 'Operaciones hospitalarias',
+        sector: 'Operaciones Hospitalarias',
         description:
-          'Catálogo de precios de proveedores con detección de anomalías. Rust + Axum + SQLite desplegado como Windows Service single-binary dentro del entorno IT del hospital. Pipelines de importación bilingües, bitácora desde día uno, alertas automáticas de variación de precio al área de compras y CFO. POC a producción en 8 semanas.',
-        tech: tech.proj5,
+          'Un Windows Service single-binary en Rust/Axum/SQLite desplegado dentro del entorno IT bloqueado y con control de cambios del hospital. Pipeline de importación de catálogo validado por hash, alertas automáticas de variación de precio para el área de compras, y bitácora completa. Entregado y facturado.',
+        tech: tech.hospital,
         kind: 'arete-case',
       },
       {
-        key: 'proj4',
-        name: 'Notaría 45',
-        client: 'Notaría · Ciudad Victoria',
-        sector: 'Notarial · LegalTech',
-        description:
-          'Plataforma multi-tenant de gestión de casos. Reframé la necesidad declarada (tracking de casos) en el problema real (defensibilidad de auditoría PLD bajo LFPIORPI Art. 17). Next.js 14 + PostgreSQL + Prisma con bloqueo optimista, bitácora inmutable, 13+ modelos regulatorios, hoja de ruta de cumplimiento SAT. POC a producción en 6 semanas.',
-        tech: tech.proj4,
-        kind: 'arete-case',
-      },
-      {
-        key: 'proj1',
+        key: 'gorditas',
         name: 'Gorditas Doña Tota',
-        client: 'Multi-Unit Restaurants · 6 franquicias',
-        sector: 'Restaurantes · BI',
+        client: 'Restaurantes Multi-Sucursal · 6 sucursales',
+        sector: 'BI Operacional',
         description:
-          'Plataforma de inteligencia de negocios de 10 niveles. 100+ endpoints REST, 20+ KPIs, monitoreo en tiempo real vía WebSocket, detección de anomalías con ML, pronóstico predictivo de ventas. Discovery MEDDIC reveló que el dolor real era pronóstico de inventario; engagement escaló 3× del RFP original.',
-        tech: ['Next.js', 'FastAPI', 'Postgres', 'WebSocket', 'ML'],
+          'Una plataforma de BI operacional en FastAPI + React — 110 endpoints REST, 38 KPIs, monitoreo en tiempo real vía WebSocket, y detección estadística de anomalías (Z-score) sobre datos de inventario y ventas. El discovery MEDDIC reveló que el pronóstico de inventario era el dolor real y escaló el engagement muy por encima del RFP inicial.',
+        tech: tech.gorditas,
         kind: 'arete-case',
       },
       {
-        key: 'proj2',
-        name: 'Comunidad BI',
-        client: 'Asociación residencial · México',
-        sector: 'Gestión comunitaria · FinTech cívica',
+        key: 'areteos',
+        name: 'Areté OS',
+        client: 'Personal · el sistema que opera mi práctica',
+        sector: 'Rust · Offline-First',
         description:
-          'Comité de seis miembros dividido sobre digitalizarse. Reframing Challenger: el problema no era la facturación, era que los propietarios no confiaban en dónde se iba el dinero. Construí el portal de transparencia como artefacto visible del campeón. Stripe Mexico + OXXO + SPEI en vivo en cinco semanas. Automatización de cobranza redujo el tiempo de recuperación ~40%.',
-        tech: ['Next.js', 'Supabase', 'Stripe MX', 'Claude API', 'OXXO', 'SPEI'],
-        kind: 'arete-case',
-      },
-      {
-        key: 'proj6',
-        name: 'Sales Job Tracker',
-        client: 'Personal · BI para pipeline de ventas técnicas',
-        sector: 'B2B SaaS · Referencia de implementación',
-        description:
-          'Dashboard BI personal para gestión de búsqueda de empleo en ventas técnicas: pipeline de outreach (Kanban), hub de investigación de empresas objetivo, tracker de conferencias, sistema de preparación de entrevistas, analítica. 28 tablas Postgres, 45+ rutas API, auth Supabase, pgvector, máquinas de estado agénticas. Backs este portafolio.',
-        tech: tech.proj6,
+          'El sistema operativo que construí para operar mi propia práctica: un binario de Rust autocontenido que combina una vista de estrategia, ERP ligero y CRM sobre una sola base de datos local, funcionando completamente offline. El dinero se guarda como centavos enteros y cada pago es una entrada de libro mayor append-only que no puede editarse en silencio. Claude está integrado donde ayuda y se deshabilita limpiamente cuando no hay conexión.',
+        tech: tech.areteos,
         kind: 'personal',
       },
       {
-        key: 'proj3',
-        name: 'Creatif',
-        client: 'Startup de producto de consumo',
-        sector: 'E-Commerce',
+        key: 'rag',
+        name: 'Pipeline RAG de Búsqueda de Empleo',
+        client: 'Personal · implementación de referencia',
+        sector: 'RAG · Tooling de Claude',
         description:
-          'Discovery reveló que los cuellos de botella de conversión estaban en el handoff a WhatsApp, no en el funnel. Construí landing con integración WhatsApp Business para captura de leads y un portal admin completo: contabilidad, CRM, gestión de pedidos, catálogo de producto, analíticas de marketing.',
-        tech: tech.proj3,
-        url: 'creatif.contact',
-        kind: 'arete-case',
+          'Una aplicación Next.js / Supabase con recuperación pgvector (embeddings de Voyage AI) y un pipeline de Claude API — tool-calling con salida estructurada validada por Zod — que cubre triage, redacción de outreach, generación de kits de entrevista y sesiones de práctica de entrevista. Los mismos patrones de RAG + tool-use + validación estructurada que el agente de reclamos.',
+        tech: tech.rag,
+        kind: 'personal',
       },
     ],
   },
 
   skills: {
     eyebrow: 'Capacidades',
-    title: 'Lo que traigo a la conversación.',
+    title: 'Lo que traigo a la construcción.',
     groups: [
       {
-        title: 'Sales Engineering',
+        title: 'Ingeniería de IA / LLM',
         items: [
-          'Discovery técnico',
-          'Demos en vivo',
-          'POC → Producción',
-          'Respuesta a RFP / RFI',
-          'Arquitectura de soluciones',
-          'Manejo de objeciones',
-          'Posicionamiento competitivo',
+          'API de Anthropic Claude',
+          'tool_use · extracción con esquema forzado',
+          'Prompt engineering · diseño de agentes',
+          'RAG (pgvector · Postgres FTS)',
+          'Revisión human-in-the-loop',
+          'Recuperación citada / con fundamento',
+          'Salida estructurada validada por Zod',
+          'Agentes de voz en tiempo real (Twilio)',
         ],
       },
       {
-        title: 'Metodología de ventas',
-        items: [
-          'MEDDIC · MEDDPICC',
-          'Challenger Sale',
-          'Command of the Message',
-          'SPIN Selling',
-          'Solution Selling',
-          'Gap Selling',
-          'JOLT Effect',
-          'Great Demo!',
-        ],
-      },
-      {
-        title: 'Técnico',
+        title: 'Ingeniería',
         items: [
           'TypeScript · Python · Rust',
           'Next.js · FastAPI · Axum',
-          'PostgreSQL · Supabase',
-          'AWS · Vercel · Docker',
-          'APIs Anthropic / OpenAI',
-          'pgvector RAG · Agentes',
-          'YOLOv8 · ONNX · INT8',
-          'Stripe México · CFDI · SAT',
+          'PostgreSQL · Supabase (RLS)',
+          'REST · webhooks · WebSockets',
+          'Node.js · Fastify',
+          'Diseño de esquema · migraciones',
         ],
       },
       {
-        title: 'Dominio',
+        title: 'Integraciones y Entrega',
         items: [
-          'B2B SaaS · Infraestructura de IA',
-          'Edge AI · Computer Vision',
-          'Canal LATAM',
-          'Corredor US–México',
-          'Mercado PyME mexicano',
-          'FinTech · Open Banking (LATAM)',
+          'OAuth (Gmail / Google APIs)',
+          'Stripe (en vivo, multi-moneda)',
+          'Integración de APIs de terceros',
+          'Docker · AWS · Vercel · Railway',
+          'Entornos de cliente bloqueados',
+          'Propiedad POC → producción',
+        ],
+      },
+      {
+        title: 'De Cara al Cliente',
+        items: [
+          'Discovery técnico (EN / ES)',
+          'Arquitectura de soluciones',
+          'Demostraciones en vivo',
+          'Documentación y entrega',
+          'Calificación MEDDIC',
+          'Gestión bilingüe de stakeholders',
         ],
       },
       {
@@ -624,10 +614,10 @@ export const landingEs: LandingContent = {
     eyebrow: 'Contacto',
     title: 'Conversemos.',
     subtitle:
-      '¿Buscas un Sales Engineer o Solutions Consultant bilingüe para tu expansión LATAM? Respondo en un día hábil.',
+      '¿Buscas un Forward Deployed Engineer que pueda integrarse con tus clientes y llevar sistemas de IA del primer demo a producción? Respondo en un día hábil.',
     locationLabel: 'Basado en',
-    location: 'Frontera Texas–Tamaulipas · Reubicándome en Medellín, Colombia',
+    location: 'Ciudad Victoria, México · Doble ciudadano US–México · Abierto a reubicación en US o remoto (horario US)',
   },
 
-  footer: 'Manuel Flores. Fundador, Areté Soluciones S.A. de C.V.',
+  footer: 'Manuel Flores. Fundador, Areté Soluciones (práctica independiente).',
 };

@@ -3,9 +3,9 @@ import { LandingPage } from '@/components/LandingPage';
 import { landingEn } from '@/data/landing-content';
 
 export const metadata: Metadata = {
-  title: 'Manuel Flores — Sales Engineer for LATAM expansion',
+  title: 'Manuel Flores — Forward Deployed Engineer · AI Agents & LLM Applications',
   description:
-    'Bilingual EN/ES Sales Engineer · US–Mexico dual citizen · Founder of Areté Soluciones (7 production B2B SaaS systems) · Selected to demo Edge AI at the Embedded Vision Summit, Santa Clara 2026.',
+    'Forward Deployed Engineer and full-stack builder. LLM / agent systems on the Anthropic Claude API, shipped into real customer operations end to end. Founder of Areté Soluciones (independent practice). Bilingual EN/ES native, US–Mexico dual citizen.',
   alternates: {
     canonical: '/',
     languages: {
@@ -17,17 +17,17 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'es_MX',
-    title: 'Manuel Flores — Sales Engineer for LATAM expansion',
+    title: 'Manuel Flores — Forward Deployed Engineer · AI Agents & LLM Applications',
     description:
-      'Bilingual EN/ES Sales Engineer · Founder of Areté Soluciones · 7 production B2B SaaS systems · Growing MRR · Embedded Vision Summit 2026.',
+      'Forward Deployed Engineer. LLM / agent systems on Anthropic Claude, shipped into real customer operations end to end. Bilingual EN/ES · US–Mexico dual citizen.',
     url: 'https://manuelflores.me/',
     siteName: 'Manuel Flores',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Manuel Flores — Sales Engineer for LATAM expansion',
+    title: 'Manuel Flores — Forward Deployed Engineer · AI Agents & LLM',
     description:
-      'Bilingual EN/ES Sales Engineer · Founder of Areté Soluciones · 7 production systems · Embedded Vision Summit 2026.',
+      'Forward Deployed Engineer. LLM / agent systems on Anthropic Claude, shipped end to end. Bilingual EN/ES · US–Mexico dual citizen.',
   },
 };
 
