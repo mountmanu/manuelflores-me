@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? 'https://manuelflores.me',
   ),
   title: {
-    default: 'Manuel Flores — Forward Deployed Engineer · AI Agents & LLM Applications',
+    default: 'Manuel Flores — Investigative Data Journalist',
     template: '%s · Manuel Flores',
   },
   description:
-    'Forward Deployed Engineer and full-stack builder. LLM / agent systems on the Anthropic Claude API, shipped into real customer operations end to end. Founder of Areté Soluciones (independent practice). Bilingual EN/ES native, US–Mexico dual citizen.',
+    'Independent investigative data journalist covering corporate accountability in U.S. healthcare and regulated industries. Document-driven, data-forensic reporting from primary sources.',
   authors: [{ name: 'Manuel Flores', url: 'https://manuelflores.me' }],
   creator: 'Manuel Flores',
 };

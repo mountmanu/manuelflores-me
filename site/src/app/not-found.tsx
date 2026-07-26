@@ -21,7 +21,7 @@ export default function NotFound() {
           <Link href="/" className="btn-primary">
             Home
           </Link>
-          <a href="mailto:manuelfa92@gmail.com" className="btn-secondary">
+          <a href="mailto:manuel.flores.7@protonmail.com" className="btn-secondary">
             Email me
           </a>
         </div>

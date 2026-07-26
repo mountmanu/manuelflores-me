@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export interface NavLabels {
-  work: string;
-  skills: string;
+  investigations: string;
+  method: string;
+  about: string;
   contact: string;
   altLang: string;
 }
@@ -17,8 +18,9 @@ export interface NavProps {
 }
 
 /**
- * Sticky editorial navigation with sub-pixel border on scroll.
- * URL-based language switching (no localStorage toggle).
+ * Sticky editorial navigation. Sits over the dark cinematic hero at the top
+ * (light text, transparent), then switches to a light bar with dark text once
+ * scrolled onto the paper body.
  */
 export function Nav({ lang, labels, altLangHref }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -33,6 +35,20 @@ export function Nav({ lang, labels, altLangHref }: NavProps) {
 
   const home = lang === 'en' ? '/' : '/es';
 
+  // Over the dark hero (not scrolled) → light; over the paper body → dark.
+  const wordmark = scrolled ? 'text-ink' : 'text-paper';
+  const link = scrolled
+    ? 'text-mute hover:text-ink'
+    : 'text-paper/75 hover:text-paper';
+  const bar = scrolled ? 'bg-ink' : 'bg-paper';
+
+  const links: Array<{ href: string; label: string; hrefLang?: string }> = [
+    { href: `${home}#investigations`, label: labels.investigations },
+    { href: `${home}#method`, label: labels.method },
+    { href: `${home}#about`, label: labels.about },
+    { href: `${home}#contact`, label: labels.contact },
+  ];
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
@@ -44,35 +60,26 @@ export function Nav({ lang, labels, altLangHref }: NavProps) {
       <div className="container-editorial flex items-center justify-between h-20">
         <Link
           href={home}
-          className="font-display text-2xl tracking-tight text-ink"
+          className={`font-display text-2xl tracking-tight transition-colors ${wordmark}`}
           aria-label="Manuel Flores — Home"
         >
           Manuel Flores
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">
-          <a
-            href={`${home}#work`}
-            className="text-[0.8125rem] tracking-[0.04em] uppercase font-medium text-mute hover:text-ink transition-colors"
-          >
-            {labels.work}
-          </a>
-          <a
-            href={`${home}#skills`}
-            className="text-[0.8125rem] tracking-[0.04em] uppercase font-medium text-mute hover:text-ink transition-colors"
-          >
-            {labels.skills}
-          </a>
-          <a
-            href={`${home}#contact`}
-            className="text-[0.8125rem] tracking-[0.04em] uppercase font-medium text-mute hover:text-ink transition-colors"
-          >
-            {labels.contact}
-          </a>
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className={`text-[0.8125rem] tracking-[0.04em] uppercase font-medium transition-colors ${link}`}
+            >
+              {l.label}
+            </a>
+          ))}
           <Link
             href={altLangHref}
             hrefLang={lang === 'en' ? 'es' : 'en'}
-            className="text-[0.8125rem] tracking-[0.04em] uppercase font-medium text-mute hover:text-ink transition-colors"
+            className={`text-[0.8125rem] tracking-[0.04em] uppercase font-medium transition-colors ${link}`}
           >
             {labels.altLang}
           </Link>
@@ -86,17 +93,17 @@ export function Nav({ lang, labels, altLangHref }: NavProps) {
           onClick={() => setOpen(!open)}
         >
           <span
-            className={`block w-6 h-px bg-ink transition-transform duration-300 ${
+            className={`block w-6 h-px transition-transform duration-300 ${bar} ${
               open ? 'translate-y-[7px] rotate-45' : ''
             }`}
           />
           <span
-            className={`block w-6 h-px bg-ink transition-opacity duration-300 ${
+            className={`block w-6 h-px transition-opacity duration-300 ${bar} ${
               open ? 'opacity-0' : ''
             }`}
           />
           <span
-            className={`block w-6 h-px bg-ink transition-transform duration-300 ${
+            className={`block w-6 h-px transition-transform duration-300 ${bar} ${
               open ? '-translate-y-[7px] -rotate-45' : ''
             }`}
           />
@@ -106,27 +113,16 @@ export function Nav({ lang, labels, altLangHref }: NavProps) {
       {open && (
         <div className="md:hidden bg-paper border-t border-line">
           <nav className="container-editorial flex flex-col py-6 gap-5">
-            <a
-              href={`${home}#work`}
-              onClick={() => setOpen(false)}
-              className="text-lg font-display text-ink hover:text-mute transition-colors"
-            >
-              {labels.work}
-            </a>
-            <a
-              href={`${home}#skills`}
-              onClick={() => setOpen(false)}
-              className="text-lg font-display text-ink hover:text-mute transition-colors"
-            >
-              {labels.skills}
-            </a>
-            <a
-              href={`${home}#contact`}
-              onClick={() => setOpen(false)}
-              className="text-lg font-display text-ink hover:text-mute transition-colors"
-            >
-              {labels.contact}
-            </a>
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="text-lg font-display text-ink hover:text-mute transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
             <Link
               href={altLangHref}
               onClick={() => setOpen(false)}

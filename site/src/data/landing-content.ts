@@ -1,51 +1,64 @@
 /**
- * Canonical content for the public landing page.
+ * Canonical content for the public site — manuelflores.me
  *
- * One source of truth, two language variants. Keep the EN and ES versions
- * in lock-step — anything in EN must have its ES counterpart, and vice versa.
+ * Positioning: independent investigative DATA journalist. Corporate
+ * accountability in U.S. healthcare and regulated industries. The engineering
+ * background is framed as investigative capability (document + data forensics),
+ * never as a software portfolio.
  *
- * Numbers live here and are pulled into both /  and /es pages so they cannot
- * drift.
+ * One source of truth, two language variants. Keep EN and ES in lock-step —
+ * anything in EN must have its ES counterpart, and vice versa.
  *
- * v3 — July 2026: repositioned for Forward Deployed Engineer / AI-agent roles.
- * Honesty pass applied — Areté is an independent practice (not incorporated);
- * removed unverified speaking claims, fabricated/dead projects, and all
- * unverified dollar/ACV figures. Real Areté client work and self-built AI
- * projects only; every claim is disk-backed and defensible.
+ * Disclosure discipline (matches the reporter's own rule): investigations are
+ * described at the BEAT level only — no defendant names, dockets, or facilities
+ * that could tip a subject before publication.
+ *
+ * v3 — Jul 2026: full repositioning from Sales-Engineer portfolio to
+ * investigative-journalism presence. Interfaces rebuilt: ethos, investigations,
+ * method, three-door contact.
  */
 
-export interface ProjectContent {
+export interface InvestigationContent {
   key: string;
-  name: string;
-  client: string;
-  sector: string;
-  description: string;
-  /** Tech badges — same in both languages. */
-  tech: string[];
-  /** Optional external or internal URL. Internal paths start with "/". */
-  url?: string;
-  /** Whether this project is an Areté production deployment (case study) or a
-   *  standalone self-built demo / personal build. Used for ordering and labels. */
-  kind: 'arete-case' | 'public-demo' | 'personal';
+  /** Beat-level title — a subject area, not a named case. */
+  title: string;
+  /** One-line dek. */
+  dek: string;
+  /** The primary-source systems the reporting draws on. Not translated. */
+  sources: string[];
+  /** Honest status line, e.g. "In reporting". */
+  status: string;
+  /** Optional cinematic cover asset in /public (Phase 2). Poster is required if
+   *  video is set. Both optional — section degrades gracefully without them. */
+  cover?: { poster: string; video?: string; alt: string };
 }
 
-export interface ExperienceEntry {
+export interface MethodPrinciple {
   key: string;
-  period: string;
   title: string;
   description: string;
-  icon: 'code' | 'briefcase' | 'users' | 'dollar' | 'grad';
 }
 
-export interface LandingContent {
+export interface ContactDoor {
+  key: 'editors' | 'sources' | 'elsewhere';
+  label: string;
+  description: string;
+  /** Rendered channel. */
+  channelLabel: string;
+  channelValue: string;
+  href: string;
+}
+
+export interface SiteContent {
   lang: 'en' | 'es';
   altLang: 'en' | 'es';
   altLangLabel: string;
   altLangHref: string;
 
   nav: {
-    work: string;
-    skills: string;
+    investigations: string;
+    method: string;
+    about: string;
     contact: string;
   };
 
@@ -55,12 +68,30 @@ export interface LandingContent {
     subtitle: string;
     primaryCta: string;
     secondaryCta: string;
+    /** Optional hero cinematic asset (Phase 2). */
+    cover?: { poster: string; video?: string; alt: string };
   };
 
-  proofPoints: Array<{
-    figure: string;
-    label: string;
-  }>;
+  ethos: {
+    statement: string;
+    /** Primary-source systems worked in. Not translated. */
+    sources: string[];
+  };
+
+  investigations: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    note: string;
+    items: InvestigationContent[];
+  };
+
+  method: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    principles: MethodPrinciple[];
+  };
 
   about: {
     eyebrow: string;
@@ -68,29 +99,11 @@ export interface LandingContent {
     paragraphs: string[];
   };
 
-  experience: {
-    eyebrow: string;
-    title: string;
-    entries: ExperienceEntry[];
-  };
-
-  work: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    projects: ProjectContent[];
-  };
-
-  skills: {
-    eyebrow: string;
-    title: string;
-    groups: Array<{ title: string; items: string[] }>;
-  };
-
   contact: {
     eyebrow: string;
     title: string;
     subtitle: string;
+    doors: ContactDoor[];
     locationLabel: string;
     location: string;
   };
@@ -98,526 +111,341 @@ export interface LandingContent {
   footer: string;
 }
 
-// Shared tech stacks (not translated).
-const tech = {
-  claims: ['Next.js', 'TypeScript', 'PostgreSQL / Supabase', 'Anthropic Claude API'],
-  voice: ['Twilio ConversationRelay', 'Node / TypeScript', 'Fastify WebSocket', 'Anthropic Claude API'],
-  laura: ['Next.js', 'Supabase', 'Stripe', 'Google APIs', 'Anthropic Claude API'],
-  notaria: ['Next.js 15', 'Supabase', 'Drizzle ORM', 'Postgres RLS'],
-  hospital: ['Rust', 'Axum', 'SQLite', 'Windows Service'],
-  gorditas: ['FastAPI', 'React', 'PostgreSQL', 'WebSockets'],
-  areteos: ['Rust', 'Axum', 'SQLite', 'HTMX', 'Claude API'],
-  rag: ['Next.js', 'Supabase', 'pgvector', 'Claude API', 'Zod'],
-};
+// Primary-source systems — same in both languages.
+const sourceSystems = ['Federal courts (PACER)', 'CMS · HCRIS', 'OSHA', 'FDA', 'SEC', 'EPA'];
 
 // ============================================================
-// English content
+// English
 // ============================================================
 
-export const landingEn: LandingContent = {
+export const siteEn: SiteContent = {
   lang: 'en',
   altLang: 'es',
   altLangLabel: 'Español',
   altLangHref: '/es',
 
   nav: {
-    work: 'Work',
-    skills: 'Skills',
+    investigations: 'Investigations',
+    method: 'Method',
+    about: 'About',
     contact: 'Contact',
   },
 
   hero: {
-    eyebrow: 'Forward Deployed Engineer · AI Agents & LLM Applications',
+    eyebrow: 'Investigative Data Journalist',
     headline: {
-      lead: "I turn a customer's messy reality into ",
-      emphasis: 'production AI systems.',
+      lead: 'I report on power by reading the records it ',
+      emphasis: 'leaves behind.',
     },
     subtitle:
-      'Forward-deployed, customer-facing engineer and full-stack builder. I own the technical relationship from first demo to production — building LLM / agent systems on the Anthropic Claude API and wiring them into real customer operations. Bilingual EN/ES native, US–Mexico dual citizen.',
-    primaryCta: 'See the work',
-    secondaryCta: 'Get in touch',
+      'Independent investigative reporting on corporate accountability in U.S. healthcare and regulated industries — built from primary documents and the federal datasets most newsrooms never open.',
+    primaryCta: 'The investigations',
+    secondaryCta: 'Contact',
+    cover: {
+      poster: '/media/hero-poster.jpg',
+      video: '/media/hero.mp4',
+      alt: 'Manuel Flores working through network graphs and records on glowing monitors in a dim newsroom at night',
+    },
   },
 
-  proofPoints: [
-    { figure: 'Demo → Prod', label: 'Sole technical owner of every engagement — discovery, build, integration, handover' },
-    { figure: 'Claude API', label: 'Daily: tool_use extraction, RAG, agent design, human-in-the-loop review' },
-    { figure: 'EN · ES', label: 'Native bilingual technical discovery and live delivery' },
-  ],
+  ethos: {
+    statement: 'Primary sources, always. Every fact starts in a document I have read myself.',
+    sources: sourceSystems,
+  },
+
+  investigations: {
+    eyebrow: 'Investigations',
+    title: 'What I am reporting.',
+    subtitle:
+      'Ongoing, document-driven investigations into how power organizes itself to avoid being measured. Described here at the level of the beat — the specifics stay in the reporting until they are published.',
+    note: 'In progress. Tips welcome — see Contact.',
+    items: [
+      {
+        key: 'pe-healthcare',
+        title: 'Private equity in American healthcare',
+        dek: "How private-equity owners route money and liability out of the homes that care for the elderly — a facility's ownership followed through the shell entities in CMS federal ownership data, related-party rent verified at the worksheet level in HCRIS Medicare cost reports, the federal wrongful-death docket read line by line.",
+        sources: ['HCRIS cost reports', 'CMS ownership data', 'PACER / RECAP'],
+        status: 'In reporting',
+      },
+      {
+        key: 'surveillance-economics',
+        title: 'The economics of immigration surveillance',
+        dek: "A longitudinal read of ICE's own detention-management data, documenting the quiet migration from a phone check-in app to the GPS ankle monitor — and following the money to the contractors who profit from the switch.",
+        sources: ['ICE detention data', 'Federal contracts'],
+        status: 'In reporting',
+      },
+      {
+        key: 'workplace-safety',
+        title: 'Who answers when a worker dies',
+        dek: 'OSHA fatality and catastrophe inspections across four states, set against 29 CFR 1904 — the rule that leaves the employer to decide whether a death on a data-center site ever becomes a federal record at all.',
+        sources: ['OSHA inspections', '29 CFR 1904'],
+        status: 'In reporting',
+      },
+      {
+        key: 'drug-safety',
+        title: 'Post-market drug safety, in the dark',
+        dek: "A new safety signal surfacing in the FDA's own FAERS data, cross-read against a drug's label-revision history and its maker's SEC disclosures — the distance between what the data shows and what investors are told.",
+        sources: ['FDA FAERS', 'SEC filings'],
+        status: 'In reporting',
+      },
+    ],
+  },
+
+  method: {
+    eyebrow: 'Method',
+    title: 'How the reporting is built.',
+    intro:
+      'I came to journalism from data and software. I now point that toolkit at institutions that would rather not be measured — which means I do not wait for a leak. I go and get the records.',
+    principles: [
+      {
+        key: 'documents-first',
+        title: 'Documents first',
+        description:
+          'Every fact begins in a primary source — a court filing, a cost report, an inspection record — read directly, never through a press release or a summary.',
+      },
+      {
+        key: 'data-at-scale',
+        title: 'Data at a scale most newsrooms skip',
+        description:
+          'I pull and analyze federal datasets few reporters open: Medicare cost reports at the worksheet level, payroll-based staffing files, ownership disclosures, contract records. When the data does not come clean, I write the code to make it usable.',
+      },
+      {
+        key: 'ai-human',
+        title: 'AI-assisted, human-judged',
+        description:
+          'I use automation and AI to read at a scale a person cannot — whole dockets, thousands of filings — to find the anomaly worth chasing. Every published claim is then verified by hand.',
+      },
+      {
+        key: 'verify-attribute',
+        title: 'Verified, then attributed',
+        description:
+          'Nothing runs as fact unless a primary document supports it. Contested claims are attributed to their source and carry the response of the party they concern.',
+      },
+      {
+        key: 'right-of-reply',
+        title: 'Fair before publication',
+        description:
+          'Every named party gets a genuine, specific opportunity to respond before anything is published — and their answer is reported alongside the finding.',
+      },
+    ],
+  },
 
   about: {
     eyebrow: 'About',
-    title: 'An operator who ships, end to end.',
+    title: 'It is already on the record.',
     paragraphs: [
-      "I'm a forward-deployed, customer-facing engineer. Through Areté Soluciones — my independent technology practice — I've shipped production systems across five verticals: legal/notarial, hospital operations, multi-location restaurants, parking and facilities, and practitioner operations. On every engagement I'm the sole technical operator: discovery in English or Spanish, architecture, build, integration against the customer's own systems, and a production deployment I still run today.",
-      "That work is increasingly AI-forward. I build LLM and agent systems on the Anthropic Claude API — forced-schema extraction, retrieval-augmented generation, confidence-gated human-in-the-loop review, and real-time voice agents — and wire them into messy, real-world operations via REST APIs, webhooks, and OAuth. I'm bringing that same loop — embed, discover, build, ship, own it — to a Forward Deployed Engineer role at an AI product company.",
-    ],
-  },
-
-  experience: {
-    eyebrow: 'Experience',
-    title: 'Where I have shipped.',
-    entries: [
-      {
-        key: 'exp1',
-        period: '2024 – Present',
-        title: 'Founder & Lead Engineer — Areté Soluciones (independent practice)',
-        description:
-          "Independent technology practice. Sole technical owner across discovery, architecture, build, integration, and production deployment on every engagement — customer-facing from first call to handover, in English or Spanish, across notarial, hospital, restaurant, facilities, and practitioner-operations verticals. Increasingly focused on LLM / agent systems on the Anthropic Claude API.",
-        icon: 'code',
-      },
-      {
-        key: 'exp2',
-        period: '2021 – 2023',
-        title: 'Business Development Partner — Workowhole Studio',
-        description:
-          'Owned 12+ enterprise client accounts as the primary technical liaison between business stakeholders and design/engineering teams. Translated requirements into technical specifications; improved on-time delivery from ~70% to 90%+ through sprint discipline.',
-        icon: 'briefcase',
-      },
-      {
-        key: 'exp3',
-        period: '2020 – 2021',
-        title: 'Project Manager — Token Engineering Commons',
-        description:
-          'Promoted from intern to PM in 4 months. Coordinated 5 distributed working groups with no formal authority. Authored technical onboarding documentation adopted as reference for 200+ contributors.',
-        icon: 'users',
-      },
-      {
-        key: 'exp4',
-        period: '2018 – 2019',
-        title: 'Business Development Manager — Autonio Foundation',
-        description:
-          'Raised $40K in crowdfunding without a pitch deck. Closed $35K in product sales with zero marketing spend. Pioneered new revenue channels through consultative account management.',
-        icon: 'dollar',
-      },
-      {
-        key: 'exp5',
-        period: '2017',
-        title: 'Research Associate — Cryptonomex Inc.',
-        description:
-          'Synthesized emerging distributed-systems and infrastructure research into executive summaries that informed product-roadmap decisions.',
-        icon: 'briefcase',
-      },
-      {
-        key: 'exp6',
-        period: '2016',
-        title: 'BA Rhetoric & Writing — The University of Texas at Austin',
-        description:
-          'Communication, persuasion, structured argumentation — the foundation of translating complex technical systems for non-technical stakeholders.',
-        icon: 'grad',
-      },
-    ],
-  },
-
-  work: {
-    eyebrow: 'Selected work',
-    title: 'Two AI agents. Production systems across five verticals.',
-    subtitle:
-      "Each one owned end to end — discover the real problem, architect it, ship it into the customer's world, stay accountable.",
-    projects: [
-      {
-        key: 'claims',
-        name: 'AI Claims-Operations Agent',
-        client: 'Self-directed build · AI claims automation',
-        sector: 'Insurance · LLM Agents',
-        description:
-          "A two-agent slice of an AI claims-automation product. A Claim Intaker turns a messy workers'-comp First Notice of Loss (FNOL) packet into a structured, confidence-scored record via Claude tool_use forced-schema extraction — low-confidence fields route to a human review queue instead of silently populating the record. A Case Copilot answers adjuster questions grounded only in that claim's documents, every answer citing its source, deferring compensability to the licensed adjuster. Built to prove the forward-deployed loop end to end.",
-        tech: tech.claims,
-        kind: 'public-demo',
-      },
-      {
-        key: 'voice',
-        name: 'Voice Interview Agent',
-        client: 'Self-directed build · real-time voice × LLM',
-        sector: 'Voice AI · Telephony',
-        description:
-          'A two-way voice AI phone agent that runs adaptive mock interviews over a live phone call and returns rubric-scored written feedback. Twilio ConversationRelay (Deepgram STT / ElevenLabs TTS) streamed through a Node/TypeScript Fastify WebSocket server into the Anthropic Claude Messages API, with real-time barge-in turn-taking and Haiku/Sonnet inference-tier routing. End to end: telephony leg to LLM brain to structured output.',
-        tech: tech.voice,
-        kind: 'public-demo',
-      },
-      {
-        key: 'laura',
-        name: 'Laura Zanuna',
-        client: 'Practitioner Operations · EU',
-        sector: 'Full-Stack SaaS · Live Payments',
-        description:
-          'A ~75,000-line full-stack platform replacing Calendly, Acuity, Stripe, and Mailchimp for a single practitioner — running live on production Stripe. Multi-currency (EUR/USD) payments and invoicing, JWT magic-link booking, a three-mode calendar with a day-blocking conflict API, deep third-party integrations (Gmail OAuth + Google APIs, Stripe webhooks, Resend), background job queue, rate limiting, and Claude-powered email-reply drafting.',
-        tech: tech.laura,
-        kind: 'arete-case',
-      },
-      {
-        key: 'notaria',
-        name: 'Notaría — Semáforo Infonavit',
-        client: 'Notarial Office · Ciudad Victoria',
-        sector: 'LegalTech · Regulated Ops',
-        description:
-          'A multi-tenant, row-level-security-isolated SaaS tracking Infonavit mortgage trámites on a traffic-light SLA dashboard, with an append-only, trigger-enforced Postgres audit log — the auditable, nothing-silently-overwritten pattern that regulated back-office work demands.',
-        tech: tech.notaria,
-        kind: 'arete-case',
-      },
-      {
-        key: 'hospital',
-        name: 'Hospital La Salle',
-        client: 'Private Hospital · Northern Mexico',
-        sector: 'Hospital Operations',
-        description:
-          "A single-binary Rust/Axum/SQLite Windows Service deployed inside the hospital's locked-down, change-controlled IT environment. Hash-validated catalog import pipeline, automated price-change flagging for the purchasing team, and full audit logging. Delivered and invoiced.",
-        tech: tech.hospital,
-        kind: 'arete-case',
-      },
-      {
-        key: 'gorditas',
-        name: 'Gorditas Doña Tota',
-        client: 'Multi-Location Restaurants · 6 locations',
-        sector: 'Operational BI',
-        description:
-          'A FastAPI + React operational-BI platform — 110 REST API endpoints, 38 KPIs, real-time WebSocket monitoring, and statistical (Z-score) anomaly detection over inventory and sales data. MEDDIC discovery surfaced inventory forecasting as the real pain and scoped the engagement well beyond the initial RFP.',
-        tech: tech.gorditas,
-        kind: 'arete-case',
-      },
-      {
-        key: 'areteos',
-        name: 'Areté OS',
-        client: 'Personal · the system that runs my practice',
-        sector: 'Rust · Offline-First',
-        description:
-          "The operating system I built to run my own practice: one self-contained Rust binary combining a strategy view, lightweight ERP, and CRM over a single local database, working fully offline. Money is stored as integer cents and every payment is an append-only ledger entry that can't be silently edited. Claude is integrated where it helps and disables cleanly when there's no connection.",
-        tech: tech.areteos,
-        kind: 'personal',
-      },
-      {
-        key: 'rag',
-        name: 'RAG Job-Search Pipeline',
-        client: 'Personal · reference build',
-        sector: 'RAG · Claude Tooling',
-        description:
-          'A Next.js / Supabase application with pgvector retrieval (Voyage AI embeddings) and a Claude-API pipeline — tool-calling with Zod-validated structured output — covering triage, outreach drafting, interview-kit generation, and mock-interview sessions. The same RAG + tool-use + structured-validation patterns as the claims agent.',
-        tech: tech.rag,
-        kind: 'personal',
-      },
-    ],
-  },
-
-  skills: {
-    eyebrow: 'Skills',
-    title: 'What I bring to the build.',
-    groups: [
-      {
-        title: 'AI / LLM Engineering',
-        items: [
-          'Anthropic Claude API',
-          'tool_use · forced-schema extraction',
-          'Prompt engineering · agent design',
-          'RAG (pgvector · Postgres FTS)',
-          'Human-in-the-loop review',
-          'Grounded / cited retrieval',
-          'Zod-validated structured output',
-          'Real-time voice agents (Twilio)',
-        ],
-      },
-      {
-        title: 'Engineering',
-        items: [
-          'TypeScript · Python · Rust',
-          'Next.js · FastAPI · Axum',
-          'PostgreSQL · Supabase (RLS)',
-          'REST · webhooks · WebSockets',
-          'Node.js · Fastify',
-          'Schema design · migrations',
-        ],
-      },
-      {
-        title: 'Integrations & Delivery',
-        items: [
-          'OAuth (Gmail / Google APIs)',
-          'Stripe (live, multi-currency)',
-          'Third-party API integration',
-          'Docker · AWS · Vercel · Railway',
-          'Locked-down customer environments',
-          'POC → production ownership',
-        ],
-      },
-      {
-        title: 'Customer-Facing',
-        items: [
-          'Technical discovery (EN / ES)',
-          'Solution architecture',
-          'Live demonstrations',
-          'Documentation & handover',
-          'MEDDIC qualification',
-          'Bilingual stakeholder management',
-        ],
-      },
-      {
-        title: 'Languages',
-        items: ['English (Native)', 'Spanish (Native)'],
-      },
+      'Powerful institutions are required to write things down. Cost reports, court dockets, inspection files, adverse-event databases — the record of what an institution did, and often of what it would rather you never notice, is already public. It stays hidden only because reading it is slow, technical work that almost no one does. That work is the whole of my beat.',
+      "I report on corporate accountability in U.S. healthcare and other regulated industries, and I build every story from the underlying documents — never a press release, never a summary. Federal court dockets pulled through PACER and RECAP. Medicare cost reports read at the worksheet level in CMS's HCRIS system. Payroll-based staffing files, ownership and enrollment records, OSHA fatality inspections, FDA adverse-event data, EPA and state environmental filings. The primary record, line by line.",
+      "The investigations that hold me share one shape: real harm, deliberately made hard to see. How private-equity owners route cash and liability out of the nursing homes that care for the elderly — legible in the shell entities of federal ownership data and the related-party rent Medicare disallows on Worksheet A-8-1. How immigration enforcement migrated from a phone app to a GPS ankle monitor, and what the contractors running it promise their investors. Who is cited, and who never is, when a worker dies on a data-center construction site. A drug-safety signal surfacing in the FDA's own data quarters before anyone writes it down.",
+      'The method underneath is plain and non-negotiable. Nothing runs as fact without a primary document behind it. Contested claims are attributed and carry the answer of the party they name. Every institution I write about gets a real chance to respond before I publish. The rigor is not ornament — it is what separates an investigation from an accusation.',
+      'The toolkit comes from an earlier life in data and software, which is an advantage rather than a detour: I can pull a federal dataset most reporters never open, and write the code to make it usable when it arrives broken. I studied rhetoric and writing at the University of Texas at Austin, and I report from the Texas–Mexico border — a dual citizen, working both sides of the line in either language.',
     ],
   },
 
   contact: {
     eyebrow: 'Contact',
-    title: 'Let us talk.',
+    title: 'Get in touch.',
     subtitle:
-      'Looking for a Forward Deployed Engineer who can embed with your customers and take AI systems from first demo to production? I respond within one business day.',
-    locationLabel: 'Based in',
-    location: 'Ciudad Victoria, Mexico · US–Mexico dual citizen · Open to US relocation or remote (US hours)',
+      'For editors, sources, and collaborators. I read everything myself and respond quickly.',
+    doors: [
+      {
+        key: 'editors',
+        label: 'For editors',
+        description:
+          'Available for commissions and pitches on healthcare, private equity, and regulatory accountability.',
+        channelLabel: 'Email',
+        channelValue: 'manuel.flores.7@protonmail.com',
+        href: 'mailto:manuel.flores.7@protonmail.com',
+      },
+      {
+        key: 'sources',
+        label: 'For sources',
+        description:
+          'If you have documents or knowledge of wrongdoing, I protect the people who come forward. Reach me first by encrypted email; for anything sensitive, ask and we will move to Signal. I will never name you without your consent.',
+        channelLabel: 'Confidential',
+        channelValue: 'manuel.flores.7@protonmail.com · Signal on request',
+        href: 'mailto:manuel.flores.7@protonmail.com',
+      },
+      {
+        key: 'elsewhere',
+        label: 'Elsewhere',
+        description: 'For anything else, or to see the professional record.',
+        channelLabel: 'LinkedIn',
+        channelValue: 'manuel-flores-90653060',
+        href: 'https://www.linkedin.com/in/manuel-flores-90653060/',
+      },
+    ],
+    locationLabel: 'Based on the',
+    location: 'Texas–Mexico border · Reporting in English and Spanish',
   },
 
-  footer: 'Manuel Flores. Founder, Areté Soluciones (independent practice).',
+  footer: 'Manuel Flores · Investigative journalism',
 };
 
 // ============================================================
-// Spanish content
+// Spanish
 // ============================================================
 
-export const landingEs: LandingContent = {
+export const siteEs: SiteContent = {
   lang: 'es',
   altLang: 'en',
   altLangLabel: 'English',
   altLangHref: '/',
 
   nav: {
-    work: 'Trabajo',
-    skills: 'Capacidades',
+    investigations: 'Investigaciones',
+    method: 'Método',
+    about: 'Sobre mí',
     contact: 'Contacto',
   },
 
   hero: {
-    eyebrow: 'Forward Deployed Engineer · Agentes de IA y Aplicaciones LLM',
+    eyebrow: 'Periodista de datos · Investigación',
     headline: {
-      lead: 'Convierto la realidad desordenada de un cliente en ',
-      emphasis: 'sistemas de IA en producción.',
+      lead: 'Investigo al poder leyendo los registros que ',
+      emphasis: 'deja atrás.',
     },
     subtitle:
-      'Ingeniero forward-deployed, de cara al cliente y full-stack. Soy dueño de la relación técnica desde el primer demo hasta producción — construyo sistemas LLM / de agentes sobre la API de Anthropic Claude y los integro con las operaciones reales del cliente. Nativo bilingüe EN/ES, doble ciudadano US–México.',
-    primaryCta: 'Ver el trabajo',
-    secondaryCta: 'Conversemos',
+      'Periodismo de investigación independiente sobre la rendición de cuentas corporativa en el sector salud y las industrias reguladas de EE. UU. — construido con documentos primarios y las bases de datos federales que casi ninguna redacción abre.',
+    primaryCta: 'Las investigaciones',
+    secondaryCta: 'Contacto',
+    cover: {
+      poster: '/media/hero-poster.jpg',
+      video: '/media/hero.mp4',
+      alt: 'Manuel Flores analizando grafos de datos y registros en monitores encendidos en una redacción a oscuras',
+    },
   },
 
-  proofPoints: [
-    { figure: 'Demo → Prod', label: 'Dueño técnico único de cada engagement — discovery, build, integración, entrega' },
-    { figure: 'Claude API', label: 'A diario: extracción con tool_use, RAG, diseño de agentes, revisión human-in-the-loop' },
-    { figure: 'EN · ES', label: 'Discovery técnico y entrega en vivo, nativo en ambos idiomas' },
-  ],
+  ethos: {
+    statement: 'Fuentes primarias, siempre. Cada dato empieza en un documento que leí yo mismo.',
+    sources: sourceSystems,
+  },
+
+  investigations: {
+    eyebrow: 'Investigaciones',
+    title: 'Lo que estoy investigando.',
+    subtitle:
+      'Investigaciones en curso, basadas en documentos, sobre cómo el poder se organiza para evitar ser medido. Descritas aquí a nivel de tema — los detalles se quedan en la reportería hasta que se publican.',
+    note: 'En curso. Se agradecen filtraciones — ver Contacto.',
+    items: [
+      {
+        key: 'pe-healthcare',
+        title: 'Capital privado en la salud estadounidense',
+        dek: 'Cómo los dueños de capital privado sacan dinero y responsabilidad de las residencias que cuidan a los adultos mayores — la propiedad de una instalación seguida a través de las sociedades pantalla en los datos federales de propiedad de CMS, la renta entre partes relacionadas verificada a nivel de hoja de trabajo en los reportes de costos HCRIS de Medicare, el expediente federal por muerte culposa leído línea por línea.',
+        sources: ['Reportes HCRIS', 'Datos de propiedad CMS', 'PACER / RECAP'],
+        status: 'En reportería',
+      },
+      {
+        key: 'surveillance-economics',
+        title: 'La economía de la vigilancia migratoria',
+        dek: 'Una lectura longitudinal de los propios datos de gestión de detención de ICE, que documenta la migración silenciosa de una app de registro telefónico al grillete GPS — y sigue el dinero hasta los contratistas que lucran con el cambio.',
+        sources: ['Datos de detención de ICE', 'Contratos federales'],
+        status: 'En reportería',
+      },
+      {
+        key: 'workplace-safety',
+        title: 'Quién responde cuando muere un trabajador',
+        dek: 'Inspecciones de muertes y catástrofes de OSHA en cuatro estados, contrastadas con 29 CFR 1904 — la norma que deja al empleador decidir si una muerte en la obra de un centro de datos llega siquiera a constar como registro federal.',
+        sources: ['Inspecciones OSHA', '29 CFR 1904'],
+        status: 'En reportería',
+      },
+      {
+        key: 'drug-safety',
+        title: 'La seguridad de los fármacos, a oscuras',
+        dek: 'Una nueva señal de seguridad que aparece en los propios datos FAERS de la FDA, contrastada con el historial de revisiones de la etiqueta de un fármaco y las declaraciones bursátiles de su fabricante — la distancia entre lo que muestran los datos y lo que se les dice a los inversionistas.',
+        sources: ['FDA FAERS', 'Reportes SEC'],
+        status: 'En reportería',
+      },
+    ],
+  },
+
+  method: {
+    eyebrow: 'Método',
+    title: 'Cómo se construye la reportería.',
+    intro:
+      'Llegué al periodismo desde los datos y el software. Ahora apunto esa caja de herramientas a instituciones que preferirían no ser medidas — lo que significa que no espero una filtración. Voy y consigo los registros.',
+    principles: [
+      {
+        key: 'documents-first',
+        title: 'Primero los documentos',
+        description:
+          'Cada dato empieza en una fuente primaria — un expediente judicial, un reporte de costos, un registro de inspección — leído directamente, nunca a través de un boletín ni de un resumen.',
+      },
+      {
+        key: 'data-at-scale',
+        title: 'Datos a una escala que casi nadie trabaja',
+        description:
+          'Extraigo y analizo bases de datos federales que pocos reporteros abren: reportes de costos de Medicare a nivel de hoja de trabajo, archivos de personal, declaraciones de propiedad, registros de contratos. Cuando los datos no vienen limpios, escribo el código para volverlos usables.',
+      },
+      {
+        key: 'ai-human',
+        title: 'Asistido por IA, juzgado por una persona',
+        description:
+          'Uso automatización e IA para leer a una escala imposible para una persona — expedientes completos, miles de documentos — y encontrar la anomalía que vale la pena perseguir. Después, cada afirmación publicada se verifica a mano.',
+      },
+      {
+        key: 'verify-attribute',
+        title: 'Verificado, luego atribuido',
+        description:
+          'Nada se publica como hecho si no lo sostiene un documento primario. Las afirmaciones en disputa se atribuyen a su fuente y llevan la respuesta de la parte a la que se refieren.',
+      },
+      {
+        key: 'right-of-reply',
+        title: 'Justo antes de publicar',
+        description:
+          'Cada parte nombrada recibe una oportunidad real y específica de responder antes de publicar — y su respuesta se reporta junto al hallazgo.',
+      },
+    ],
+  },
 
   about: {
     eyebrow: 'Sobre mí',
-    title: 'Un operador que entrega, de principio a fin.',
+    title: 'Ya consta en los documentos.',
     paragraphs: [
-      'Soy un ingeniero forward-deployed, de cara al cliente. A través de Areté Soluciones — mi práctica tecnológica independiente — he entregado sistemas en producción a través de cinco verticales: legal/notarial, operaciones hospitalarias, restaurantes multi-sucursal, estacionamientos y facilities, y operaciones de profesionistas. En cada engagement soy el operador técnico único: discovery en inglés o español, arquitectura, build, integración contra los propios sistemas del cliente, y un despliegue en producción que aún opero hoy.',
-      'Ese trabajo es cada vez más AI-forward. Construyo sistemas LLM y de agentes sobre la API de Anthropic Claude — extracción con esquema forzado, generación aumentada por recuperación (RAG), revisión human-in-the-loop condicionada por confianza, y agentes de voz en tiempo real — y los integro con operaciones reales vía REST APIs, webhooks y OAuth. Traigo ese mismo ciclo — integrarme, descubrir, construir, entregar, ser responsable — a un rol de Forward Deployed Engineer en una empresa de producto de IA.',
-    ],
-  },
-
-  experience: {
-    eyebrow: 'Experiencia',
-    title: 'Dónde he entregado.',
-    entries: [
-      {
-        key: 'exp1',
-        period: '2024 – Presente',
-        title: 'Fundador e Ingeniero Principal — Areté Soluciones (práctica independiente)',
-        description:
-          'Práctica tecnológica independiente. Dueño técnico único de discovery, arquitectura, build, integración y despliegue en producción en cada engagement — de cara al cliente desde la primera llamada hasta la entrega, en inglés o español, a través de verticales notarial, hospitalaria, restaurantes, facilities y operaciones de profesionistas. Cada vez más enfocado en sistemas LLM / de agentes sobre la API de Anthropic Claude.',
-        icon: 'code',
-      },
-      {
-        key: 'exp2',
-        period: '2021 – 2023',
-        title: 'Business Development Partner — Workowhole Studio',
-        description:
-          'Manejé 12+ cuentas enterprise como enlace técnico principal entre stakeholders de negocio y equipos de diseño e ingeniería. Traduje requerimientos a especificaciones técnicas; mejoré la entrega a tiempo de ~70% a 90%+ con disciplina de sprints.',
-        icon: 'briefcase',
-      },
-      {
-        key: 'exp3',
-        period: '2020 – 2021',
-        title: 'Project Manager — Token Engineering Commons',
-        description:
-          'Promovido de pasante a PM en 4 meses. Coordiné 5 grupos de trabajo distribuidos sin autoridad formal. Documentación técnica de onboarding adoptada como referencia para 200+ contribuidores.',
-        icon: 'users',
-      },
-      {
-        key: 'exp4',
-        period: '2018 – 2019',
-        title: 'Business Development Manager — Autonio Foundation',
-        description:
-          'Recaudé $40K en crowdfunding sin pitch deck. Cerré $35K en ventas de producto sin presupuesto de marketing. Abrí nuevos canales de ingresos vía gestión consultiva de cuentas.',
-        icon: 'dollar',
-      },
-      {
-        key: 'exp5',
-        period: '2017',
-        title: 'Research Associate — Cryptonomex Inc.',
-        description:
-          'Síntesis de investigación emergente en sistemas distribuidos e infraestructura en resúmenes ejecutivos que informaban decisiones de roadmap de producto.',
-        icon: 'briefcase',
-      },
-      {
-        key: 'exp6',
-        period: '2016',
-        title: 'BA Retórica y Escritura — The University of Texas at Austin',
-        description:
-          'Comunicación, persuasión, argumentación estructurada — la base para traducir sistemas técnicos complejos a stakeholders no técnicos.',
-        icon: 'grad',
-      },
-    ],
-  },
-
-  work: {
-    eyebrow: 'Trabajo seleccionado',
-    title: 'Dos agentes de IA. Sistemas en producción en cinco verticales.',
-    subtitle:
-      'Cada uno con propiedad de principio a fin — descubrir el problema real, arquitectarlo, llevarlo al mundo del cliente, mantenerse responsable.',
-    projects: [
-      {
-        key: 'claims',
-        name: 'Agente de Operaciones de Reclamos con IA',
-        client: 'Proyecto propio · automatización de reclamos con IA',
-        sector: 'Seguros · Agentes LLM',
-        description:
-          'Un slice de dos agentes de un producto de automatización de reclamos. Un Claim Intaker convierte un paquete desordenado de First Notice of Loss (FNOL) de compensación laboral en un registro estructurado y calificado por confianza vía extracción con esquema forzado (tool_use) de Claude — los campos de baja confianza pasan a una cola de revisión humana en lugar de poblar el registro en silencio. Un Case Copilot responde preguntas del ajustador basándose solo en los documentos de ese reclamo, cada respuesta citando su fuente, difiriendo la compensabilidad al ajustador con licencia. Construido para probar el ciclo forward-deployed de principio a fin.',
-        tech: tech.claims,
-        kind: 'public-demo',
-      },
-      {
-        key: 'voice',
-        name: 'Agente de Voz para Entrevistas',
-        client: 'Proyecto propio · voz en tiempo real × LLM',
-        sector: 'IA de Voz · Telefonía',
-        description:
-          'Un agente de voz telefónico bidireccional que conduce entrevistas de práctica adaptativas en una llamada real y devuelve retroalimentación escrita calificada por rúbrica. Twilio ConversationRelay (Deepgram STT / ElevenLabs TTS) transmitido a través de un servidor WebSocket Fastify en Node/TypeScript hacia la API de Mensajes de Anthropic Claude, con barge-in en tiempo real y ruteo por nivel de inferencia Haiku/Sonnet. De extremo a extremo: de la pata de telefonía al cerebro LLM a la salida estructurada.',
-        tech: tech.voice,
-        kind: 'public-demo',
-      },
-      {
-        key: 'laura',
-        name: 'Laura Zanuna',
-        client: 'Operaciones de Profesionista · UE',
-        sector: 'SaaS Full-Stack · Pagos en Vivo',
-        description:
-          'Una plataforma full-stack de ~75,000 líneas que reemplaza Calendly, Acuity, Stripe y Mailchimp para una sola profesionista — corriendo en vivo sobre Stripe de producción. Pagos y facturación multi-moneda (EUR/USD), reserva por magic-link JWT, calendario de tres modos con API de conflictos por bloqueo de día, integraciones profundas de terceros (Gmail OAuth + Google APIs, webhooks de Stripe, Resend), cola de trabajos en segundo plano, rate limiting, y redacción de respuestas de email con Claude.',
-        tech: tech.laura,
-        kind: 'arete-case',
-      },
-      {
-        key: 'notaria',
-        name: 'Notaría — Semáforo Infonavit',
-        client: 'Notaría · Ciudad Victoria',
-        sector: 'LegalTech · Operaciones Reguladas',
-        description:
-          'Un SaaS multi-tenant, aislado con row-level security, que rastrea trámites de crédito Infonavit en un tablero de SLA tipo semáforo, con una bitácora de auditoría append-only forzada por trigger en Postgres — el patrón auditable, nada-se-sobrescribe-en-silencio, que exige el trabajo de back-office regulado.',
-        tech: tech.notaria,
-        kind: 'arete-case',
-      },
-      {
-        key: 'hospital',
-        name: 'Hospital La Salle',
-        client: 'Hospital privado · Norte de México',
-        sector: 'Operaciones Hospitalarias',
-        description:
-          'Un Windows Service single-binary en Rust/Axum/SQLite desplegado dentro del entorno IT bloqueado y con control de cambios del hospital. Pipeline de importación de catálogo validado por hash, alertas automáticas de variación de precio para el área de compras, y bitácora completa. Entregado y facturado.',
-        tech: tech.hospital,
-        kind: 'arete-case',
-      },
-      {
-        key: 'gorditas',
-        name: 'Gorditas Doña Tota',
-        client: 'Restaurantes Multi-Sucursal · 6 sucursales',
-        sector: 'BI Operacional',
-        description:
-          'Una plataforma de BI operacional en FastAPI + React — 110 endpoints REST, 38 KPIs, monitoreo en tiempo real vía WebSocket, y detección estadística de anomalías (Z-score) sobre datos de inventario y ventas. El discovery MEDDIC reveló que el pronóstico de inventario era el dolor real y escaló el engagement muy por encima del RFP inicial.',
-        tech: tech.gorditas,
-        kind: 'arete-case',
-      },
-      {
-        key: 'areteos',
-        name: 'Areté OS',
-        client: 'Personal · el sistema que opera mi práctica',
-        sector: 'Rust · Offline-First',
-        description:
-          'El sistema operativo que construí para operar mi propia práctica: un binario de Rust autocontenido que combina una vista de estrategia, ERP ligero y CRM sobre una sola base de datos local, funcionando completamente offline. El dinero se guarda como centavos enteros y cada pago es una entrada de libro mayor append-only que no puede editarse en silencio. Claude está integrado donde ayuda y se deshabilita limpiamente cuando no hay conexión.',
-        tech: tech.areteos,
-        kind: 'personal',
-      },
-      {
-        key: 'rag',
-        name: 'Pipeline RAG de Búsqueda de Empleo',
-        client: 'Personal · implementación de referencia',
-        sector: 'RAG · Tooling de Claude',
-        description:
-          'Una aplicación Next.js / Supabase con recuperación pgvector (embeddings de Voyage AI) y un pipeline de Claude API — tool-calling con salida estructurada validada por Zod — que cubre triage, redacción de outreach, generación de kits de entrevista y sesiones de práctica de entrevista. Los mismos patrones de RAG + tool-use + validación estructurada que el agente de reclamos.',
-        tech: tech.rag,
-        kind: 'personal',
-      },
-    ],
-  },
-
-  skills: {
-    eyebrow: 'Capacidades',
-    title: 'Lo que traigo a la construcción.',
-    groups: [
-      {
-        title: 'Ingeniería de IA / LLM',
-        items: [
-          'API de Anthropic Claude',
-          'tool_use · extracción con esquema forzado',
-          'Prompt engineering · diseño de agentes',
-          'RAG (pgvector · Postgres FTS)',
-          'Revisión human-in-the-loop',
-          'Recuperación citada / con fundamento',
-          'Salida estructurada validada por Zod',
-          'Agentes de voz en tiempo real (Twilio)',
-        ],
-      },
-      {
-        title: 'Ingeniería',
-        items: [
-          'TypeScript · Python · Rust',
-          'Next.js · FastAPI · Axum',
-          'PostgreSQL · Supabase (RLS)',
-          'REST · webhooks · WebSockets',
-          'Node.js · Fastify',
-          'Diseño de esquema · migraciones',
-        ],
-      },
-      {
-        title: 'Integraciones y Entrega',
-        items: [
-          'OAuth (Gmail / Google APIs)',
-          'Stripe (en vivo, multi-moneda)',
-          'Integración de APIs de terceros',
-          'Docker · AWS · Vercel · Railway',
-          'Entornos de cliente bloqueados',
-          'Propiedad POC → producción',
-        ],
-      },
-      {
-        title: 'De Cara al Cliente',
-        items: [
-          'Discovery técnico (EN / ES)',
-          'Arquitectura de soluciones',
-          'Demostraciones en vivo',
-          'Documentación y entrega',
-          'Calificación MEDDIC',
-          'Gestión bilingüe de stakeholders',
-        ],
-      },
-      {
-        title: 'Idiomas',
-        items: ['Inglés (Nativo)', 'Español (Nativo)'],
-      },
+      'Las instituciones poderosas están obligadas a dejar constancia por escrito. Reportes de costos, expedientes judiciales, actas de inspección, bases de datos de eventos adversos — el registro de lo que hicieron, y a menudo de lo que preferirían que nadie notara, ya es público. Permanece oculto solo porque leerlo es un trabajo lento y técnico que casi nadie hace. Ese trabajo es, entero, mi especialidad.',
+      'Reporto sobre la rendición de cuentas corporativa en el sector salud y otras industrias reguladas de EE. UU., y construyo cada historia desde los documentos de fondo — nunca un boletín, nunca un resumen. Expedientes judiciales federales obtenidos vía PACER y RECAP. Reportes de costos de Medicare leídos a nivel de hoja de trabajo en el sistema HCRIS de CMS. Archivos de personal, registros de propiedad e inscripción, inspecciones de muertes de OSHA, datos de eventos adversos de la FDA, expedientes ambientales federales y estatales. El registro primario, línea por línea.',
+      'Las investigaciones que me atrapan comparten una misma forma: daño real, deliberadamente hecho difícil de ver. Cómo los dueños de capital privado sacan dinero y responsabilidad de las residencias que cuidan a los adultos mayores — legible en las sociedades pantalla de los datos federales de propiedad y en la renta entre partes relacionadas que Medicare desconoce en la hoja de trabajo A-8-1. Cómo la aplicación de la ley migratoria pasó de una app telefónica a un grillete GPS, y lo que los contratistas que lo operan les prometen a sus inversionistas. A quién se sanciona, y a quién jamás, cuando un trabajador muere en la obra de un centro de datos. Una señal de seguridad farmacológica que aparece en los propios datos de la FDA trimestres antes de que alguien la escriba.',
+      'El método detrás de todo es simple e innegociable. Nada se publica como hecho sin un documento primario que lo sostenga. Las afirmaciones en disputa se atribuyen y llevan la respuesta de la parte que nombran. Cada institución sobre la que escribo recibe una oportunidad real de responder antes de publicar. El rigor no es adorno: es lo que separa una investigación de una acusación.',
+      'La caja de herramientas viene de una vida anterior en datos y software, y es una ventaja más que un desvío: puedo extraer una base de datos federal que casi ningún reportero abre, y escribir el código para volverla usable cuando llega rota. Estudié retórica y escritura en la Universidad de Texas en Austin, y reporto desde la frontera Texas–México — con doble nacionalidad, trabajando ambos lados de la línea en cualquiera de los dos idiomas.',
     ],
   },
 
   contact: {
     eyebrow: 'Contacto',
-    title: 'Conversemos.',
+    title: 'Hablemos.',
     subtitle:
-      '¿Buscas un Forward Deployed Engineer que pueda integrarse con tus clientes y llevar sistemas de IA del primer demo a producción? Respondo en un día hábil.',
-    locationLabel: 'Basado en',
-    location: 'Ciudad Victoria, México · Doble ciudadano US–México · Abierto a reubicación en US o remoto (horario US)',
+      'Para editores, fuentes y colaboradores. Leo todo yo mismo y respondo rápido.',
+    doors: [
+      {
+        key: 'editors',
+        label: 'Para editores',
+        description:
+          'Disponible para encargos y propuestas sobre salud, capital privado y rendición de cuentas regulatoria.',
+        channelLabel: 'Correo',
+        channelValue: 'manuel.flores.7@protonmail.com',
+        href: 'mailto:manuel.flores.7@protonmail.com',
+      },
+      {
+        key: 'sources',
+        label: 'Para fuentes',
+        description:
+          'Si tienes documentos o conocimiento de irregularidades, protejo a quienes se acercan. Escríbeme primero por correo cifrado; para algo sensible, pídelo y pasamos a Signal. Nunca te nombraré sin tu consentimiento.',
+        channelLabel: 'Confidencial',
+        channelValue: 'manuel.flores.7@protonmail.com · Signal a solicitud',
+        href: 'mailto:manuel.flores.7@protonmail.com',
+      },
+      {
+        key: 'elsewhere',
+        label: 'Lo demás',
+        description: 'Para cualquier otra cosa, o para ver la trayectoria profesional.',
+        channelLabel: 'LinkedIn',
+        channelValue: 'manuel-flores-90653060',
+        href: 'https://www.linkedin.com/in/manuel-flores-90653060/',
+      },
+    ],
+    locationLabel: 'Con base en la',
+    location: 'Frontera Texas–México · Reportería en inglés y español',
   },
 
-  footer: 'Manuel Flores. Fundador, Areté Soluciones (práctica independiente).',
+  footer: 'Manuel Flores · Periodismo de investigación',
 };
