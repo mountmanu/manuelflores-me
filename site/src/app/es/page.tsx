@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { LandingPage } from '@/components/LandingPage';
 import { siteEs } from '@/data/landing-content';
 
+const TITLE = 'Manuel Flores — Datos e investigación: trata y protección infantil';
+
 export const metadata: Metadata = {
-  title: 'Manuel Flores — Periodista de datos e investigación',
+  title: TITLE,
   description:
-    'Periodista de datos e investigación, independiente. Rendición de cuentas corporativa en el sector salud y las industrias reguladas de EE. UU. — reportería basada en documentos y datos, desde fuentes primarias: cortes federales, CMS, OSHA, FDA, SEC.',
+    'Trabajo independiente de datos e investigación sobre trata de personas y protección infantil en Estados Unidos. Registros administrativos convertidos en mediciones, conciliados contra los totales que las propias agencias publican, y entregados con el código y la bitácora de calidad de datos.',
   alternates: {
     canonical: '/es',
     languages: {
@@ -17,17 +19,17 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_MX',
     alternateLocale: 'en_US',
-    title: 'Manuel Flores — Periodista de datos e investigación',
+    title: TITLE,
     description:
-      'Rendición de cuentas corporativa en el sector salud y las industrias reguladas de EE. UU. — reportería basada en documentos y datos, desde fuentes primarias.',
+      'Medir el daño que las instituciones registran pero nunca cuentan — datos de trata y protección infantil en EE. UU., construidos desde fuentes primarias y entregados con el código.',
     url: 'https://manuelflores.me/es',
     siteName: 'Manuel Flores',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Manuel Flores — Periodista de datos e investigación',
+    title: TITLE,
     description:
-      'Rendición de cuentas corporativa en salud e industrias reguladas de EE. UU. — reportería basada en documentos y datos.',
+      'Datos de trata y protección infantil en EE. UU., construidos desde registros administrativos primarios y entregados con el código.',
   },
 };
 

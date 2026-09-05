@@ -1,43 +1,45 @@
 /**
  * Canonical content for the public site — manuelflores.me
  *
- * Positioning: independent investigative DATA journalist. Corporate
- * accountability in U.S. healthcare and regulated industries. The engineering
- * background is framed as investigative capability (document + data forensics),
- * never as a software portfolio.
+ * Positioning: independent DATA & RESEARCH work on human trafficking and child
+ * protection in the United States. The engineering background is framed as
+ * measurement capability (getting records nobody else can get, and making them
+ * countable), never as a software portfolio. The accountability-journalism
+ * track is kept, but as the adjacent second half of the same method.
  *
  * One source of truth, two language variants. Keep EN and ES in lock-step —
  * anything in EN must have its ES counterpart, and vice versa.
  *
- * Disclosure discipline (matches the reporter's own rule): investigations are
- * described at the BEAT level only — no defendant names, dockets, or facilities
- * that could tip a subject before publication.
+ * Disclosure discipline: work in progress is described at the level of the
+ * question and the source, never with facility names, dockets or identifiable
+ * subjects ahead of publication.
  *
- * v3 — Jul 2026: full repositioning from Sales-Engineer portfolio to
- * investigative-journalism presence. Interfaces rebuilt: ethos, investigations,
- * method, three-door contact.
+ * v3 — Jul 2026: repositioning from Sales-Engineer portfolio to investigative
+ * journalism. Interfaces rebuilt: ethos, investigations, method, three doors.
  *
- * v4 — Aug 2026: sourcing and verification update. Adds the rulemaking and
- * executive-compensation beats; widens the source strip (Federal Register,
- * MSHA, DOL/OWCP, state audits, proxy statements); upgrades Method from five
- * principles to seven — candidate triage, running the institution's own
- * formula, reproducible verification with declared gaps, and named human
- * sourcing with precedence/credit. Editors' door now states the
- * simultaneous-query policy and the pre-commission evidence offer.
+ * v4 — Aug 2026: sourcing and verification update; Method widened to seven.
+ *
+ * v5 — Sep 2026: repositioning to trafficking / child-protection data and
+ * research. Hero video removed (see hero.cover below — the slot is left in
+ * place and commented, ready for the replacement asset). `investigations`
+ * renamed to `work`; the first three items are the trafficking and
+ * child-protection projects, the last three the adjacent accountability
+ * reporting that uses the same method. Source strip, About and the first
+ * contact door rewritten for research and policy audiences.
  */
 
-export interface InvestigationContent {
+export interface WorkContent {
   key: string;
-  /** Beat-level title — a subject area, not a named case. */
+  /** Project-level title — a question or a finding, not a named case. */
   title: string;
   /** One-line dek. */
   dek: string;
-  /** The primary-source systems the reporting draws on. Not translated. */
+  /** The primary-source systems the work draws on. Not translated. */
   sources: string[];
-  /** Honest status line, e.g. "In reporting". */
+  /** Honest status line, e.g. "In progress". */
   status: string;
-  /** Optional cinematic cover asset in /public (Phase 2). Poster is required if
-   *  video is set. Both optional — section degrades gracefully without them. */
+  /** Optional cinematic cover asset in /public. Poster is required if video is
+   *  set. Both optional — section degrades gracefully without them. */
   cover?: { poster: string; video?: string; alt: string };
 }
 
@@ -48,7 +50,7 @@ export interface MethodPrinciple {
 }
 
 export interface ContactDoor {
-  key: 'editors' | 'sources' | 'elsewhere';
+  key: 'commissions' | 'sources' | 'elsewhere';
   label: string;
   description: string;
   /** Rendered channel. */
@@ -64,7 +66,7 @@ export interface SiteContent {
   altLangHref: string;
 
   nav: {
-    investigations: string;
+    work: string;
     method: string;
     about: string;
     contact: string;
@@ -76,7 +78,8 @@ export interface SiteContent {
     subtitle: string;
     primaryCta: string;
     secondaryCta: string;
-    /** Optional hero cinematic asset (Phase 2). */
+    /** Optional hero cinematic asset. Currently unset by design — see the
+     *  note in each hero block below. */
     cover?: { poster: string; video?: string; alt: string };
   };
 
@@ -86,12 +89,12 @@ export interface SiteContent {
     sources: string[];
   };
 
-  investigations: {
+  work: {
     eyebrow: string;
     title: string;
     subtitle: string;
     note: string;
-    items: InvestigationContent[];
+    items: WorkContent[];
   };
 
   method: {
@@ -119,17 +122,17 @@ export interface SiteContent {
   footer: string;
 }
 
-// Primary-source systems — same in both languages.
+// Primary-source systems actually worked in — same in both languages.
 const sourceSystems = [
+  'California · AB 388',
+  'CDSS licensing data',
+  'NC · DHSR',
+  'CMS · Provider of Services',
+  'ICPSR',
+  'CTDC',
   'Federal Register',
   'Federal courts (PACER)',
-  'SEC · EDGAR',
-  'CMS · HCRIS',
-  'MSHA',
-  'OSHA',
-  'EPA',
-  'FDA',
-  'State audits',
+  'State open-data portals',
 ];
 
 // ============================================================
@@ -143,110 +146,119 @@ export const siteEn: SiteContent = {
   altLangHref: '/es',
 
   nav: {
-    investigations: 'Investigations',
+    work: 'Work',
     method: 'Method',
     about: 'About',
     contact: 'Contact',
   },
 
   hero: {
-    eyebrow: 'Investigative Data Journalist',
+    eyebrow: 'Data & Research · Human Trafficking and Child Protection',
     headline: {
-      lead: 'I report on power by reading the records it ',
-      emphasis: 'leaves behind.',
+      lead: 'I measure the harm institutions ',
+      emphasis: 'record but never count.',
     },
     subtitle:
-      'Independent investigative reporting on corporate and regulatory accountability in U.S. healthcare, labor and regulated industries — built from primary documents, the federal datasets most newsrooms never open, and arithmetic I publish the method for.',
-    primaryCta: 'The investigations',
+      'Independent data and research work on human trafficking and child protection in the United States — built from the administrative records agencies already publish, reconciled against those agencies’ own totals, and shipped with the code so anyone can re-run it.',
+    primaryCta: 'The work',
     secondaryCta: 'Contact',
-    cover: {
-      poster: '/media/hero-poster.jpg',
-      video: '/media/hero.mp4',
-      alt: 'Manuel Flores working through network graphs and records on glowing monitors in a dim newsroom at night',
-    },
+    // HERO ASSET SLOT — intentionally empty.
+    // With no `cover`, the hero falls back to the dark editorial gradient in
+    // LandingPage.tsx, which is a finished look on its own. To restore the
+    // cinematic hero, drop the new video at site/public/media/hero.mp4 and a
+    // still of its FINAL frame at site/public/media/hero-poster.jpg, then
+    // uncomment the block below (and its Spanish counterpart). CinematicMedia
+    // plays it twice and freezes on the last frame, so author the video to end
+    // on a stable, dark, legible frame.
+    //
+    // cover: {
+    //   poster: '/media/hero-poster.jpg',
+    //   video: '/media/hero.mp4',
+    //   alt: '<describe the new footage here>',
+    // },
   },
 
   ethos: {
     statement:
-      'Primary sources, always. Every fact starts in a document I read myself — and every number comes with the method to check it.',
+      'Primary sources, always. Every number starts in a record I pulled myself — and every number ships with the code to re-run it.',
     sources: sourceSystems,
   },
 
-  investigations: {
-    eyebrow: 'Investigations',
-    title: 'What I am reporting.',
+  work: {
+    eyebrow: 'Work',
+    title: 'What I am building.',
     subtitle:
-      'Ongoing, document-driven investigations into how power organizes itself to avoid being measured. Described here at the level of the beat — the specifics stay in the reporting until they are published.',
-    note: 'In progress. Tips welcome — see Contact.',
+      'The first three are measurement work on trafficking and child protection: making a number that does not exist yet, or checking one that does. The last three apply the same method to the wider accountability record — the same institutions, the same documents, the same arithmetic.',
+    note: 'In progress. Data, code and calculations are available on request — see Contact.',
     items: [
+      {
+        key: 'ab388-runaways',
+        title: 'The children’s facilities that keep losing children',
+        dek: 'Every California facility that houses children must report its law-enforcement contacts each year, and the state must inspect any facility running above average. I rebuilt four years of those reports into a single panel — joined to the state licensing file and reconciled line by line against California’s own published subtotals — and identified the facilities that met the inspection trigger in every year of the window. The reconciliation surfaced errors in the state’s own files; a second, independently written parser exists specifically to check the first one.',
+        sources: ['California AB 388 reports', 'CDSS licensing file', 'CDSS complaint data'],
+        status: 'Built · not yet published',
+      },
+      {
+        key: 'linkage-error',
+        title: 'Nobody checks whether the victim counts add up',
+        dek: 'US trafficking prevalence estimates are built by matching victim records across agencies on a deliberately coarse key — a couple of initials and some digits of a birth date. Across five real US studies, and two comparable HIV-surveillance studies checked as a control, not one corrects for that key merging two different people or missing that one person appears twice. A short simulation, anchored to published record-linkage benchmarks rather than a guess, puts the resulting inflation near 13% at a 5% per-record error rate. The statistical correction was published in 2021 and has never been run on real data, in any field.',
+        sources: ['Published MSE studies', 'Record-linkage benchmarks', 'Monte Carlo simulation'],
+        status: 'Open finding · outreach drafted',
+      },
+      {
+        key: 'us-data-map',
+        title: 'What US trafficking data actually exists',
+        dek: 'A source-by-source audit across all 51 US jurisdictions: which trafficking and child-welfare datasets are genuinely obtainable, which are gated behind institutional standing rather than a form, and which are advertised but not actually there. The document keeps its own corrections in place rather than quietly rewriting them — a state I first recorded as unreachable that turned out to be a local resolver failure, a federal file I said held no children’s facilities and does. The audit trail is part of the deliverable.',
+        sources: ['51 US jurisdictions', 'ICPSR', 'CTDC', 'State open-data portals'],
+        status: 'Complete · not yet published',
+      },
       {
         key: 'pe-healthcare',
         title: 'Private equity in American healthcare',
-        dek: "How private-equity owners route money and liability out of the homes that care for the elderly — a facility's ownership followed through the shell entities in CMS federal ownership data, related-party rent verified at the worksheet level in HCRIS Medicare cost reports, the federal wrongful-death docket read line by line.",
+        dek: 'How private-equity owners route money and liability out of the homes that care for the elderly — a facility’s ownership followed through the shell entities in CMS federal ownership data, related-party rent verified at the worksheet level in HCRIS Medicare cost reports, the federal wrongful-death docket read line by line.',
         sources: ['HCRIS cost reports', 'CMS ownership data', 'PACER / RECAP'],
-        status: 'In reporting',
+        status: 'In progress',
       },
       {
         key: 'surveillance-economics',
         title: 'The economics of immigration surveillance',
-        dek: "A longitudinal read of ICE's own detention-management data, documenting the quiet migration from a phone check-in app to the GPS ankle monitor — and following the money to the contractors who profit from the switch.",
+        dek: 'A longitudinal read of ICE’s own detention-management data, documenting the quiet migration from a phone check-in app to the GPS ankle monitor — and following the money to the contractors who profit from the switch.',
         sources: ['ICE detention data', 'Federal contracts'],
-        status: 'In reporting',
-      },
-      {
-        key: 'mine-safety',
-        title: 'The fines that never get paid',
-        dek: "Federal mine-safety enforcement data, rebuilt operator by operator with time-correct ownership, showing which penalties are simply never paid — read against what the same companies are required to tell their investors, and what they are not.",
-        sources: ['MSHA enforcement data', 'SEC filings'],
-        status: 'In reporting',
-      },
-      {
-        key: 'tribal-water',
-        title: 'The water standards nobody wrote',
-        dek: "Most Indian reservations have no Clean Water Act standards at all — a fifty-year gap every state closed long ago. I traced the agency's own promises to close it across four administrations, each attempt dying quietly at a political transition, and took the legal question to the scholars and tribal-water attorneys who have lived it.",
-        sources: ['Federal Register', 'EPA program data', 'Legal scholarship'],
-        status: 'In reporting',
-      },
-      {
-        key: 'black-lung-collateral',
-        title: "The collateral behind a sick miner's benefits",
-        dek: "A federal proposal would sharply cut the security coal companies must post against the lifetime benefits owed to miners with black lung. The scoring formula is printed inside the rule itself — so I rebuilt it and ran it against the operators' own audited financial statements, then read the result against what the same agency said, in writing, when it refused the identical request two years earlier.",
-        sources: ['Federal Register', 'SEC filings', 'DOL · OWCP'],
-        status: 'In reporting',
+        status: 'In progress',
       },
       {
         key: 'safety-pay',
-        title: "What a worker's death costs a bonus",
-        dek: "Utilities grade their executives' annual bonuses partly on how many workers are seriously injured or killed. The targets, the carve-outs, and whether contractors are counted at all are already disclosed — in compensation filings and sustainability templates that are almost never read against each other, or against the year's actual fatalities.",
+        title: 'What a worker’s death costs a bonus',
+        dek: 'Utilities grade their executives’ annual bonuses partly on how many workers are seriously injured or killed. The targets, the carve-outs, and whether contractors are counted at all are already disclosed — in compensation filings and sustainability templates that are almost never read against each other, or against the year’s actual fatalities.',
         sources: ['Proxy statements', 'EEI · AGA templates', 'OSHA inspections'],
-        status: 'In reporting',
+        status: 'In progress',
       },
     ],
   },
 
   method: {
     eyebrow: 'Method',
-    title: 'How the reporting is built.',
+    title: 'How the work is built.',
     intro:
-      'I came to journalism from data and software. I now point that toolkit at institutions that would rather not be measured — which means I do not wait for a leak. I go and get the records, and I keep a written trail of how every number in a story was arrived at, including the ones that did not survive.',
+      'I came to this from data and software, and I point that toolkit at institutions that would rather not be measured — which means I do not wait for the dataset to arrive clean, or at all. I go and get the records, and I keep a written trail of how every number was arrived at, including the ones that did not survive.',
     principles: [
       {
         key: 'triage',
         title: 'Most candidates die',
         description:
-          'Every lead gets opened, and most get killed — because a newsroom already owns the beat, because the documents cannot carry the claim, or because the harm is real but no one is accountable for it. Hundreds have gone through that screen; a handful survive. Each kill is logged with its reason, so what reaches an editor has already survived something.',
+          'Every lead gets opened, and most get killed — because someone already owns the question, because the records cannot carry the claim, or because the harm is real but no one is accountable for it. Hundreds have gone through that screen; a handful survive. Each kill is logged with its reason, so what reaches a reader has already survived something.',
       },
       {
         key: 'documents-first',
         title: 'Documents first',
         description:
-          'Every fact begins in a primary source — a court filing, a cost report, an inspection record, a proposed rule — read directly, never through a press release or a summary.',
+          'Every fact begins in a primary source — a licensing file, an annual facility report, a court filing, a proposed rule — read directly, never through a press release, a dashboard or a summary.',
       },
       {
         key: 'own-numbers',
-        title: "I run the institution's own numbers",
+        title: 'I run the institution’s own numbers',
         description:
-          "When an agency publishes a scoring formula, a payment rule or an enforcement file, I rebuild it and run it myself — the formula against the regulated companies' audited financial statements, the enforcement data reassembled operator by operator with time-correct ownership. The finding is then the institution's own arithmetic, not my characterization of it.",
+          'When an agency publishes a reporting requirement, a scoring formula or an enforcement file, I rebuild it and run it myself, then reconcile the result against the agency’s own published totals before it counts as a finding. Where they disagree, the disagreement is the finding. The arithmetic is the institution’s, not my characterization of it.',
       },
       {
         key: 'ai-human',
@@ -258,13 +270,13 @@ export const siteEn: SiteContent = {
         key: 'reproducible',
         title: 'Verified so it can be re-verified',
         description:
-          'Load-bearing numbers are transcribed a second time, blind, and recomputed by independent code. Source documents are fingerprinted on download, so the version I read is the version anyone else can pull. Every story carries a verification log with timestamps — and an explicit list of what has not been verified yet. Declaring the gap is part of the work, not an admission against it.',
+          'Load-bearing numbers are recomputed by a second, independently written parser, and source documents are fingerprinted on download so the version I read is the version anyone else can pull. Every finding carries a data-quality log — including the bugs found in my own first pass, written up rather than quietly fixed — and an explicit list of what has not been verified yet. Declaring the gap is part of the work, not an admission against it.',
       },
       {
         key: 'people',
         title: 'People, on the record',
         description:
-          'The documents say what happened; people say what it meant. Attorneys, academics, advocates and agency press offices go on the record, recorded and with consent. Where someone published a finding before I reached it, the credit is theirs and the story says so. Where a source is at risk, protecting them outranks the story.',
+          'The records say what happened; people say what it meant. Practitioners, attorneys, academics, advocates and agency press offices go on the record, with consent. Where someone published a finding before I reached it, the credit is theirs and the work says so. Where a source is at risk, protecting them outranks the finding.',
       },
       {
         key: 'right-of-reply',
@@ -279,12 +291,12 @@ export const siteEn: SiteContent = {
     eyebrow: 'About',
     title: 'It is already on the record.',
     paragraphs: [
-      'Powerful institutions are required to write things down. Cost reports, court dockets, inspection files, adverse-event databases — the record of what an institution did, and often of what it would rather you never notice, is already public. It stays hidden only because reading it is slow, technical work that almost no one does. That work is the whole of my beat.',
-      "I report on corporate and regulatory accountability in U.S. healthcare, labor and other regulated industries, and I build every story from the underlying documents — never a press release, never a summary. Proposed and final rules read in the Federal Register alongside the rulemaking they quietly reverse. Federal court dockets pulled through PACER and RECAP. Medicare cost reports read at the worksheet level in CMS's HCRIS system. Mine-safety enforcement files, payroll-based staffing data, ownership and enrollment records, OSHA fatality inspections, executive compensation filings, state audits, FDA adverse-event data, EPA and state environmental filings. The primary record, line by line.",
-      "The investigations that hold me share one shape: real harm, deliberately made hard to see. How private-equity owners route cash and liability out of the nursing homes that care for the elderly — legible in the shell entities of federal ownership data and the related-party rent Medicare disallows on Worksheet A-8-1. How immigration enforcement migrated from a phone app to a GPS ankle monitor, and what the contractors running it promise their investors. An agency that refuses an industry's request in writing, then grants every part of it two years later without ever addressing its own stated reasons. A bonus formula in which a worker's death is a line item with a target attached.",
-      'The method underneath is plain and non-negotiable. Nothing runs as fact without a primary document behind it. Load-bearing numbers are transcribed a second time, blind, and recomputed by independent code; the originals are fingerprinted on download, so the version I read is the version anyone else can pull. What I have not yet verified is written down and declared rather than buried, and an argument someone else published first is credited to them. Every institution I write about gets a real chance to respond before I publish. The rigor is not ornament — it is what separates an investigation from an accusation.',
-      'Most of what I open never becomes a story. Hundreds of candidates have gone through the same screen — is the harm real, is anyone accountable for it, can the documents carry it, and does a newsroom already own the beat — and the great majority are killed, each with its reason written down. What reaches an editor has survived that, and it arrives with the documents, the data and the calculations attached, before anyone has to commit to anything.',
-      'The toolkit comes from an earlier life in data and software, which is an advantage rather than a detour: I can pull a federal dataset most reporters never open, and write the code to make it usable when it arrives broken. I studied rhetoric and writing at the University of Texas at Austin, and I report from the Texas–Mexico border — a dual citizen, working both sides of the line in either language.',
+      'The systems that fail children and trafficking victims are, by law, required to write down that they did. Facilities file annual reports of every contact with law enforcement. Licensing agencies keep the complaints and the ownership. Agencies publish the inspection rule they are supposed to follow. Almost none of it is counted, because counting it is slow, technical work that sits between two professions — the people with the domain knowledge usually cannot get the data out, and the people who can get data out do not know what they are looking at. That gap is the whole of my work.',
+      'What I do, concretely, is turn a pile of published-but-unusable records into a number an institution can be held to. Four years of state facility reports, parsed out of spreadsheets whose column headers change every year, joined to a licensing file that formats its own key differently, and reconciled against the state’s own published subtotals until they agree. A prevalence estimate taken apart to find the assumption nobody tested. A fifty-one-jurisdiction map of which datasets are real, which are gated, and which are advertised and simply not there — so the next person does not spend a week finding out.',
+      'The technical half is not a detour from the subject; it is what makes the subject reachable. Eight-plus years building production data and software systems means I can pull a file most analysts never open, write the parser when it arrives broken, catch the joins that silently drop ten percent of the rows, and stand behind the result because a second, independently written program checked the first one. Every project ships with its code, its data-quality log, and its list of what remains unverified.',
+      'The judgment half matters just as much, and it is the part that cannot be automated. Most of what I open never becomes anything. Hundreds of candidates have gone through the same screen — is the harm real, is anyone accountable for it, can the records carry it, and does someone already own the question — and the great majority are killed, each with its reason written down. I have also been wrong in public inside this work and left the correction in the document rather than rewriting the conclusion: a state I recorded as unreachable that was my own network failing, a federal file I said was empty and was not. Research you can trust is research that shows you where it broke.',
+      'The same method runs on the wider accountability record, which is why the second half of the work looks the way it does: private-equity ownership routed out of nursing homes through shell entities in federal data, immigration enforcement migrating from a phone app to a GPS ankle monitor, a bonus formula in which a worker’s death is a line item with a target attached. Same institutions, same documents, same arithmetic — different subject.',
+      'I studied rhetoric and writing at the University of Texas at Austin, and I work from the Texas–Mexico border — a dual citizen, in either language. All of the work described here is built on United States federal and state records.',
     ],
   },
 
@@ -292,22 +304,22 @@ export const siteEn: SiteContent = {
     eyebrow: 'Contact',
     title: 'Get in touch.',
     subtitle:
-      'For editors, sources, and collaborators. I read everything myself and respond quickly.',
+      'For research and policy teams, for people inside these systems, and for collaborators. I read everything myself and respond quickly.',
     doors: [
       {
-        key: 'editors',
-        label: 'For editors',
+        key: 'commissions',
+        label: 'For research & policy teams',
         description:
-          'Available for commissions on healthcare, private equity, labor, mining, environment and regulatory accountability. I query a small number of outlets at once and say so in the pitch; the first editor to commission gets it, and everyone else is told the same day. You can have the documents, the data and my calculations before you commit to anything.',
+          'Available for contract and collaborative work with research organizations, NGOs, agencies and newsrooms: building a dataset that does not exist yet, auditing one that does, replicating a published estimate against its own sources, or getting records out of a system that publishes them badly. You can have the data, the code and the calculations before you commit to anything.',
         channelLabel: 'Email',
         channelValue: 'manuel.flores.7@protonmail.com',
         href: 'mailto:manuel.flores.7@protonmail.com',
       },
       {
         key: 'sources',
-        label: 'For sources',
+        label: 'For people inside the system',
         description:
-          'If you have documents or knowledge of wrongdoing, I protect the people who come forward. Reach me first by encrypted email; for anything sensitive, ask and we will move to Signal. I will never name you without your consent.',
+          'If you work in a facility, an agency or a service provider and what gets recorded does not match what you see, I protect the people who come forward. Reach me first by encrypted email; for anything sensitive, ask and we will move to Signal. I will never name you without your consent.',
         channelLabel: 'Confidential',
         channelValue: 'manuel.flores.7@protonmail.com · Signal on request',
         href: 'mailto:manuel.flores.7@protonmail.com',
@@ -322,10 +334,10 @@ export const siteEn: SiteContent = {
       },
     ],
     locationLabel: 'Based on the',
-    location: 'Texas–Mexico border · Reporting in English and Spanish',
+    location: 'Texas–Mexico border · Working in English and Spanish',
   },
 
-  footer: 'Manuel Flores · Investigative journalism',
+  footer: 'Manuel Flores · Data and research on trafficking and child protection',
 };
 
 // ============================================================
@@ -339,110 +351,117 @@ export const siteEs: SiteContent = {
   altLangHref: '/',
 
   nav: {
-    investigations: 'Investigaciones',
+    work: 'Trabajo',
     method: 'Método',
     about: 'Sobre mí',
     contact: 'Contacto',
   },
 
   hero: {
-    eyebrow: 'Periodista de datos · Investigación',
+    eyebrow: 'Datos e investigación · Trata de personas y protección infantil',
     headline: {
-      lead: 'Investigo al poder leyendo los registros que ',
-      emphasis: 'deja atrás.',
+      lead: 'Mido el daño que las instituciones ',
+      emphasis: 'registran pero nunca cuentan.',
     },
     subtitle:
-      'Periodismo de investigación independiente sobre la rendición de cuentas corporativa y regulatoria en el sector salud, el trabajo y las industrias reguladas de EE. UU. — construido con documentos primarios, las bases de datos federales que casi ninguna redacción abre y cálculos cuyo método publico.',
-    primaryCta: 'Las investigaciones',
+      'Trabajo independiente de datos e investigación sobre trata de personas y protección infantil en Estados Unidos — construido con los registros administrativos que las propias agencias ya publican, conciliado contra los totales que esas mismas agencias declaran, y entregado con el código para que cualquiera pueda volver a correrlo.',
+    primaryCta: 'El trabajo',
     secondaryCta: 'Contacto',
-    cover: {
-      poster: '/media/hero-poster.jpg',
-      video: '/media/hero.mp4',
-      alt: 'Manuel Flores analizando grafos de datos y registros en monitores encendidos en una redacción a oscuras',
-    },
+    // ESPACIO PARA EL VIDEO DEL HERO — vacío a propósito.
+    // Sin `cover`, el hero usa el degradado oscuro de LandingPage.tsx, que
+    // funciona por sí solo. Para restaurar el hero cinematográfico: coloca el
+    // video nuevo en site/public/media/hero.mp4 y una imagen de su ÚLTIMO
+    // cuadro en site/public/media/hero-poster.jpg, y descomenta este bloque
+    // (y su equivalente en inglés).
+    //
+    // cover: {
+    //   poster: '/media/hero-poster.jpg',
+    //   video: '/media/hero.mp4',
+    //   alt: '<describe aquí el material nuevo>',
+    // },
   },
 
   ethos: {
     statement:
-      'Fuentes primarias, siempre. Cada dato empieza en un documento que leí yo mismo — y cada cifra viene con el método para comprobarla.',
+      'Fuentes primarias, siempre. Cada cifra empieza en un registro que extraje yo mismo — y cada cifra se entrega con el código para volver a calcularla.',
     sources: sourceSystems,
   },
 
-  investigations: {
-    eyebrow: 'Investigaciones',
-    title: 'Lo que estoy investigando.',
+  work: {
+    eyebrow: 'Trabajo',
+    title: 'Lo que estoy construyendo.',
     subtitle:
-      'Investigaciones en curso, basadas en documentos, sobre cómo el poder se organiza para evitar ser medido. Descritas aquí a nivel de tema — los detalles se quedan en la reportería hasta que se publican.',
-    note: 'En curso. Se agradecen filtraciones — ver Contacto.',
+      'Los primeros tres son trabajo de medición sobre trata y protección infantil: construir una cifra que todavía no existe, o verificar una que sí. Los últimos tres aplican el mismo método al registro más amplio de rendición de cuentas — las mismas instituciones, los mismos documentos, la misma aritmética.',
+    note: 'En curso. Los datos, el código y los cálculos están disponibles a solicitud — ver Contacto.',
     items: [
+      {
+        key: 'ab388-runaways',
+        title: 'Las instalaciones infantiles a las que se les siguen yendo los niños',
+        dek: 'Toda instalación de California que alberga menores debe reportar cada año sus contactos con la policía, y el estado debe inspeccionar aquellas que estén por encima del promedio. Reconstruí cuatro años de esos reportes en un solo panel — unido al archivo estatal de licencias y conciliado línea por línea contra los subtotales que la propia California publica — e identifiqué las instalaciones que activaron el criterio de inspección en todos los años del periodo. La conciliación reveló errores en los propios archivos del estado; existe un segundo lector, escrito de forma independiente, con el único fin de verificar al primero.',
+        sources: ['Reportes AB 388 de California', 'Archivo de licencias CDSS', 'Quejas CDSS'],
+        status: 'Construido · aún sin publicar',
+      },
+      {
+        key: 'linkage-error',
+        title: 'Nadie verifica si las cifras de víctimas cuadran',
+        dek: 'Las estimaciones de prevalencia de trata en EE. UU. se construyen cruzando registros de víctimas entre agencias con una llave deliberadamente burda — un par de iniciales y algunos dígitos de la fecha de nacimiento. En cinco estudios reales de EE. UU., y en dos estudios comparables de vigilancia de VIH revisados como control, ninguno corrige la posibilidad de que esa llave funda a dos personas distintas o no reconozca que una misma persona aparece dos veces. Una simulación breve, anclada en referencias publicadas de error de vinculación y no en una suposición, sitúa la inflación resultante cerca del 13% con una tasa de error del 5% por registro. La corrección estadística se publicó en 2021 y nunca se ha corrido sobre datos reales, en ningún campo.',
+        sources: ['Estudios MSE publicados', 'Referencias de vinculación', 'Simulación Monte Carlo'],
+        status: 'Hallazgo abierto · contacto redactado',
+      },
+      {
+        key: 'us-data-map',
+        title: 'Qué datos de trata existen realmente en EE. UU.',
+        dek: 'Una auditoría fuente por fuente de las 51 jurisdicciones de EE. UU.: qué bases de datos de trata y bienestar infantil se pueden obtener de verdad, cuáles están cerradas detrás de una posición institucional y no de un formulario, y cuáles se anuncian pero simplemente no están. El documento conserva sus propias correcciones en vez de reescribirlas en silencio — un estado que registré como inalcanzable y resultó ser una falla de mi propia red, un archivo federal del que dije que no tenía instalaciones infantiles y sí las tiene. El rastro de auditoría es parte del entregable.',
+        sources: ['51 jurisdicciones de EE. UU.', 'ICPSR', 'CTDC', 'Portales estatales de datos'],
+        status: 'Completo · aún sin publicar',
+      },
       {
         key: 'pe-healthcare',
         title: 'Capital privado en la salud estadounidense',
         dek: 'Cómo los dueños de capital privado sacan dinero y responsabilidad de las residencias que cuidan a los adultos mayores — la propiedad de una instalación seguida a través de las sociedades pantalla en los datos federales de propiedad de CMS, la renta entre partes relacionadas verificada a nivel de hoja de trabajo en los reportes de costos HCRIS de Medicare, el expediente federal por muerte culposa leído línea por línea.',
         sources: ['Reportes HCRIS', 'Datos de propiedad CMS', 'PACER / RECAP'],
-        status: 'En reportería',
+        status: 'En curso',
       },
       {
         key: 'surveillance-economics',
         title: 'La economía de la vigilancia migratoria',
         dek: 'Una lectura longitudinal de los propios datos de gestión de detención de ICE, que documenta la migración silenciosa de una app de registro telefónico al grillete GPS — y sigue el dinero hasta los contratistas que lucran con el cambio.',
         sources: ['Datos de detención de ICE', 'Contratos federales'],
-        status: 'En reportería',
-      },
-      {
-        key: 'mine-safety',
-        title: 'Las multas que nunca se pagan',
-        dek: 'Los datos federales de sanciones de seguridad minera, reconstruidos operador por operador con la propiedad correcta en el tiempo, muestran qué multas sencillamente nunca se pagan — contrastados con lo que esas mismas empresas están obligadas a decirles a sus inversionistas, y lo que no.',
-        sources: ['Datos de MSHA', 'Reportes SEC'],
-        status: 'En reportería',
-      },
-      {
-        key: 'tribal-water',
-        title: 'Los estándares de agua que nadie escribió',
-        dek: 'La mayoría de las reservas indígenas no tiene estándar alguno de la Ley de Agua Limpia — una brecha de cincuenta años que todos los estados cerraron hace mucho. Rastreé las propias promesas de la agencia de cerrarla a lo largo de cuatro administraciones, cada intento muriendo en silencio en una transición política, y llevé la pregunta jurídica a los académicos y abogados de agua indígena que la han vivido.',
-        sources: ['Registro Federal', 'Datos de la EPA', 'Doctrina jurídica'],
-        status: 'En reportería',
-      },
-      {
-        key: 'black-lung-collateral',
-        title: 'La garantía detrás de las prestaciones de un minero enfermo',
-        dek: 'Una propuesta federal reduciría drásticamente la garantía que las empresas carboneras deben depositar frente a las prestaciones vitalicias que deben a los mineros con neumoconiosis. La fórmula de calificación viene impresa dentro de la propia norma — así que la reconstruí y la corrí contra los estados financieros auditados de las operadoras, y leí el resultado contra lo que esa misma agencia dijo, por escrito, cuando negó la petición idéntica dos años antes.',
-        sources: ['Registro Federal', 'Reportes SEC', 'DOL · OWCP'],
-        status: 'En reportería',
+        status: 'En curso',
       },
       {
         key: 'safety-pay',
         title: 'Lo que la muerte de un trabajador le cuesta a un bono',
         dek: 'Las empresas de servicios públicos califican el bono anual de sus ejecutivos, en parte, según cuántos trabajadores resultan gravemente heridos o muertos. Las metas, las excepciones y si los contratistas cuentan siquiera ya están declaradas — en los reportes de compensación y en las plantillas de sostenibilidad que casi nunca se leen entre sí, ni contra las muertes efectivas del año.',
         sources: ['Reportes de compensación', 'Plantillas EEI · AGA', 'Inspecciones OSHA'],
-        status: 'En reportería',
+        status: 'En curso',
       },
     ],
   },
 
   method: {
     eyebrow: 'Método',
-    title: 'Cómo se construye la reportería.',
+    title: 'Cómo se construye el trabajo.',
     intro:
-      'Llegué al periodismo desde los datos y el software. Ahora apunto esa caja de herramientas a instituciones que preferirían no ser medidas — lo que significa que no espero una filtración. Voy y consigo los registros, y dejo un rastro escrito de cómo se obtuvo cada cifra de una historia, incluidas las que no sobrevivieron.',
+      'Llegué a esto desde los datos y el software, y apunto esa caja de herramientas a instituciones que preferirían no ser medidas — lo que significa que no espero a que la base de datos llegue limpia, ni que llegue. Voy y consigo los registros, y dejo un rastro escrito de cómo se obtuvo cada cifra, incluidas las que no sobrevivieron.',
     principles: [
       {
         key: 'triage',
         title: 'Casi todas las ideas mueren',
         description:
-          'Cada pista se abre, y la mayoría se descarta — porque otra redacción ya es dueña del tema, porque los documentos no sostienen la afirmación, o porque el daño es real pero nadie responde por él. Cientos han pasado por ese filtro; sobreviven unas cuantas. Cada descarte queda registrado con su razón, de modo que lo que llega a un editor ya sobrevivió a algo.',
+          'Cada pista se abre, y la mayoría se descarta — porque alguien más ya es dueño de la pregunta, porque los registros no sostienen la afirmación, o porque el daño es real pero nadie responde por él. Cientos han pasado por ese filtro; sobreviven unas cuantas. Cada descarte queda registrado con su razón, de modo que lo que llega a un lector ya sobrevivió a algo.',
       },
       {
         key: 'documents-first',
         title: 'Primero los documentos',
         description:
-          'Cada dato empieza en una fuente primaria — un expediente judicial, un reporte de costos, un registro de inspección, una norma propuesta — leído directamente, nunca a través de un boletín ni de un resumen.',
+          'Cada dato empieza en una fuente primaria — un archivo de licencias, un reporte anual de una instalación, un expediente judicial, una norma propuesta — leído directamente, nunca a través de un boletín, un tablero ni un resumen.',
       },
       {
         key: 'own-numbers',
         title: 'Corro los números de la propia institución',
         description:
-          'Cuando una agencia publica una fórmula de calificación, una regla de pago o un archivo de sanciones, la reconstruyo y la corro yo mismo — la fórmula contra los estados financieros auditados de las empresas reguladas, los datos de sanciones rearmados operador por operador con la propiedad correcta en el tiempo. El hallazgo es entonces la aritmética de la propia institución, no mi caracterización de ella.',
+          'Cuando una agencia publica una obligación de reporte, una fórmula de calificación o un archivo de sanciones, la reconstruyo y la corro yo mismo, y luego concilio el resultado contra los totales que esa misma agencia publica antes de darlo por hallazgo. Donde no coinciden, la discrepancia es el hallazgo. La aritmética es de la institución, no mi caracterización de ella.',
       },
       {
         key: 'ai-human',
@@ -454,13 +473,13 @@ export const siteEs: SiteContent = {
         key: 'reproducible',
         title: 'Verificado para poder reverificarse',
         description:
-          'Las cifras que sostienen una historia se transcriben una segunda vez, a ciegas, y se recalculan con código independiente. Los documentos fuente se sellan al descargarlos, de modo que la versión que yo leí es la versión que cualquiera puede bajar. Cada historia lleva una bitácora de verificación con marcas de tiempo — y una lista explícita de lo que aún no se ha verificado. Declarar el hueco es parte del trabajo, no una confesión en su contra.',
+          'Las cifras que sostienen un hallazgo se recalculan con un segundo lector escrito de forma independiente, y los documentos fuente se sellan al descargarlos, de modo que la versión que yo leí es la versión que cualquiera puede bajar. Cada hallazgo lleva una bitácora de calidad de datos — incluidos los errores que encontré en mi propia primera versión, documentados en vez de corregidos en silencio — y una lista explícita de lo que aún no se ha verificado. Declarar el hueco es parte del trabajo, no una confesión en su contra.',
       },
       {
         key: 'people',
         title: 'Personas, en el registro público',
         description:
-          'Los documentos dicen qué pasó; las personas dicen qué significó. Abogados, académicos, defensores y oficinas de prensa hablan para el registro, con grabación y consentimiento. Cuando alguien publicó un hallazgo antes de que yo llegara a él, el crédito es suyo y la historia lo dice. Cuando una fuente está en riesgo, protegerla vale más que la historia.',
+          'Los registros dicen qué pasó; las personas dicen qué significó. Profesionales, abogados, académicos, defensores y oficinas de prensa hablan para el registro, con consentimiento. Cuando alguien publicó un hallazgo antes de que yo llegara a él, el crédito es suyo y el trabajo lo dice. Cuando una fuente está en riesgo, protegerla vale más que el hallazgo.',
       },
       {
         key: 'right-of-reply',
@@ -473,14 +492,14 @@ export const siteEs: SiteContent = {
 
   about: {
     eyebrow: 'Sobre mí',
-    title: 'Ya consta en los documentos.',
+    title: 'Ya consta en los registros.',
     paragraphs: [
-      'Las instituciones poderosas están obligadas a dejar constancia por escrito. Reportes de costos, expedientes judiciales, actas de inspección, bases de datos de eventos adversos — el registro de lo que hicieron, y a menudo de lo que preferirían que nadie notara, ya es público. Permanece oculto solo porque leerlo es un trabajo lento y técnico que casi nadie hace. Ese trabajo es, entero, mi especialidad.',
-      'Reporto sobre la rendición de cuentas corporativa y regulatoria en el sector salud, el trabajo y otras industrias reguladas de EE. UU., y construyo cada historia desde los documentos de fondo — nunca un boletín, nunca un resumen. Normas propuestas y definitivas leídas en el Registro Federal junto a la reglamentación que revierten en silencio. Expedientes judiciales federales obtenidos vía PACER y RECAP. Reportes de costos de Medicare leídos a nivel de hoja de trabajo en el sistema HCRIS de CMS. Archivos de sanciones de seguridad minera, datos de personal, registros de propiedad e inscripción, inspecciones de muertes de OSHA, reportes de compensación ejecutiva, auditorías estatales, datos de eventos adversos de la FDA, expedientes ambientales federales y estatales. El registro primario, línea por línea.',
-      'Las investigaciones que me atrapan comparten una misma forma: daño real, deliberadamente hecho difícil de ver. Cómo los dueños de capital privado sacan dinero y responsabilidad de las residencias que cuidan a los adultos mayores — legible en las sociedades pantalla de los datos federales de propiedad y en la renta entre partes relacionadas que Medicare desconoce en la hoja de trabajo A-8-1. Cómo la aplicación de la ley migratoria pasó de una app telefónica a un grillete GPS, y lo que los contratistas que lo operan les prometen a sus inversionistas. Una agencia que niega por escrito la petición de una industria y dos años después la concede entera, sin abordar jamás sus propias razones declaradas. Una fórmula de bonos en la que la muerte de un trabajador es una partida con una meta asignada.',
-      'El método detrás de todo es simple e innegociable. Nada se publica como hecho sin un documento primario que lo sostenga. Las cifras que sostienen una historia se transcriben una segunda vez, a ciegas, y se recalculan con código independiente; los originales se sellan al descargarlos, de modo que la versión que yo leí es la versión que cualquiera puede bajar. Lo que aún no he verificado se escribe y se declara, en vez de enterrarse, y un argumento que alguien más publicó primero se le acredita a esa persona. Cada institución sobre la que escribo recibe una oportunidad real de responder antes de publicar. El rigor no es adorno: es lo que separa una investigación de una acusación.',
-      'La mayor parte de lo que abro nunca se vuelve una historia. Cientos de candidatas han pasado por el mismo filtro — si el daño es real, si alguien responde por él, si los documentos lo sostienen y si alguna redacción ya es dueña del tema — y la gran mayoría se descarta, cada una con su razón por escrito. Lo que llega a un editor sobrevivió a eso, y llega con los documentos, los datos y los cálculos adjuntos, antes de que nadie tenga que comprometerse a nada.',
-      'La caja de herramientas viene de una vida anterior en datos y software, y es una ventaja más que un desvío: puedo extraer una base de datos federal que casi ningún reportero abre, y escribir el código para volverla usable cuando llega rota. Estudié retórica y escritura en la Universidad de Texas en Austin, y reporto desde la frontera Texas–México — con doble nacionalidad, trabajando ambos lados de la línea en cualquiera de los dos idiomas.',
+      'Los sistemas que le fallan a los niños y a las víctimas de trata están obligados por ley a dejar constancia de que lo hicieron. Las instalaciones reportan cada año todos sus contactos con la policía. Las agencias de licencias guardan las quejas y la propiedad. Las agencias publican la regla de inspección que se supone deben seguir. Casi nada de eso se cuenta, porque contarlo es un trabajo lento y técnico que cae entre dos profesiones — quienes tienen el conocimiento del tema normalmente no pueden sacar los datos, y quienes pueden sacar datos no saben qué están viendo. Ese hueco es, entero, mi trabajo.',
+      'Lo que hago, en concreto, es convertir un montón de registros publicados pero inutilizables en una cifra por la que una institución puede responder. Cuatro años de reportes estatales de instalaciones, extraídos de hojas de cálculo cuyos encabezados cambian cada año, unidos a un archivo de licencias que formatea su propia llave de otra manera, y conciliados contra los subtotales que el propio estado publica hasta que coinciden. Una estimación de prevalencia desarmada para encontrar el supuesto que nadie probó. Un mapa de 51 jurisdicciones sobre qué bases de datos son reales, cuáles están cerradas y cuáles se anuncian y simplemente no están — para que la siguiente persona no pierda una semana averiguándolo.',
+      'La mitad técnica no es un desvío del tema; es lo que hace que el tema sea alcanzable. Más de ocho años construyendo sistemas de datos y software en producción significan que puedo extraer un archivo que casi ningún analista abre, escribir el lector cuando llega roto, detectar las uniones que en silencio descartan el diez por ciento de los registros, y responder por el resultado porque un segundo programa, escrito de forma independiente, verificó al primero. Cada proyecto se entrega con su código, su bitácora de calidad de datos y su lista de lo que sigue sin verificar.',
+      'La mitad de criterio pesa igual, y es la parte que no se puede automatizar. La mayor parte de lo que abro nunca se vuelve nada. Cientos de candidatas han pasado por el mismo filtro — si el daño es real, si alguien responde por él, si los registros lo sostienen y si alguien ya es dueño de la pregunta — y la gran mayoría se descarta, cada una con su razón por escrito. También me he equivocado en público dentro de este trabajo y he dejado la corrección en el documento en vez de reescribir la conclusión: un estado que registré como inalcanzable y era mi propia red fallando, un archivo federal que dije que estaba vacío y no lo estaba. La investigación en la que se puede confiar es la que te muestra dónde se rompió.',
+      'El mismo método corre sobre el registro más amplio de rendición de cuentas, y por eso la segunda mitad del trabajo se ve como se ve: propiedad de capital privado sacada de las residencias de ancianos a través de sociedades pantalla en datos federales, la vigilancia migratoria pasando de una app telefónica a un grillete GPS, una fórmula de bonos en la que la muerte de un trabajador es una partida con una meta asignada. Mismas instituciones, mismos documentos, misma aritmética — otro tema.',
+      'Estudié retórica y escritura en la Universidad de Texas en Austin, y trabajo desde la frontera Texas–México — con doble nacionalidad, en cualquiera de los dos idiomas. Todo el trabajo aquí descrito está construido sobre registros federales y estatales de Estados Unidos.',
     ],
   },
 
@@ -488,22 +507,22 @@ export const siteEs: SiteContent = {
     eyebrow: 'Contacto',
     title: 'Hablemos.',
     subtitle:
-      'Para editores, fuentes y colaboradores. Leo todo yo mismo y respondo rápido.',
+      'Para equipos de investigación y política pública, para quienes están dentro de estos sistemas, y para colaboradores. Leo todo yo mismo y respondo rápido.',
     doors: [
       {
-        key: 'editors',
-        label: 'Para editores',
+        key: 'commissions',
+        label: 'Investigación y política pública',
         description:
-          'Disponible para encargos sobre salud, capital privado, trabajo, minería, medio ambiente y rendición de cuentas regulatoria. Consulto a un número reducido de medios a la vez y lo digo en la propuesta; el primer editor que la encargue se la lleva, y a los demás se les avisa el mismo día. Puede tener los documentos, los datos y mis cálculos antes de comprometerse a nada.',
+          'Disponible para trabajo por contrato y colaborativo con organizaciones de investigación, ONG, agencias y redacciones: construir una base de datos que todavía no existe, auditar una que sí, replicar una estimación publicada contra sus propias fuentes, o sacar registros de un sistema que los publica mal. Puede tener los datos, el código y los cálculos antes de comprometerse a nada.',
         channelLabel: 'Correo',
         channelValue: 'manuel.flores.7@protonmail.com',
         href: 'mailto:manuel.flores.7@protonmail.com',
       },
       {
         key: 'sources',
-        label: 'Para fuentes',
+        label: 'Para quienes están dentro',
         description:
-          'Si tienes documentos o conocimiento de irregularidades, protejo a quienes se acercan. Escríbeme primero por correo cifrado; para algo sensible, pídelo y pasamos a Signal. Nunca te nombraré sin tu consentimiento.',
+          'Si trabajas en una instalación, una agencia o un proveedor de servicios y lo que queda registrado no coincide con lo que ves, protejo a quienes se acercan. Escríbeme primero por correo cifrado; para algo sensible, pídelo y pasamos a Signal. Nunca te nombraré sin tu consentimiento.',
         channelLabel: 'Confidencial',
         channelValue: 'manuel.flores.7@protonmail.com · Signal a solicitud',
         href: 'mailto:manuel.flores.7@protonmail.com',
@@ -518,8 +537,8 @@ export const siteEs: SiteContent = {
       },
     ],
     locationLabel: 'Con base en la',
-    location: 'Frontera Texas–México · Reportería en inglés y español',
+    location: 'Frontera Texas–México · Trabajo en inglés y español',
   },
 
-  footer: 'Manuel Flores · Periodismo de investigación',
+  footer: 'Manuel Flores · Datos e investigación sobre trata y protección infantil',
 };

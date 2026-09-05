@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { LandingPage } from '@/components/LandingPage';
 import { siteEn } from '@/data/landing-content';
 
+const TITLE = 'Manuel Flores — Data & Research, Trafficking and Child Protection';
+
 export const metadata: Metadata = {
-  title: 'Manuel Flores — Investigative Data Journalist',
+  title: TITLE,
   description:
-    'Independent investigative data journalist covering corporate accountability in U.S. healthcare and regulated industries. Document-driven, data-forensic reporting from primary sources — federal courts, CMS, OSHA, FDA, SEC.',
+    'Independent data and research work on human trafficking and child protection in the United States. Administrative records rebuilt into measurements, reconciled against the agencies’ own published totals, and shipped with the code and the data-quality log.',
   alternates: {
     canonical: '/',
     languages: {
@@ -17,17 +19,17 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: 'es_MX',
-    title: 'Manuel Flores — Investigative Data Journalist',
+    title: TITLE,
     description:
-      'Corporate accountability in U.S. healthcare and regulated industries — document-driven, data-forensic reporting from primary sources.',
+      'Measuring harm that institutions record but never count — US trafficking and child-protection data, built from primary records and shipped with the code to re-run it.',
     url: 'https://manuelflores.me/',
     siteName: 'Manuel Flores',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Manuel Flores — Investigative Data Journalist',
+    title: TITLE,
     description:
-      'Corporate accountability in U.S. healthcare and regulated industries — document-driven, data-forensic reporting.',
+      'US trafficking and child-protection data, built from primary administrative records and shipped with the code to re-run it.',
   },
 };
 

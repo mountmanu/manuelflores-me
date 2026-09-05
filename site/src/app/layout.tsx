@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? 'https://manuelflores.me',
   ),
   title: {
-    default: 'Manuel Flores — Investigative Data Journalist',
+    default: 'Manuel Flores — Data & Research, Trafficking and Child Protection',
     template: '%s · Manuel Flores',
   },
   description:
-    'Independent investigative data journalist covering corporate accountability in U.S. healthcare and regulated industries. Document-driven, data-forensic reporting from primary sources.',
+    'Independent data and research work on human trafficking and child protection in the United States — built from primary administrative records, reconciled against the agencies’ own totals, and shipped with the code to re-run it.',
   authors: [{ name: 'Manuel Flores', url: 'https://manuelflores.me' }],
   creator: 'Manuel Flores',
 };

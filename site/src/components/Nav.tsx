@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export interface NavLabels {
-  investigations: string;
+  work: string;
   method: string;
   about: string;
   contact: string;
@@ -43,7 +43,7 @@ export function Nav({ lang, labels, altLangHref }: NavProps) {
   const bar = scrolled ? 'bg-ink' : 'bg-paper';
 
   const links: Array<{ href: string; label: string; hrefLang?: string }> = [
-    { href: `${home}#investigations`, label: labels.investigations },
+    { href: `${home}#work`, label: labels.work },
     { href: `${home}#method`, label: labels.method },
     { href: `${home}#about`, label: labels.about },
     { href: `${home}#contact`, label: labels.contact },

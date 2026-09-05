@@ -8,8 +8,8 @@ import type { SiteContent } from '@/data/landing-content';
  * Server component. Renders the public site for a given language.
  * Used by app/page.tsx (EN) and app/es/page.tsx (ES).
  *
- * Positioning: investigative data journalist. Sections:
- * hero → ethos strip → investigations → method → about → contact (three doors).
+ * Positioning: data & research on trafficking and child protection. Sections:
+ * hero → ethos strip → work → method → about → contact (three doors).
  */
 export function LandingPage({ content }: { content: SiteContent }) {
   return (
@@ -17,7 +17,7 @@ export function LandingPage({ content }: { content: SiteContent }) {
       <Nav
         lang={content.lang}
         labels={{
-          investigations: content.nav.investigations,
+          work: content.nav.work,
           method: content.nav.method,
           about: content.nav.about,
           contact: content.nav.contact,
@@ -27,8 +27,13 @@ export function LandingPage({ content }: { content: SiteContent }) {
       />
 
       {/* Hero — dark cinematic masthead. Full-bleed video background when a
-          cover asset is present; a quiet dark gradient otherwise. */}
-      <section className="relative isolate min-h-[86vh] flex items-end overflow-hidden bg-ink text-paper">
+          cover asset is present; a quiet dark gradient otherwise. The cover is
+          currently unset in landing-content.ts (the old video was retired), so
+          this renders the gradient until the replacement asset lands. */}
+      {/* -mt-20 pulls the hero up under the sticky h-20 header. The header is
+          transparent with light text at scroll 0, so without this it would sit
+          on the paper-white body and be invisible until the first scroll. */}
+      <section className="relative isolate -mt-20 min-h-[86vh] flex items-end overflow-hidden bg-ink text-paper">
         {content.hero.cover ? (
           <div className="absolute inset-0">
             <CinematicMedia
@@ -80,7 +85,7 @@ export function LandingPage({ content }: { content: SiteContent }) {
 
           <Reveal delay={0.15}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="#investigations" className="btn-primary-invert">
+              <a href="#work" className="btn-primary-invert">
                 {content.hero.primaryCta}
                 <ArrowRight className="h-3.5 w-3.5" />
               </a>
@@ -120,22 +125,19 @@ export function LandingPage({ content }: { content: SiteContent }) {
         </div>
       </section>
 
-      {/* Investigations — the feature well */}
-      <section
-        id="investigations"
-        className="py-[var(--spacing-section)] rule-bottom"
-      >
+      {/* Work — the feature well */}
+      <section id="work" className="py-[var(--spacing-section)] rule-bottom">
         <div className="container-editorial">
           <div className="max-w-3xl mb-16">
             <Reveal>
-              <p className="eyebrow-accent mb-6">{content.investigations.eyebrow}</p>
+              <p className="eyebrow-accent mb-6">{content.work.eyebrow}</p>
             </Reveal>
             <Reveal delay={0.05}>
               <h2
                 className="text-balance mb-6"
                 style={{ fontSize: 'var(--text-display-lg)' }}
               >
-                {content.investigations.title}
+                {content.work.title}
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
@@ -143,13 +145,13 @@ export function LandingPage({ content }: { content: SiteContent }) {
                 className="leading-relaxed text-ink/85 text-pretty"
                 style={{ fontSize: 'var(--text-body-lg)' }}
               >
-                {content.investigations.subtitle}
+                {content.work.subtitle}
               </p>
             </Reveal>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border-t border-b border-line">
-            {content.investigations.items.map((item, idx) => (
+            {content.work.items.map((item, idx) => (
               <Reveal key={item.key} delay={idx * 0.05}>
                 <article className="bg-paper h-full flex flex-col">
                   {/* Cinematic cover — renders only when an asset exists. */}
@@ -189,7 +191,7 @@ export function LandingPage({ content }: { content: SiteContent }) {
           </div>
 
           <Reveal delay={0.1}>
-            <p className="mt-8 text-sm text-mute">{content.investigations.note}</p>
+            <p className="mt-8 text-sm text-mute">{content.work.note}</p>
           </Reveal>
         </div>
       </section>
