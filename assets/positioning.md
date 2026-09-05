@@ -1,132 +1,219 @@
 # Positioning Asset Bank — Manuel Flores
 
-This file holds the load-bearing claims, target company list, comp anchors, and walk-away criteria. Read this at the start of any phase if you do not already have these facts in context.
+Everything here is verifiable against a file on his machine or a public record.
+Nothing in this document may be asserted in an application unless it appears
+here or in `cv-source.md`.
 
-## The five non-negotiable claims (rehearsed verbatim)
+---
 
-1. **Bilingual EN/ES native + US–Mexico dual citizen.** Single biggest commercial moat for any company expanding into LATAM. Most US-resident SEs cannot run Spanish discovery. Most Mexican SEs are not US-native English.
+## The four artifacts (the centre of every application)
 
-2. **Founder & CEO, Areté Soluciones S.A. de C.V.** — incorporated Mexican B2B firm, ~$75K cumulative revenue, **7 production deployments documented as case studies** across 5 verticals (Notarial, Hospital, Restaurants, Communities, Professional Services), up to 100K MXN/month per client. Plus two public bilingual sales demos in production (VisionGuard, LoanSight). Continues running in maintenance mode alongside any FTE role.
+These are self-directed, unpaid, and in the exact domain. They are the reason
+to hire him over a better-credentialled candidate with no domain output.
+Repository: `Desktop/op-regnum/` (`ca-child-facility-audit/` and
+`anti-trafficking-career/research/NOVEL/`).
 
-3. **Edge AI + Computer Vision practitioner.** YOLOv8 INT8-quantized, 12 FPS on Raspberry Pi 5. **Selected to demonstrate live at the Embedded Vision Summit, Santa Clara, May 2026.** Portable demo kit travels to every conversation.
+### A1 — California AB 388 children's facility panel
 
-4. **Sales methodology fluency.** MEDDIC, MEDDPICC, SPIN, Challenger, Command of the Message, Great Demo!, Demonstrating to Win, Solution Selling, Value-Based Selling, Gap Selling, JOLT Effect. Actively rehearsed via a private 22-book spaced-repetition system (Knowledge Engine). Operational, not aspirational.
+**What it is.** California requires every licensed facility housing children to
+report its annual law-enforcement contacts (including runaway episodes), and
+requires the state to inspect any facility running above the statewide average.
+He rebuilt four years (2020–2023) of those reports into a single facility-year
+panel, joined it to the state licensing file, and reconciled it line by line
+against California's own published subtotals.
 
-5. **Modern technical stack with shipped production code.** Next.js, TypeScript, Python/FastAPI, Rust/Axum, PostgreSQL, Supabase, AWS, Stripe Mexico (incl. OXXO/SPEI), Anthropic Claude API, OpenAI API, pgvector, agentic workflows. Has shipped these to paying customers.
+**What makes it credible, and what to say out loud:**
+- 100% join rate to the licensing file in 2023, after finding that Excel had
+  stripped the leading zero from facility numbers in the AB 388 workbooks —
+  without zero-padding, ~10% of facilities silently failed to join, including
+  large operators.
+- A second parser, written independently, exists solely to check the first. It
+  caught four errors in California's own published files.
+- Seven bugs in his own first pass are documented in `docs/DATA-QUALITY.md`
+  rather than quietly fixed: leading zeros, cross-type double counting,
+  capacity summed instead of taken once, ampersand normalization that reversed
+  a trend direction, footnote markers glued into column headers that made 2021
+  look like a 5× collapse, and pooling facility types that produced a spurious
+  700× spread.
+- Output includes the set of facilities that met the inspection trigger in
+  every year of the window.
 
-## MEDDIC qualification — of himself
+**Status:** built, 98 files, two commits, **not yet published**.
 
-Before any outreach or interview, qualify Manuel's own situation through MEDDIC so the framing in conversations is consistent.
+### A2 — Linkage error in US trafficking prevalence estimates
 
-- **Metrics.** Floor: $130K total comp. Target: $150K–$200K. Stretch: ≥$250K (Tier-1 AI base).
-- **Economic buyer.** Manuel. He decides whether to accept.
-- **Decision criteria.** (1) Comp ≥ floor. (2) Remote-LATAM. (3) Role compounds career capital (AI/B2B SaaS/deep-tech). (4) Areté can continue in maintenance mode. (5) Sales-methodology-aware org (MEDDIC/Challenger/etc.).
-- **Decision process.** Triage → tailored CV + cold outreach → recruiter screen → hiring manager → discovery role-play → demo → technical → cross-functional → offer → negotiation. Manuel will not accept the first offer; will always run parallel processes to create leverage.
-- **Identify pain.** Slow MRR growth at Areté; cash compression at SME ticket sizes in Mexico; opportunity cost of not capitalizing on AI-native bilingual scarcity now while the talent market is hot.
-- **Champion.** Where applicable: warm-intro contact at target company; sometimes a recruiter who advocates internally.
+**What it is.** US prevalence estimates use multiple systems estimation
+(capture-recapture), matching victim records across agencies on a deliberately
+coarse privacy-preserving key — a couple of initials plus some digits of a
+birth date. He checked five real US trafficking MSE studies (Kansas City 2017,
+an unnamed city 2019, New Orleans 2020, Florida 2021, Sacramento County 2022)
+plus two HIV-surveillance studies as a control from a more statistically mature
+field. **None of the seven corrects for error in that matching step.**
 
-## Target company list (the AI infra / deep-tech / B2B SaaS universe)
+He then built a Monte Carlo simulation — Python standard library only, ~150
+lines, reproducible from a seed — reconstructing Sacramento's published key
+scheme, corrupting it at realistic per-record rates anchored to published
+record-linkage validation benchmarks, and running the same textbook
+independence estimator the real studies use, against an oracle control.
 
-This is the prioritized list. Anything outside this list defaults to MONITOR pending strong reason to upgrade.
+**Result:** roughly 2.5 points of upward bias per 1 point of key error rate.
+5% error → ~13% inflation; 15% → ~40%. Holds across populations of 800/2,000/
+5,000 and across 2, 3 and 6 lists. Direction is upward because missed matches
+dominate false matches at realistic key-space sizes.
 
-### Tier 1 — direct application immediately if any req opens
+**The honest framing, which he must not overstate.** The general statistical
+correction already exists — Zult, de Wolf, Bakker & van der Heijden (2021,
+*Journal of Official Statistics*) generalizes linkage-error correction to three
+or more sources. But that paper validated only on synthetic ESSnet DI data. As
+far as this research can establish, **nobody has run a published
+linkage-error-correction method on a completed real study, in any field.** So
+the contribution on offer is applying an existing method to an existing study
+— not inventing statistics. Say it that way. It is both true and more
+credible than the alternative.
 
-- **Anthropic** (Solutions Engineer, Forward-Deployed Engineer, Field Engineer roles — LATAM hiring documented)
-- **OpenAI** (Solutions Architect, Forward-Deployed Engineer — selective LATAM hiring)
-- **NVIDIA** (Solutions Architect LATAM, AI Solutions Engineer — established LATAM org)
-- **Snowflake** (Sales Engineer LATAM, Solutions Architect LATAM — large LATAM SE team)
-- **Databricks** (Solutions Architect LATAM, Specialist SA — large LATAM SE team)
-- **Hugging Face** (Solutions Engineer, ML Engineer SE — remote-first globally)
-- **Cohere** (Solutions Engineer, Field Engineer — LATAM coverage gaps)
+**Status:** finding documented, simulator runs, outreach note to Stephen
+Tueller (RTI) drafted but **not sent**. Not published.
 
-### Tier 2 — strong fit, monitor for openings
+### A3 — The 51-jurisdiction US trafficking data map
 
-- **Modal Labs**, **Replicate**, **Together AI**, **Fireworks AI**, **Anyscale**, **Pinecone** (AI infra; smaller teams, irregular hiring)
-- **Vercel**, **Supabase**, **Neon**, **PlanetScale**, **Turso** (dev infra; B2B SaaS with growing enterprise motion)
-- **Vanta**, **Drata**, **Tugboat Logic** (compliance SaaS; MEDDIC-heavy sales motion)
-- **Ramp**, **Brex**, **Mercury** (fintech; LATAM expansion ongoing)
-- **Linear**, **Notion**, **Figma** (mature B2B SaaS; LATAM Solutions roles emerging)
-- **Datadog**, **New Relic**, **Honeycomb**, **Grafana Labs** (observability)
+**What it is.** A source-by-source audit of every US jurisdiction: which
+trafficking and child-welfare datasets are genuinely obtainable, which are
+gated behind institutional standing rather than a form, and which are
+advertised but not actually there.
 
-### Tier 3 — monitor only, apply if a perfect-fit req appears
+**What makes it credible:** it keeps its own corrections in place. Two are
+worth naming in an interview because they demonstrate the discipline rather
+than just claiming it — a state he first recorded as unreachable that turned
+out to be his own LAN resolver failing (public DoH resolvers answered
+instantly; `curl --resolve` returned HTTP 200 first try), and a federal CMS
+file he wrote off as containing no children's facilities that in fact contains
+727 psychiatric residential treatment facilities with ownership and
+change-of-ownership fields.
 
-- Series-A/B AI startups with named investors (a16z, Sequoia, Index, Greylock, Founders Fund, Khosla, Spark, GV)
-- Regional plays: Kavak, Bitso, Konfío, Clip, Clara (LATAM-native tech companies; lower comp ceiling but interesting product)
-- Vertical SaaS: Toast, ServiceTitan, Veeva, Rippling, Gusto (mature; usually US-only)
+**Status:** complete, **not yet published**.
 
-### Explicit non-targets (do not waste cycles)
+### A4 — Cross-state facility registers
 
-- Pure consumer apps
-- Legacy enterprise (SAP, Oracle, IBM ecosystem)
-- Pure crypto/Web3 (despite Manuel's past exposure; comp/risk profile is bad in 2026)
-- Pure hardware companies without a software/AI layer
-- Jewelry/diamond/gemological instrumentation (per prior conversations — exotic, not mainstream for his profile)
-- Companies in active layoff cycles or "strategic review" language
+**What it is.** California is the only state publishing facility-level
+law-enforcement contacts for children's residential care, so any comparison
+requires rebuilding other states' registers first. North Carolina's DHSR
+licensing roster is a fixed-layout PDF that loses half its records to a naive
+parse. His rebuild recovers **93.6% of the state's distinct licence numbers**,
+measured against distinct licence numbers rather than raw lines, with each
+parser failure documented (right-column names discarded by a column-zero test
+that cut 3,086 records to 1,689; legitimate one-word operator names rejected;
+wrapped site addresses).
 
-## Comp anchors (mid-2026, USD, remote-LATAM total comp)
+**Status:** in progress.
 
-Manuel is positioned as **SE II / Senior SE entry-level**, not Staff yet. Founder + Embedded Vision Summit speaker + bilingual native + modern AI stack are real differentiators. But ~2.5 years of Areté + no prior SE title at a brand-name B2B SaaS = not yet Staff. Negotiate against the IC bands, not principal.
+---
 
-| Tier | Realistic offer band | Note |
+## Employment history (exact — do not embellish)
+
+| Period | Role | What it actually was |
 |---|---|---|
-| Tier 1 AI (Anthropic, OpenAI, NVIDIA LATAM) | $160K–$220K | Embedded Vision selection signals here |
-| Tier 1 Cloud/Data (Snowflake, Databricks LATAM) | $140K–$180K | LATAM premium for bilingual native |
-| Tier 2 Infra (Modal, Vercel, Supabase, Replicate) | $120K–$160K | mid-band, most offers land here |
-| Tier 2 Vertical SaaS | $115K–$150K | lower ceiling but more reqs open |
-| Tier 3 Series A/B AI | $100K–$140K | speculative equity, high walk-away risk |
+| 01/2024 – present | Founder, Areté Soluciones S.A. de C.V. | **Two years** of production data and software work for paying clients: healthcare operations, legal/notarial compliance, multi-unit restaurant BI, community finance. Python, TypeScript, Rust, PostgreSQL, SQLite. Real ETL against hostile Excel and PDF inputs. |
+| 01/2021 – 12/2023 | Business Development Partner, Workowhole Studio | Client accounts, technical liaison between business stakeholders and delivery teams, requirements into specifications. **Not an engineering role.** |
+| 06/2020 – 12/2021 | Project Manager, Token Engineering Commons | Coordinated delivery across distributed working groups; authored onboarding and architecture documentation. Promoted from intern in four months. |
+| 01/2018 – 12/2019 | Business Development Manager, Autonio Foundation | Early-stage fintech; fundraising and sales. |
+| 01/2017 – 12/2017 | Research Associate & BD, Cryptonomex | Synthesized distributed-systems research into executive summaries. |
 
-### The tiered floor (not a single number)
+**Education:** BA Rhetoric and Writing, University of Texas at Austin (2016).
+Data Science Certificate, General Assembly (2023, 420 hours).
 
-- **Hard walk-away: $110K total comp.** Below this, decline categorically. The math vs. continuing to build Areté is not clearly favorable below $110K.
-- **Negotiation floor: $130K total comp.** Open to the conversation at this number. Below $130K requires written strategic override (Tier-1 brand, equity moonshot, exceptional team).
-- **Target: $150K total comp.** Where most Tier-2 LATAM SE offers should land for him.
-- **Stretch: $200K+ total comp.** Tier-1 with strong equity grant (Anthropic, OpenAI).
+**Languages:** English native, Spanish native. US–Mexico dual citizen.
 
-The strategic override must be in writing in `opportunities.walk_away_reason` if accepting below $130K. Examples: "Anthropic at $115K with $80K equity refresh because Tier-1 brand + AI safety mission" or "Modal at $120K because founding-team equity + technical mentor in Erik Bernhardsson."
+**Technical:** Python (pandas, openpyxl, standard-library simulation),
+TypeScript/Next.js, SQL/PostgreSQL, Rust, PDF and fixed-layout text extraction
+(`pdftotext -layout`), Socrata / CKAN / ArcGIS Hub open-data APIs, git.
 
-## Walk-away criteria (any one of these = decline)
+---
 
-- Total comp < $110K USD (hard floor, no override possible)
-- Total comp $110K–$130K USD without written strategic override
-- Requires relocation without explicit Manuel-initiated discussion
-- Equity-only or equity-heavy with no cash floor above $100K
-- Company has had layoffs in the last 90 days
-- Role is mis-leveled (offered SDR/BDR when applied for SE)
-- Hiring manager flips role definition mid-process (bait-and-switch)
-- Non-compete clause that would block Areté from operating in its existing 5 verticals
-- US-only legal structure with no W-2 / EOR / 1099 path that works from Mexico
+## Target organizations
 
-## Storytelling assets (the four canonical Areté stories)
+Ranked by fit. All four categories are in scope; location is not a filter.
 
-Pre-rehearsed for ≤3 minutes each. Used in hiring-manager and culture rounds. Detail in `references/interview-prep.md`.
+### Tier 1 — direct domain match, apply on any opening
 
-1. **Hospital La Salle** — complexity, regulated environment, Rust single-binary deployment, audit logging from day one.
-2. **Comunidad BI** — hostile committee (6 board members), Challenger reframe, JOLT to close indecisive ones, Stripe Mexico + OXXO + SPEI live in 5 weeks.
-3. **Gorditas Doña Tota** — MEDDIC discovery revealed scope was wrong; reframed engagement, 3x ACV expansion, 10-tier BI platform shipped.
-4. **VisionGuard + Embedded Vision Summit** — technical credibility under self-imposed pressure; 12 FPS YOLOv8 INT8 on Raspberry Pi 5; selected to present in Santa Clara May 2026.
+- **RTI International** — ran the two most rigorous real US trafficking MSE
+  studies (Florida statewide, Sacramento County). Stephen Tueller, Kelle
+  Barrick, Rebecca Pfeffer. Has an international/remote hiring pathway. Watch
+  `careers.rti.org`. A2 is a direct conversation-opener with this team.
+- **Allies Against Slavery** — runs Lighthouse, a real operating
+  data-integration platform combining 11 datasets since 2020. The single
+  best-matched organization to this exact skill set found in his research. No
+  posted opening as of the last check; worth a direct approach anyway.
+- **Polaris Project** — operates the US National Human Trafficking Hotline
+  dataset; the largest single US trafficking data asset outside government.
+- **Thorn** — child sexual exploitation, data and engineering heavy. Note the
+  for-profit-platform constraint does not apply here; Thorn is a nonprofit.
 
-## Three CV variants (detail in `references/cv-tailoring.md`)
+### Tier 2 — strong methodological fit, applies broadly
 
-- **Variant A** — AI Infrastructure / Edge AI lead. Use for Anthropic, Cohere, NVIDIA, OpenAI, Modal, Replicate, Together AI, Hugging Face, Fireworks.
-- **Variant B** — Enterprise B2B SaaS / MEDDIC SE lead. Use for Snowflake, Databricks, Vanta, Ramp, Linear, Notion, Vercel-enterprise, Supabase-enterprise.
-- **Variant C** — LATAM channel / US-Mexico corridor lead. Use when the JD explicitly emphasizes Spanish, LATAM expansion, or US-Mexico nearshoring.
+- **Urban Institute, NORC, Mathematica, Abt Associates, Child Trends, Chapin
+  Hall (U. Chicago), Westat** — the applied social-policy research firms.
+  Child-welfare and justice portfolios. These hire "research analyst" and
+  "data analyst" roles where the MA is often preferred rather than required —
+  the tier where his artifacts can actually overcome the credential gap.
 
-## Outreach posture
+### Tier 3 — real but slower, or credential-gated
 
-- Default channel: LinkedIn DM to hiring manager; cold email if no LinkedIn match.
-- Default warmth: warm intro >> engaged-content cold DM >> pure cold DM >> recruiter inbound.
-- Default tone: confident, quantified, specific, no apologies, no emojis.
-- Default length cap: ≤120 words first message.
-- Default language: English for US companies; Spanish only when the target is LATAM-resident with Spanish primary on LinkedIn.
+- **Universities** — funded project staff and data-scientist posts. Named
+  researchers still active in this space: Teresa Kulig (Nebraska Omaha),
+  Valerie Anderson (Missouri–St. Louis), Christopher Sullivan (Cincinnati),
+  Vanessa Bouché (published a Jan 2026 *Harvard Data Science Review* paper
+  proposing the data-ecosystem infrastructure his research was circling).
+  Grant-funded posts often waive the degree requirement if the PI wants you.
+- **Government and intergovernmental** — state child-welfare and licensing
+  agencies (CDSS in California is the direct subject of A1), IOM's Counter
+  Trafficking Data Collaborative, UNODC. Slow hiring, heavy citizenship and
+  clearance requirements, but his A1 work is literally about a state agency's
+  own reporting system.
+- **Federal contractors** on child-welfare data systems.
 
-## What the skill should never recommend
+### Explicit non-targets
 
-- Winding down Areté.
-- Taking a role below the $130K floor without strategic override.
-- Relocating without Manuel raising it first.
-- Padding the CV with skills Manuel hasn't shipped.
-- Hiding the founder background to "look like a normal candidate."
-- Sending essay-length outreach.
-- Generic SE-job-hunt advice that doesn't reference Manuel's specific assets.
-- Pursuing jewelry/diamond industry roles (decided non-target).
-- Chasing physics-PhD-gated quantum-NV firms (decided non-target).
+- For-profit consumer platform trust-and-safety (Roblox-type child-safety
+  teams) — ruled out.
+- Anything requiring a master's as a hard, stated, non-negotiable minimum,
+  unless there is a named human inside advocating for him.
+- Anything in Tamaulipas attaching his name publicly to organized-crime or
+  trafficking analytics.
+- Sales engineering, solutions consulting, pre-sales. Retired.
+
+---
+
+## The credential gap and how to work it
+
+He will be screened against candidates with an MSW, MPP, MA in criminology, or
+a PhD. Three levers, in order of power:
+
+1. **Publish the artifacts.** A public repository with a README a stranger can
+   follow converts every claim into a link, and is the only lever entirely
+   within his control. Recommend this constantly.
+2. **Reach a named human before the application.** Grant-funded and research
+   posts are far more waiver-friendly when a PI or team lead already wants
+   you. A2 is an unusually good pretext for a genuine technical conversation
+   — see `references/outreach.md`.
+3. **Compete on the writing.** BA in rhetoric and writing, and the research
+   documents are unusually well written. Where a writing sample or
+   report-drafting duty appears in the JD, that is his strongest ground and
+   should be led with.
+
+---
+
+## Storytelling assets (rehearsed, all true)
+
+- **"I found seven bugs in my own analysis and published them."** The
+  zero-padding bug that silently dropped 10% of facilities is the best single
+  story he has: it is specific, it is the kind of error that quietly ruins
+  real analyses, and he caught it himself with an independent parser.
+- **"I was wrong in public and left the correction in."** The state he
+  recorded as unreachable that was his own network. Costs nothing to admit and
+  demonstrates exactly the disposition research teams screen for.
+- **"I killed 33 ideas before keeping four."** Eight ideas dropped before the
+  literature review, then 25 more killed by adversarial prior-art search —
+  zero survived — before pivoting to the data-access mapping that produced the
+  real finding. Shows he checks whether the work has already been done.
+- **"The fix already exists; nobody has run it on real data."** The A2 framing.
+  Modest, accurate, and more compelling than claiming novelty.
