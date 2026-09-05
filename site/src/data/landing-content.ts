@@ -29,6 +29,10 @@ export interface WorkContent {
   sources: string[];
   /** Honest status line, e.g. "In progress". */
   status: string;
+  /** Optional link to the public repo backing this item. Set only once the
+   *  work is actually published — never point this at a private/local repo. */
+  repoHref?: string;
+  repoLabel?: string;
   /** Optional cinematic cover asset in /public. Poster is required if video is
    *  set. Both optional — section degrades gracefully without them. */
   cover?: { poster: string; video?: string; alt: string };
@@ -187,21 +191,27 @@ export const siteEn: SiteContent = {
         title: 'The children’s facilities that keep losing children',
         dek: 'California requires every children’s facility to report law-enforcement contacts yearly, including runaways, and to inspect any facility running above average. I rebuilt four years of those reports into one panel, reconciled line by line against the state’s own published subtotals, and identified the facilities that met the inspection trigger every year. The reconciliation surfaced errors in the state’s own files — a second, independently written parser checks the first.',
         sources: ['California AB 388 reports', 'CDSS licensing file', 'CDSS complaint data'],
-        status: 'Built · not yet published',
+        status: 'Published',
+        repoHref: 'https://github.com/mountmanu/ca-child-facility-audit',
+        repoLabel: 'View repository',
       },
       {
         key: 'linkage-error',
         title: 'Nobody checks whether the victim counts add up',
         dek: 'US trafficking estimates match victim records across agencies on a deliberately coarse key — a couple of initials and some birth-date digits. Across five real US studies, plus two HIV-surveillance studies checked as a control, none corrects for that key merging two people or missing that one appears twice. My simulation, anchored to published record-linkage benchmarks, puts the inflation near 13% at a 5% error rate. The fix was published in 2021 and never run on real data, in any field.',
         sources: ['Published prevalence studies', 'Record-linkage benchmarks', 'Monte Carlo simulation'],
-        status: 'Open finding · outreach drafted',
+        status: 'Published · open finding',
+        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
+        repoLabel: 'View repository',
       },
       {
         key: 'us-data-map',
         title: 'What US trafficking data actually exists',
         dek: 'A source-by-source audit of all 51 US jurisdictions: which trafficking and child-welfare datasets are genuinely obtainable, which are gated behind institutional standing, and which are advertised but not there. It keeps its own corrections in place — a state I recorded as unreachable turned out to be my own network failing; a federal file I said held no children’s facilities does. The audit trail is part of the deliverable.',
         sources: ['51 US jurisdictions', 'ICPSR', 'CTDC', 'State open-data portals'],
-        status: 'Complete · not yet published',
+        status: 'Published',
+        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
+        repoLabel: 'View repository',
       },
       {
         key: 'cross-state',
@@ -375,21 +385,27 @@ export const siteEs: SiteContent = {
         title: 'Las instalaciones infantiles a las que se les siguen yendo los niños',
         dek: 'California exige que toda instalación con menores reporte cada año sus contactos con la policía, fugas incluidas, e inspeccionar las que estén por encima del promedio. Reconstruí cuatro años de esos reportes en un solo panel, conciliado línea por línea contra los subtotales que la propia California publica, e identifiqué las instalaciones que activaron el criterio de inspección todos los años. La conciliación reveló errores en los propios archivos del estado — un segundo lector, escrito de forma independiente, verifica al primero.',
         sources: ['Reportes AB 388 de California', 'Archivo de licencias CDSS', 'Quejas CDSS'],
-        status: 'Construido · aún sin publicar',
+        status: 'Publicado',
+        repoHref: 'https://github.com/mountmanu/ca-child-facility-audit',
+        repoLabel: 'Ver repositorio',
       },
       {
         key: 'linkage-error',
         title: 'Nadie verifica si las cifras de víctimas cuadran',
         dek: 'Las estimaciones de trata en EE. UU. cruzan registros de víctimas entre agencias con una llave deliberadamente burda — un par de iniciales y algunos dígitos de la fecha de nacimiento. En cinco estudios reales, y en dos estudios de vigilancia de VIH revisados como control, ninguno corrige que esa llave funda a dos personas o no reconozca que una aparece dos veces. Mi simulación, anclada en referencias publicadas de error de vinculación, sitúa la inflación cerca del 13% con un 5% de error por registro. La corrección se publicó en 2021 y nunca se ha corrido sobre datos reales, en ningún campo.',
         sources: ['Estudios de prevalencia publicados', 'Referencias de vinculación', 'Simulación Monte Carlo'],
-        status: 'Hallazgo abierto · contacto redactado',
+        status: 'Publicado · hallazgo abierto',
+        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
+        repoLabel: 'Ver repositorio',
       },
       {
         key: 'us-data-map',
         title: 'Qué datos de trata existen realmente en EE. UU.',
         dek: 'Una auditoría fuente por fuente de las 51 jurisdicciones de EE. UU.: qué bases de datos son obtenibles de verdad, cuáles están cerradas detrás de una posición institucional, y cuáles se anuncian pero no están. Conserva sus propias correcciones — un estado que registré como inalcanzable resultó ser una falla de mi propia red; un archivo federal del que dije que no tenía instalaciones infantiles sí las tiene. El rastro de auditoría es parte del entregable.',
         sources: ['51 jurisdicciones de EE. UU.', 'ICPSR', 'CTDC', 'Portales estatales de datos'],
-        status: 'Completo · aún sin publicar',
+        status: 'Publicado',
+        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
+        repoLabel: 'Ver repositorio',
       },
       {
         key: 'cross-state',

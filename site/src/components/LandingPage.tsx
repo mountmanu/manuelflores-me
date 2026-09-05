@@ -190,6 +190,18 @@ export function LandingPage({ content }: { content: SiteContent }) {
                         </li>
                       ))}
                     </ul>
+                    {item.repoHref && (
+                      <a
+                        href={item.repoHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 font-display text-ink link-underline inline-flex items-center gap-1.5 w-fit"
+                        style={{ fontSize: 'var(--text-body)' }}
+                      >
+                        {item.repoLabel}
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </a>
+                    )}
                   </div>
                 </article>
               </Reveal>
