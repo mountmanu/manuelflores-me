@@ -12,10 +12,16 @@ import type { SiteContent } from '@/data/landing-content';
  * hero → ethos strip → work → method → about → contact (three doors).
  */
 export function LandingPage({ content }: { content: SiteContent }) {
+  // One rule for the hero's colour: it is dark ONLY when there is footage to
+  // sit on. With no cover asset the whole page is one bone-coloured surface,
+  // and the nav stays dark-on-light from scroll 0.
+  const dark = Boolean(content.hero.cover);
+
   return (
     <>
       <Nav
         lang={content.lang}
+        dark={dark}
         labels={{
           work: content.nav.work,
           method: content.nav.method,
@@ -26,15 +32,16 @@ export function LandingPage({ content }: { content: SiteContent }) {
         altLangHref={content.altLangHref}
       />
 
-      {/* Hero — dark cinematic masthead. Full-bleed video background when a
-          cover asset is present; a quiet dark gradient otherwise. The cover is
-          currently unset in landing-content.ts (the old video was retired), so
-          this renders the gradient until the replacement asset lands. */}
-      {/* -mt-20 pulls the hero up under the sticky h-20 header. The header is
-          transparent with light text at scroll 0, so without this it would sit
-          on the paper-white body and be invisible until the first scroll. */}
-      <section className="relative isolate -mt-20 min-h-[86vh] flex items-end overflow-hidden bg-ink text-paper">
-        {content.hero.cover ? (
+      {/* Hero. With a cover asset: full-bleed video, light type on dark. Without
+          one (the current state — the old video was retired): the same bone
+          surface as the rest of the page, dark type. -mt-20 pulls the section
+          up under the sticky h-20 header so the two read as one surface. */}
+      <section
+        className={`relative isolate -mt-20 min-h-[86vh] flex items-end overflow-hidden ${
+          dark ? 'bg-ink text-paper' : 'bg-paper text-ink'
+        }`}
+      >
+        {content.hero.cover && (
           <div className="absolute inset-0">
             <CinematicMedia
               asset={content.hero.cover}
@@ -43,22 +50,13 @@ export function LandingPage({ content }: { content: SiteContent }) {
               priority
             />
           </div>
-        ) : (
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(120% 90% at 72% 18%, #17170F 0%, #0A0A08 62%)',
-            }}
-            aria-hidden="true"
-          />
         )}
 
         <div className="container-editorial relative z-10 pt-40 pb-20 md:pb-28">
           <Reveal>
             <p
               className="eyebrow-accent mb-8"
-              style={{ color: 'rgba(250,250,247,0.72)' }}
+              style={dark ? { color: 'rgba(250,250,247,0.72)' } : undefined}
             >
               {content.hero.eyebrow}
             </p>
@@ -76,7 +74,9 @@ export function LandingPage({ content }: { content: SiteContent }) {
 
           <Reveal delay={0.1}>
             <p
-              className="mt-8 max-w-2xl leading-relaxed text-pretty text-paper/80"
+              className={`mt-8 max-w-2xl leading-relaxed text-pretty ${
+                dark ? 'text-paper/80' : 'text-ink/85'
+              }`}
               style={{ fontSize: 'var(--text-body-lg)' }}
             >
               {content.hero.subtitle}
@@ -85,11 +85,17 @@ export function LandingPage({ content }: { content: SiteContent }) {
 
           <Reveal delay={0.15}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="#work" className="btn-primary-invert">
+              <a
+                href="#work"
+                className={dark ? 'btn-primary-invert' : 'btn-primary'}
+              >
                 {content.hero.primaryCta}
                 <ArrowRight className="h-3.5 w-3.5" />
               </a>
-              <a href="#contact" className="btn-secondary-invert">
+              <a
+                href="#contact"
+                className={dark ? 'btn-secondary-invert' : 'btn-secondary'}
+              >
                 {content.hero.secondaryCta}
               </a>
             </div>

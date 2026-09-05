@@ -15,14 +15,17 @@ export interface NavProps {
   lang: 'en' | 'es';
   labels: NavLabels;
   altLangHref: string;
+  /** True only when the hero has a dark cover asset. Then, and only then,
+   *  the nav is light-on-dark until the first scroll. */
+  dark?: boolean;
 }
 
 /**
- * Sticky editorial navigation. Sits over the dark cinematic hero at the top
- * (light text, transparent), then switches to a light bar with dark text once
- * scrolled onto the paper body.
+ * Sticky navigation. Dark text on the bone page by default. Only when the hero
+ * carries a dark cover asset (`dark`) does it start light-on-dark, switching
+ * to dark text once scrolled onto the body.
  */
-export function Nav({ lang, labels, altLangHref }: NavProps) {
+export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -35,12 +38,13 @@ export function Nav({ lang, labels, altLangHref }: NavProps) {
 
   const home = lang === 'en' ? '/' : '/es';
 
-  // Over the dark hero (not scrolled) → light; over the paper body → dark.
-  const wordmark = scrolled ? 'text-ink' : 'text-paper';
-  const link = scrolled
-    ? 'text-mute hover:text-ink'
-    : 'text-paper/75 hover:text-paper';
-  const bar = scrolled ? 'bg-ink' : 'bg-paper';
+  // Light type only while sitting over a dark hero cover and not yet scrolled.
+  const overDark = dark && !scrolled;
+  const wordmark = overDark ? 'text-paper' : 'text-ink';
+  const link = overDark
+    ? 'text-paper/75 hover:text-paper'
+    : 'text-mute hover:text-ink';
+  const bar = overDark ? 'bg-paper' : 'bg-ink';
 
   const links: Array<{ href: string; label: string; hrefLang?: string }> = [
     { href: `${home}#work`, label: labels.work },

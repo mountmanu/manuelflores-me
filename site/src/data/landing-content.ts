@@ -153,8 +153,9 @@ export const siteEn: SiteContent = {
     primaryCta: 'The work',
     secondaryCta: 'Contact',
     // HERO ASSET SLOT — intentionally empty.
-    // With no `cover`, the hero falls back to the dark editorial gradient in
-    // LandingPage.tsx, which is a finished look on its own. To restore the
+    // With no `cover`, the hero is the same bone surface as the rest of the
+    // page, dark type, and the nav is dark from scroll 0. Setting a cover is
+    // the ONLY thing that makes the hero dark. To restore the
     // cinematic hero, drop the new video at site/public/media/hero.mp4 and a
     // still of its FINAL frame at site/public/media/hero-poster.jpg, then
     // uncomment the block below (and its Spanish counterpart). CinematicMedia
@@ -216,7 +217,7 @@ export const siteEn: SiteContent = {
     eyebrow: 'Method',
     title: 'How the work is built.',
     intro:
-      'I came to this from data and software, and I point that toolkit at the systems that are supposed to protect children and trafficking victims — which means I do not wait for a clean dataset to arrive, because in this field it never does. I go and get the records, and I keep a written trail of how every number was arrived at, including the ones that did not survive.',
+      'I came to this from building data systems, and I point that toolkit at the systems that are supposed to protect children and trafficking victims — which means I do not wait for a clean dataset to arrive, because in this field it never does. I go and get the records, and I keep a written trail of how every number was arrived at, including the ones that did not survive.',
     principles: [
       {
         key: 'triage',
@@ -269,7 +270,7 @@ export const siteEn: SiteContent = {
     paragraphs: [
       'The systems that fail children and trafficking victims are, by law, required to write down that they did. Facilities file annual reports of every contact with law enforcement. Licensing agencies keep the complaints and the ownership. States publish the inspection rule they are supposed to follow. Almost none of it is counted, because counting it is slow, technical work that sits between two professions — the people with the domain knowledge usually cannot get the data out, and the people who can get data out do not know what they are looking at. That gap is the whole of my work.',
       'What I do, concretely, is turn a pile of published-but-unusable records into a number an institution can be held to. Four years of state facility reports, parsed out of spreadsheets whose column headers change every year, joined to a licensing file that formats its own key differently, and reconciled against the state’s own published subtotals until they agree. A prevalence estimate taken apart to find the assumption nobody tested. A fifty-one-jurisdiction map of which datasets are real, which are gated, and which are advertised and simply not there — so the next person does not spend a week finding out.',
-      'The technical half is not a detour from the subject; it is what makes the subject reachable. Eight-plus years building production data and software systems means I can pull a file most analysts never open, write the parser when it arrives broken, catch the joins that silently drop ten percent of the rows, and stand behind the result because a second, independently written program checked the first one. Every project ships with its code, its data-quality log, and its list of what remains unverified.',
+      'The technical half is not a detour from the subject; it is what makes the subject reachable. I spent the last two years building production data systems for paying clients — a hospital, a notary, a restaurant group — after several years in business development and project management. That is enough to pull a file most analysts never open, write the parser when it arrives broken, catch the joins that silently drop ten percent of the rows, and stand behind the result because a second, independently written program checked the first one. Every project ships with its code, its data-quality log, and its list of what remains unverified.',
       'The judgment half matters just as much, and it is the part that cannot be automated. Most of what I open never becomes anything. Dozens of research questions have gone through the same screen — is the harm real, is anyone accountable for it, can the records carry it, and has someone already answered it — and the great majority are killed, each with its reason written down. I have also been wrong inside this work and left the correction in the document rather than rewriting the conclusion: a state I recorded as unreachable that was my own network failing, a federal file I said was empty and was not. Research you can trust is research that shows you where it broke.',
       'I studied rhetoric and writing at the University of Texas at Austin, and I work from the Texas–Mexico border — a dual citizen, in either language. All of the work described here is built on United States federal and state records.',
     ],
@@ -343,8 +344,8 @@ export const siteEs: SiteContent = {
     primaryCta: 'El trabajo',
     secondaryCta: 'Contacto',
     // ESPACIO PARA EL VIDEO DEL HERO — vacío a propósito.
-    // Sin `cover`, el hero usa el degradado oscuro de LandingPage.tsx, que
-    // funciona por sí solo. Para restaurar el hero cinematográfico: coloca el
+    // Sin `cover`, el hero es la misma superficie color hueso que el resto de
+    // la página. Solo un cover lo vuelve oscuro. Para restaurar el hero cinematográfico: coloca el
     // video nuevo en site/public/media/hero.mp4 y una imagen de su ÚLTIMO
     // cuadro en site/public/media/hero-poster.jpg, y descomenta este bloque
     // (y su equivalente en inglés).
@@ -404,7 +405,7 @@ export const siteEs: SiteContent = {
     eyebrow: 'Método',
     title: 'Cómo se construye el trabajo.',
     intro:
-      'Llegué a esto desde los datos y el software, y apunto esa caja de herramientas a los sistemas que se supone protegen a los niños y a las víctimas de trata — lo que significa que no espero a que llegue una base de datos limpia, porque en este campo nunca llega. Voy y consigo los registros, y dejo un rastro escrito de cómo se obtuvo cada cifra, incluidas las que no sobrevivieron.',
+      'Llegué a esto desde la construcción de sistemas de datos, y apunto esa caja de herramientas a los sistemas que se supone protegen a los niños y a las víctimas de trata — lo que significa que no espero a que llegue una base de datos limpia, porque en este campo nunca llega. Voy y consigo los registros, y dejo un rastro escrito de cómo se obtuvo cada cifra, incluidas las que no sobrevivieron.',
     principles: [
       {
         key: 'triage',
@@ -457,7 +458,7 @@ export const siteEs: SiteContent = {
     paragraphs: [
       'Los sistemas que le fallan a los niños y a las víctimas de trata están obligados por ley a dejar constancia de que lo hicieron. Las instalaciones reportan cada año todos sus contactos con la policía. Las agencias de licencias guardan las quejas y la propiedad. Los estados publican la regla de inspección que se supone deben seguir. Casi nada de eso se cuenta, porque contarlo es un trabajo lento y técnico que cae entre dos profesiones — quienes tienen el conocimiento del tema normalmente no pueden sacar los datos, y quienes pueden sacar datos no saben qué están viendo. Ese hueco es, entero, mi trabajo.',
       'Lo que hago, en concreto, es convertir un montón de registros publicados pero inutilizables en una cifra por la que una institución puede responder. Cuatro años de reportes estatales de instalaciones, extraídos de hojas de cálculo cuyos encabezados cambian cada año, unidos a un archivo de licencias que formatea su propia llave de otra manera, y conciliados contra los subtotales que el propio estado publica hasta que coinciden. Una estimación de prevalencia desarmada para encontrar el supuesto que nadie probó. Un mapa de 51 jurisdicciones sobre qué bases de datos son reales, cuáles están cerradas y cuáles se anuncian y simplemente no están — para que la siguiente persona no pierda una semana averiguándolo.',
-      'La mitad técnica no es un desvío del tema; es lo que hace que el tema sea alcanzable. Más de ocho años construyendo sistemas de datos y software en producción significan que puedo extraer un archivo que casi ningún analista abre, escribir el lector cuando llega roto, detectar las uniones que en silencio descartan el diez por ciento de los registros, y responder por el resultado porque un segundo programa, escrito de forma independiente, verificó al primero. Cada proyecto se entrega con su código, su bitácora de calidad de datos y su lista de lo que sigue sin verificar.',
+      'La mitad técnica no es un desvío del tema; es lo que hace que el tema sea alcanzable. Pasé los últimos dos años construyendo sistemas de datos en producción para clientes que pagan — un hospital, una notaría, un grupo restaurantero — después de varios años en desarrollo de negocios y gestión de proyectos. Eso alcanza para extraer un archivo que casi ningún analista abre, escribir el lector cuando llega roto, detectar las uniones que en silencio descartan el diez por ciento de los registros, y responder por el resultado porque un segundo programa, escrito de forma independiente, verificó al primero. Cada proyecto se entrega con su código, su bitácora de calidad de datos y su lista de lo que sigue sin verificar.',
       'La mitad de criterio pesa igual, y es la parte que no se puede automatizar. La mayor parte de lo que abro nunca se vuelve nada. Decenas de preguntas de investigación han pasado por el mismo filtro — si el daño es real, si alguien responde por él, si los registros lo sostienen y si alguien ya la respondió — y la gran mayoría se descarta, cada una con su razón por escrito. También me he equivocado dentro de este trabajo y he dejado la corrección en el documento en vez de reescribir la conclusión: un estado que registré como inalcanzable y era mi propia red fallando, un archivo federal que dije que estaba vacío y no lo estaba. La investigación en la que se puede confiar es la que te muestra dónde se rompió.',
       'Estudié retórica y escritura en la Universidad de Texas en Austin, y trabajo desde la frontera Texas–México — con doble nacionalidad, en cualquiera de los dos idiomas. Todo el trabajo aquí descrito está construido sobre registros federales y estatales de Estados Unidos.',
     ],
