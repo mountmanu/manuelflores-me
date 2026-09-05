@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     alternateLocale: 'es_MX',
     title: TITLE,
     description:
-      'Measuring harm that institutions record but never count — US trafficking and child-protection data, built from primary records and shipped with the code to re-run it.',
+      'Nobody knows how many trafficking victims there are; the records to count them already exist. US trafficking and child-protection data, built from primary records and shipped with the code to re-run it.',
     url: 'https://manuelflores.me/',
     siteName: 'Manuel Flores',
   },

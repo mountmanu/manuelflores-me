@@ -155,8 +155,8 @@ export const siteEn: SiteContent = {
   hero: {
     eyebrow: 'Data & Research · Human Trafficking and Child Protection',
     headline: {
-      lead: 'I measure the harm institutions ',
-      emphasis: 'record but never count.',
+      lead: 'Nobody knows how many trafficking victims there are. ',
+      emphasis: 'The records to count them already exist.',
     },
     subtitle:
       'Independent data and research work on human trafficking and child protection in the United States — built from the administrative records agencies already publish, reconciled against those agencies’ own totals, and shipped with the code so anyone can re-run it.',
@@ -360,8 +360,8 @@ export const siteEs: SiteContent = {
   hero: {
     eyebrow: 'Datos e investigación · Trata de personas y protección infantil',
     headline: {
-      lead: 'Mido el daño que las instituciones ',
-      emphasis: 'registran pero nunca cuentan.',
+      lead: 'Nadie sabe cuántas víctimas de trata hay. ',
+      emphasis: 'Los registros para contarlas ya existen.',
     },
     subtitle:
       'Trabajo independiente de datos e investigación sobre trata de personas y protección infantil en Estados Unidos — construido con los registros administrativos que las propias agencias ya publican, conciliado contra los totales que esas mismas agencias declaran, y entregado con el código para que cualquiera pueda volver a correrlo.',

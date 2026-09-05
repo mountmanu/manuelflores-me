@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     alternateLocale: 'en_US',
     title: TITLE,
     description:
-      'Medir el daño que las instituciones registran pero nunca cuentan — datos de trata y protección infantil en EE. UU., construidos desde fuentes primarias y entregados con el código.',
+      'Nadie sabe cuántas víctimas de trata hay; los registros para contarlas ya existen. Datos de trata y protección infantil en EE. UU., construidos desde fuentes primarias y entregados con el código.',
     url: 'https://manuelflores.me/es',
     siteName: 'Manuel Flores',
   },
