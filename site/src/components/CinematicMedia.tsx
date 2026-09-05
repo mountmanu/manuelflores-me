@@ -13,7 +13,7 @@ export interface CinematicAsset {
 }
 
 /**
- * Editorial cinematic media for the hero background and investigation covers.
+ * Cinematic media for the hero background and work-item covers.
  *
  * Discipline:
  *  - Poster paints first. Video plays only when on screen AND reduced-motion is
