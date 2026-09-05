@@ -9,7 +9,7 @@ import type { SiteContent } from '@/data/landing-content';
  * Used by app/page.tsx (EN) and app/es/page.tsx (ES).
  *
  * Positioning: data & research on trafficking and child protection. Sections:
- * hero → ethos strip → work → method → about → contact (three doors).
+ * hero → work → method → about → contact (three doors).
  */
 export function LandingPage({ content }: { content: SiteContent }) {
   // One rule for the hero's colour: it is dark ONLY when there is footage to
@@ -100,34 +100,6 @@ export function LandingPage({ content }: { content: SiteContent }) {
               </a>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Ethos strip — quiet light band; the one dark moment is the hero. */}
-      <section className="py-[var(--spacing-block)] rule-bottom">
-        <div className="container-editorial">
-          <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16">
-            <Reveal>
-              <p
-                className="font-display text-balance max-w-xl text-ink"
-                style={{ fontSize: 'var(--text-display-md)', lineHeight: 1.25 }}
-              >
-                {content.ethos.statement}
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <ul className="flex flex-wrap gap-x-6 gap-y-3 lg:ml-auto">
-                {content.ethos.sources.map((s) => (
-                  <li
-                    key={s}
-                    className="text-[0.8125rem] tracking-wide text-mute whitespace-nowrap"
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
         </div>
       </section>
 
