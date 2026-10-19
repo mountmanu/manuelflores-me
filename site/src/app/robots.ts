@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/es'],
+        allow: ['/', '/en'],
       },
     ],
     sitemap: 'https://manuelflores.me/sitemap.xml',

@@ -13,20 +13,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: {
         languages: {
-          en: `${BASE_URL}/`,
-          es: `${BASE_URL}/es`,
+          es: `${BASE_URL}/`,
+          en: `${BASE_URL}/en`,
         },
       },
     },
     {
-      url: `${BASE_URL}/es`,
+      url: `${BASE_URL}/en`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.95,
       alternates: {
         languages: {
-          en: `${BASE_URL}/`,
-          es: `${BASE_URL}/es`,
+          es: `${BASE_URL}/`,
+          en: `${BASE_URL}/en`,
         },
       },
     },

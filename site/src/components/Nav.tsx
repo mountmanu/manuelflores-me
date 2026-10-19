@@ -3,18 +3,18 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export interface NavLabels {
-  work: string;
-  method: string;
-  about: string;
-  contact: string;
-  altLang: string;
+export interface NavLink {
+  /** Section id on the page, without the #. */
+  id: string;
+  label: string;
 }
 
 export interface NavProps {
   lang: 'en' | 'es';
-  labels: NavLabels;
-  altLangHref: string;
+  /** Home route for this language: '/' (ES) or '/en' (EN). */
+  home: string;
+  links: NavLink[];
+  altLang: { label: string; href: string };
   /** True only when the hero has a dark cover asset. Then, and only then,
    *  the nav is light-on-dark until the first scroll. */
   dark?: boolean;
@@ -25,7 +25,7 @@ export interface NavProps {
  * carries a dark cover asset (`dark`) does it start light-on-dark, switching
  * to dark text once scrolled onto the body.
  */
-export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
+export function Nav({ lang, home, links, altLang, dark = false }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -36,8 +36,6 @@ export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const home = lang === 'en' ? '/' : '/es';
-
   // Light type only while sitting over a dark hero cover and not yet scrolled.
   const overDark = dark && !scrolled;
   const wordmark = overDark ? 'text-paper' : 'text-ink';
@@ -46,12 +44,9 @@ export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
     : 'text-mute hover:text-ink';
   const bar = overDark ? 'bg-paper' : 'bg-ink';
 
-  const links: Array<{ href: string; label: string; hrefLang?: string }> = [
-    { href: `${home}#work`, label: labels.work },
-    { href: `${home}#method`, label: labels.method },
-    { href: `${home}#about`, label: labels.about },
-    { href: `${home}#contact`, label: labels.contact },
-  ];
+  const items = links.map((l) => ({ href: `${home}#${l.id}`, label: l.label }));
+  const altHrefLang = lang === 'en' ? 'es' : 'en';
+  const en = lang === 'en';
 
   return (
     <header
@@ -65,13 +60,13 @@ export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
         <Link
           href={home}
           className={`font-display text-2xl tracking-tight transition-colors ${wordmark}`}
-          aria-label="Manuel Flores — Home"
+          aria-label={en ? 'Manuel Flores — Home' : 'Manuel Flores — Inicio'}
         >
           Manuel Flores
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">
-          {links.map((l) => (
+          {items.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -81,18 +76,18 @@ export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
             </a>
           ))}
           <Link
-            href={altLangHref}
-            hrefLang={lang === 'en' ? 'es' : 'en'}
+            href={altLang.href}
+            hrefLang={altHrefLang}
             className={`text-[0.8125rem] tracking-[0.04em] uppercase font-medium transition-colors ${link}`}
           >
-            {labels.altLang}
+            {altLang.label}
           </Link>
         </nav>
 
         <button
           type="button"
           className="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label={open ? (en ? 'Close menu' : 'Cerrar menú') : en ? 'Open menu' : 'Abrir menú'}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
@@ -117,7 +112,7 @@ export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
       {open && (
         <div className="md:hidden bg-paper border-t border-line">
           <nav className="container-editorial flex flex-col py-6 gap-5">
-            {links.map((l) => (
+            {items.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -128,12 +123,12 @@ export function Nav({ lang, labels, altLangHref, dark = false }: NavProps) {
               </a>
             ))}
             <Link
-              href={altLangHref}
+              href={altLang.href}
               onClick={() => setOpen(false)}
-              hrefLang={lang === 'en' ? 'es' : 'en'}
+              hrefLang={altHrefLang}
               className="text-lg font-display text-ink hover:text-mute transition-colors"
             >
-              {labels.altLang}
+              {altLang.label}
             </Link>
           </nav>
         </div>

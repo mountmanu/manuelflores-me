@@ -1,77 +1,67 @@
 /**
  * Canonical content for the public site — manuelflores.me
  *
- * Positioning: independent DATA & RESEARCH work on human trafficking and child
- * protection in the United States. Nothing else. The engineering background
- * is framed as measurement capability — getting records nobody else can get,
- * and making them countable — never as a software portfolio.
+ * v7 — Oct 2026: the site is now the landing version of Manuel's CV. Data and
+ * technology for businesses: client projects delivered through LINCE Sistemas,
+ * own projects, career, skills and education. The previous trafficking and
+ * child-protection research positioning lives in git history (v6).
  *
- * One source of truth, two language variants. Keep EN and ES in lock-step —
- * anything in EN must have its ES counterpart, and vice versa.
+ * Honesty rules, from Manuel's own CV audit:
+ * - Every claim must match the verified CV. Status lines say exactly what the
+ *   project is: delivered and invoiced, in use, client project, demo.
+ * - Never: "caught real price-gouging", "pilot converted to contract",
+ *   "100+ beds", "11+ production systems", "zero churn", ML at Doña Tota.
+ * - No employer-specific plans on this public page.
  *
- * Disclosure discipline: work in progress is described at the level of the
- * question and the source, never with facility names, operators or
- * identifiable subjects ahead of publication.
- *
- * v5 — Sep 2026: full rewrite for trafficking / child-protection data and
- * research. Hero video retired (see hero.cover below — the slot is left in
- * place and commented, ready for the replacement asset). Four work items, all
- * on this subject. Method and About rewritten in this work's own voice.
- *
- * v6 — Sep 2026: second copy pass, cut hard. Dropped the standalone Ethos
- * section entirely (one sentence + a source list, redundant with the
- * per-item source tags in Work). Method cut from seven principles to the
- * four that actually differentiate: triage discipline, running the
- * institution's own numbers, independent re-verification, and right of
- * reply. About cut from five paragraphs to two. No section stays unless it
- * earns its length — a hiring manager skims, they do not read an essay.
+ * Spanish is the default language (/), English lives at /en. Keep both in
+ * lock-step — anything in one must have its counterpart in the other.
  */
 
-export interface WorkContent {
+export interface ProjectContent {
   key: string;
-  /** Project-level title — a question or a finding, not a named case. */
   title: string;
-  /** One-line dek. */
+  /** Client or context, shown above the title. */
+  client: string;
   dek: string;
-  /** The primary-source systems the work draws on. Not translated. */
-  sources: string[];
-  /** Honest status line, e.g. "In progress". */
+  /** Technologies. Not translated. */
+  stack: string[];
+  /** Honest status line. */
   status: string;
-  /** Optional link to the public repo backing this item. Set only once the
-   *  work is actually published — never point this at a private/local repo. */
-  repoHref?: string;
-  repoLabel?: string;
-  /** Optional cinematic cover asset in /public. Poster is required if video is
-   *  set. Both optional — section degrades gracefully without them. */
-  cover?: { poster: string; video?: string; alt: string };
 }
 
-export interface MethodPrinciple {
+export interface RoleContent {
   key: string;
-  title: string;
-  description: string;
+  role: string;
+  org: string;
+  period: string;
+  orgHref?: string;
+  points: string[];
+}
+
+export interface SkillRow {
+  key: string;
+  label: string;
+  value: string;
 }
 
 export interface ContactDoor {
-  key: 'commissions' | 'sources' | 'elsewhere';
+  key: 'email' | 'company' | 'github' | 'linkedin';
   label: string;
   description: string;
-  /** Rendered channel. */
-  channelLabel: string;
   channelValue: string;
   href: string;
 }
 
 export interface SiteContent {
   lang: 'en' | 'es';
-  altLang: 'en' | 'es';
   altLangLabel: string;
   altLangHref: string;
+  home: string;
 
   nav: {
-    work: string;
-    method: string;
-    about: string;
+    projects: string;
+    career: string;
+    skills: string;
     contact: string;
   };
 
@@ -81,30 +71,33 @@ export interface SiteContent {
     subtitle: string;
     primaryCta: string;
     secondaryCta: string;
-    /** Optional hero cinematic asset. Currently unset by design — see the
-     *  note in each hero block below. */
     cover?: { poster: string; video?: string; alt: string };
   };
 
-  work: {
+  projects: {
     eyebrow: string;
     title: string;
     subtitle: string;
-    note: string;
-    items: WorkContent[];
+    items: ProjectContent[];
   };
 
-  method: {
+  career: {
     eyebrow: string;
     title: string;
     intro: string;
-    principles: MethodPrinciple[];
+    roles: RoleContent[];
   };
 
-  about: {
+  skills: {
     eyebrow: string;
     title: string;
-    paragraphs: string[];
+    rows: SkillRow[];
+  };
+
+  education: {
+    eyebrow: string;
+    title: string;
+    items: { key: string; title: string; detail: string }[];
   };
 
   contact: {
@@ -119,339 +112,501 @@ export interface SiteContent {
   footer: string;
 }
 
-// ============================================================
-// English
-// ============================================================
-
-export const siteEn: SiteContent = {
-  lang: 'en',
-  altLang: 'es',
-  altLangLabel: 'Español',
-  altLangHref: '/es',
-
-  nav: {
-    work: 'Work',
-    method: 'Method',
-    about: 'About',
-    contact: 'Contact',
-  },
-
-  hero: {
-    eyebrow: 'Data & Research · Human Trafficking and Child Protection',
-    headline: {
-      lead: 'Nobody knows how many trafficking victims there are. ',
-      emphasis: 'The records to count them already exist.',
-    },
-    subtitle:
-      'Data and research on trafficking and child protection in the U.S., built from agencies’ own records and shipped with the code to re-run it.',
-    primaryCta: 'The work',
-    secondaryCta: 'Contact',
-    // HERO ASSET SLOT — intentionally empty.
-    // With no `cover`, the hero is the same bone surface as the rest of the
-    // page, dark type, and the nav is dark from scroll 0. Setting a cover is
-    // the ONLY thing that makes the hero dark. To restore the
-    // cinematic hero, drop the new video at site/public/media/hero.mp4 and a
-    // still of its FINAL frame at site/public/media/hero-poster.jpg, then
-    // uncomment the block below (and its Spanish counterpart). CinematicMedia
-    // plays it twice and freezes on the last frame, so author the video to end
-    // on a stable, dark, legible frame.
-    //
-    // cover: {
-    //   poster: '/media/hero-poster.jpg',
-    //   video: '/media/hero.mp4',
-    //   alt: '<describe the new footage here>',
-    // },
-  },
-
-  work: {
-    eyebrow: 'Work',
-    title: 'What I am building.',
-    subtitle:
-      'Measurement work on trafficking and child protection — building or checking numbers nobody else has. Every project ships with its code and data-quality log.',
-    note: 'In progress. Data, code and calculations are available on request — see Contact.',
-    items: [
-      {
-        key: 'ab388-runaways',
-        title: 'The children’s facilities that keep losing children',
-        dek: 'California requires every children’s facility to report law-enforcement contacts yearly, and to inspect facilities above average. I rebuilt four years of reports into one panel, reconciled against the state’s own subtotals — surfacing errors in the state’s own files along the way.',
-        sources: ['California AB 388 reports', 'CDSS licensing file', 'CDSS complaint data'],
-        status: 'Code and data public',
-        repoHref: 'https://github.com/mountmanu/ca-child-facility-audit',
-        repoLabel: 'View repository',
-      },
-      {
-        key: 'linkage-error',
-        title: 'Nobody checks whether the victim counts add up',
-        dek: 'US trafficking estimates match records across agencies on a coarse key. None of five published studies — or two HIV-surveillance studies checked as a control — correct for that key merging or missing people. My simulation puts the inflation near 13% at a 5% error rate; the fix was published in 2021, never run on real data.',
-        sources: ['Published prevalence studies', 'Record-linkage benchmarks', 'Monte Carlo simulation'],
-        status: 'Public · open finding',
-        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
-        repoLabel: 'View repository',
-      },
-      {
-        key: 'us-data-map',
-        title: 'What US trafficking data actually exists',
-        dek: 'A source-by-source audit of all 51 US jurisdictions: which trafficking datasets are genuinely obtainable, which are gated behind institutional standing, and which are advertised but not there. It keeps its own corrections in place — including two of my own errors, found and fixed in the open.',
-        sources: ['51 US jurisdictions', 'ICPSR', 'CTDC', 'State open-data portals'],
-        status: 'Code and data public',
-        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
-        repoLabel: 'View repository',
-      },
-      {
-        key: 'cross-state',
-        title: 'Does the California pattern hold anywhere else?',
-        dek: 'California is the only state publishing facility-level law-enforcement contacts for children’s residential care. Comparing it to anything means rebuilding other states’ registers first — starting with North Carolina, whose licensing roster drops half its records under a naive parse. The rebuild recovers 93.6% of the state’s licence numbers.',
-        sources: ['North Carolina · DHSR', 'CMS · Provider of Services', 'State licensing rosters'],
-        status: 'In progress',
-      },
-    ],
-  },
-
-  method: {
-    eyebrow: 'Method',
-    title: 'How the work is built.',
-    intro:
-      'I came to this from building data systems, and point that toolkit at the systems meant to protect children and trafficking victims. I go get the records myself, and keep a written trail of how every number was arrived at — including the ones that didn’t survive.',
-    principles: [
-      {
-        key: 'triage',
-        title: 'Most candidates die',
-        description:
-          'Every question gets opened, and most get killed — someone already answered it, the records can’t carry the claim, or no institution is accountable. Dozens of ideas died before the four projects above, each logged with its reason.',
-      },
-      {
-        key: 'own-numbers',
-        title: 'I run the agency’s own numbers',
-        description:
-          'When a state publishes a reporting requirement, I rebuild the panel and reconcile it against the state’s own totals before it counts as a finding. Disagreements are the finding — and have already surfaced errors in a state’s files.',
-      },
-      {
-        key: 'reproducible',
-        title: 'Verified so it can be re-verified',
-        description:
-          'Numbers are recomputed by a second, independently written parser; source files are fingerprinted so anyone can pull the version I read. Every project carries a data-quality log, including my own bugs, and a list of what’s unverified.',
-      },
-      {
-        key: 'right-of-reply',
-        title: 'Fair before publication',
-        description:
-          'Nothing is stated as fact without a primary record behind it. Every named agency or operator gets the specific assertions I intend to publish, with a real deadline, and their answer runs alongside the finding.',
-      },
-    ],
-  },
-
-  about: {
-    eyebrow: 'About',
-    title: 'It is already on the record.',
-    paragraphs: [
-      'The systems that fail children and trafficking victims are required by law to write down that they did, but almost none of it is counted. I turn those records into numbers an institution can be held to — two years building production data systems, after several years in business development, are enough to pull a file most analysts never open and stand behind the result. Most research questions I open die on the same screen, and I leave my own errors in the document rather than rewrite the conclusion.',
-      'I studied rhetoric and writing at the University of Texas at Austin, and work from the Texas–Mexico border — a dual citizen, in either language. All of the work here is built on United States federal and state records.',
-    ],
-  },
-
-  contact: {
-    eyebrow: 'Contact',
-    title: 'Get in touch.',
-    subtitle:
-      'For research and policy teams, people inside these systems, and collaborators. I read everything myself and respond quickly.',
-    doors: [
-      {
-        key: 'commissions',
-        label: 'For research & policy teams',
-        description:
-          'Available for contract work with research organizations, NGOs and agencies: building a dataset that doesn’t exist, auditing one that does, or getting records out of a badly-published system. Data, code and calculations before you commit to anything.',
-        channelLabel: 'Email',
-        channelValue: 'manuelfa92@gmail.com',
-        href: 'mailto:manuelfa92@gmail.com',
-      },
-      {
-        key: 'sources',
-        label: 'For people inside the system',
-        description:
-          'If what’s recorded doesn’t match what you see, I protect people who come forward. Reach me by encrypted email; for anything sensitive, we’ll move to Signal. I will never name you without consent.',
-        channelLabel: 'Confidential',
-        channelValue: 'manuelfa92@gmail.com · Signal on request',
-        href: 'mailto:manuelfa92@gmail.com',
-      },
-      {
-        key: 'elsewhere',
-        label: 'Elsewhere',
-        description: 'For anything else, or to see the professional record.',
-        channelLabel: 'LinkedIn',
-        channelValue: 'manuel-flores-90653060',
-        href: 'https://www.linkedin.com/in/manuel-flores-90653060/',
-      },
-    ],
-    locationLabel: 'Based on the',
-    location: 'Texas–Mexico border · Working in English and Spanish',
-  },
-
-  footer: 'Manuel Flores · Data and research on trafficking and child protection',
+const STACK = {
+  cfdi: ['Python', 'lxml', 'Decimal', 'pytest'],
+  hospital: ['Rust', 'Axum', 'SQLite', 'Windows'],
+  tota: ['Python', 'FastAPI', 'pandas', 'React', 'PostgreSQL', 'Railway'],
+  park: ['Next.js', 'Supabase', 'PostgreSQL'],
+  consultorio: ['Next.js', 'Supabase', 'Stripe', 'Vercel'],
+  imprenta: ['Next.js', 'Supabase', 'PostgreSQL', 'Vercel'],
+  notaria: ['Next.js', 'Supabase Auth', 'Drizzle ORM', 'PostgreSQL'],
+  conciliacion: ['Go', 'SQLite', 'Claude API'],
 };
 
+const EMAIL = 'manuelfa92@gmail.com';
+
 // ============================================================
-// Spanish
+// Español (default, /)
 // ============================================================
 
 export const siteEs: SiteContent = {
   lang: 'es',
-  altLang: 'en',
   altLangLabel: 'English',
-  altLangHref: '/',
+  altLangHref: '/en',
+  home: '/',
 
   nav: {
-    work: 'Trabajo',
-    method: 'Método',
-    about: 'Sobre mí',
+    projects: 'Proyectos',
+    career: 'Trayectoria',
+    skills: 'Habilidades',
     contact: 'Contacto',
   },
 
   hero: {
-    eyebrow: 'Datos e investigación · Trata de personas y protección infantil',
+    eyebrow: 'Datos y tecnología · LINCE Sistemas',
     headline: {
-      lead: 'Nadie sabe cuántas víctimas de trata hay. ',
-      emphasis: 'Los registros para contarlas ya existen.',
+      lead: 'Construyo sistemas de datos para negocios ',
+      emphasis: 'y los entrego para que funcionen sin mí.',
     },
     subtitle:
-      'Datos e investigación sobre trata y protección infantil en EE. UU., construido con los propios registros de las agencias y entregado con el código para volver a correrlo.',
-    primaryCta: 'El trabajo',
+      'Desarrollador de software y datos. Desde 2024 construyo y entrego sistemas para negocios: control de precios de proveedores para un hospital, indicadores para una cadena de 6 sucursales y una plataforma de citas que procesa pagos reales.',
+    primaryCta: 'Proyectos',
     secondaryCta: 'Contacto',
-    // ESPACIO PARA EL VIDEO DEL HERO — vacío a propósito.
-    // Sin `cover`, el hero es la misma superficie color hueso que el resto de
-    // la página. Solo un cover lo vuelve oscuro. Para restaurar el hero cinematográfico: coloca el
-    // video nuevo en site/public/media/hero.mp4 y una imagen de su ÚLTIMO
-    // cuadro en site/public/media/hero-poster.jpg, y descomenta este bloque
-    // (y su equivalente en inglés).
-    //
-    // cover: {
-    //   poster: '/media/hero-poster.jpg',
-    //   video: '/media/hero.mp4',
-    //   alt: '<describe aquí el material nuevo>',
-    // },
   },
 
-  work: {
-    eyebrow: 'Trabajo',
-    title: 'Lo que estoy construyendo.',
+  projects: {
+    eyebrow: 'Proyectos',
+    title: 'Lo que he construido.',
     subtitle:
-      'Trabajo de medición sobre trata y protección infantil — construir o verificar cifras que nadie más tiene. Cada proyecto se entrega con su código y su bitácora de calidad de datos.',
-    note: 'En curso. Los datos, el código y los cálculos están disponibles a solicitud — ver Contacto.',
+      'Proyectos con cliente, entregados con documentación, y proyectos propios. Cada uno dice en qué estado está.',
     items: [
       {
-        key: 'ab388-runaways',
-        title: 'Las instalaciones infantiles a las que se les siguen yendo los niños',
-        dek: 'California exige que toda instalación con menores reporte cada año sus contactos con la policía, e inspeccionar las que estén por encima del promedio. Reconstruí cuatro años de reportes en un solo panel, conciliado contra los subtotales del propio estado — revelando errores en los archivos del estado en el proceso.',
-        sources: ['Reportes AB 388 de California', 'Archivo de licencias CDSS', 'Quejas CDSS'],
-        status: 'Código y datos públicos',
-        repoHref: 'https://github.com/mountmanu/ca-child-facility-audit',
-        repoLabel: 'Ver repositorio',
+        key: 'hospital',
+        client: 'Hospital La Salle',
+        title: 'Control de precios de proveedores',
+        dek: 'Servicio de un solo ejecutable en la red interna del hospital: importa catálogos de proveedores con validación por hash, compara cada precio contra su historial y marca las variaciones. Autenticación por rol (Argon2) y bitácora de auditoría. Desarrollado en 10 días.',
+        stack: STACK.hospital,
+        status: 'Entregado y facturado, mayo 2026',
       },
       {
-        key: 'linkage-error',
-        title: 'Nadie verifica si las cifras de víctimas cuadran',
-        dek: 'Las estimaciones de trata en EE. UU. cruzan registros entre agencias con una llave burda. Ninguno de cinco estudios publicados — ni dos estudios de vigilancia de VIH revisados como control — corrige que esa llave funda o pierda personas. Mi simulación sitúa la inflación cerca del 13% con 5% de error; la corrección se publicó en 2021 y nunca se ha corrido sobre datos reales.',
-        sources: ['Estudios de prevalencia publicados', 'Referencias de vinculación', 'Simulación Monte Carlo'],
-        status: 'Público · hallazgo abierto',
-        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
-        repoLabel: 'Ver repositorio',
+        key: 'consultorio',
+        client: 'Consultorio privado',
+        title: 'Plataforma de citas y pagos',
+        dek: 'Reservas por enlace seguro, calendario de 3 modos con bloqueo de días, integración con Gmail y Google Docs, y cobro con Stripe en vivo. Tokens de acceso cifrados, borrado lógico y borradores de respuesta con la API de Claude en 3 tonos.',
+        stack: STACK.consultorio,
+        status: 'En uso, con pagos reales',
       },
       {
-        key: 'us-data-map',
-        title: 'Qué datos de trata existen realmente en EE. UU.',
-        dek: 'Una auditoría fuente por fuente de las 51 jurisdicciones de EE. UU.: qué bases de datos son obtenibles de verdad, cuáles están cerradas y cuáles se anuncian pero no están. Conserva sus propias correcciones — incluidos dos errores míos, encontrados y corregidos en público.',
-        sources: ['51 jurisdicciones de EE. UU.', 'ICPSR', 'CTDC', 'Portales estatales de datos'],
-        status: 'Código y datos públicos',
-        repoHref: 'https://github.com/mountmanu/trafficking-data-map',
-        repoLabel: 'Ver repositorio',
+        key: 'tota',
+        client: 'Gorditas Doña Tota',
+        title: 'Indicadores para 6 sucursales',
+        dek: 'Plataforma con 110 endpoints y 38 indicadores para las 6 sucursales. Anomalías por umbral estadístico (Z-score) en inventario y ventas, y pronóstico con media móvil, tendencia y estacionalidad.',
+        stack: STACK.tota,
+        status: 'Proyecto con cliente',
       },
       {
-        key: 'cross-state',
-        title: '¿El patrón de California se repite en otros estados?',
-        dek: 'California es el único estado que publica, instalación por instalación, los contactos con la policía en atención residencial infantil. Compararla exige reconstruir primero otros estados — empezando por Carolina del Norte, cuyo padrón de licencias pierde la mitad de sus registros con una lectura ingenua. El padrón reconstruido recupera el 93.6% de los números de licencia.',
-        sources: ['Carolina del Norte · DHSR', 'CMS · Provider of Services', 'Padrones estatales de licencias'],
-        status: 'En curso',
+        key: 'park',
+        client: 'Park & Wash Victoria',
+        title: 'Tablero de operación 24/7',
+        dek: 'Disponibilidad de cajones en tiempo real y registro de entrada con lector de placas. Funciona sin conexión: el personal sigue trabajando aunque se caiga el internet, sin perder datos. Permisos con row-level security.',
+        stack: STACK.park,
+        status: 'Proyecto con cliente',
+      },
+      {
+        key: 'cfdi',
+        client: 'Trabajo propio',
+        title: 'Lector y auditor de facturas CFDI 4.0',
+        dek: 'Lee facturas del SAT (ingreso, egreso, pago y traslado, con Pagos 2.0), detecta facturas de proveedor duplicadas con tres reglas de mayor a menor certeza y liga cada pago con la factura que cubre para calcular saldo y antigüedad. Calcula margen por cliente y sucursal, y el costo de la jornada máxima de 2026 a 2030. Dinero en decimal exacto; funciona sin internet.',
+        stack: STACK.cfdi,
+        status: 'Con datos de prueba · 318 pruebas automáticas',
+      },
+      {
+        key: 'imprenta',
+        client: 'Proyecto propio',
+        title: 'Tablero de negocio para imprenta',
+        dek: 'Cotizaciones, producción, inventario, pagos y analítica sobre 12 tablas y 6 vistas materializadas. Permisos por rol (4 roles) con row-level security, bitácora de solo inserción y decisiones documentadas en ADR.',
+        stack: STACK.imprenta,
+        status: 'Demo de preventa',
+      },
+      {
+        key: 'notaria',
+        client: 'Proyecto propio',
+        title: 'Seguimiento de trámites Infonavit para notaría',
+        dek: 'Aplicación multicliente con aislamiento de datos por cliente (row-level security) y una bitácora de auditoría que un trigger impide editar, para dar seguimiento a cada trámite contra su plazo.',
+        stack: STACK.notaria,
+        status: 'Demo',
+      },
+      {
+        key: 'conciliacion',
+        client: 'Proyecto propio',
+        title: 'Conciliación de datos sin llave común',
+        dek: 'Cruza registros de tres fuentes sin identificador común (coincidencia aproximada Jaro-Winkler), detecta anomalías con EWMA y redacta con la API de Claude una orden de trabajo que revisa una persona. 20 pruebas automáticas.',
+        stack: STACK.conciliacion,
+        status: 'Demo con datos sintéticos',
       },
     ],
   },
 
-  method: {
-    eyebrow: 'Método',
-    title: 'Cómo se construye el trabajo.',
+  career: {
+    eyebrow: 'Trayectoria',
+    title: 'Del negocio a la ingeniería.',
     intro:
-      'Llegué a esto desde la construcción de sistemas de datos, y apunto esa caja de herramientas a los sistemas que se supone protegen a los niños y a las víctimas de trata. Voy y consigo los registros yo mismo, y dejo un rastro escrito de cómo se obtuvo cada cifra — incluidas las que no sobrevivieron.',
-    principles: [
+      'Antes de construir sistemas fui enlace técnico entre cuentas empresariales y equipos de ingeniería, coordiné grupos de trabajo distribuidos y trabajé en desarrollo de negocio. Por eso empiezo por los requisitos y termino con la documentación.',
+    roles: [
       {
-        key: 'triage',
-        title: 'Casi todas las ideas mueren',
-        description:
-          'Cada pregunta se abre, y la mayoría se descarta — alguien ya la respondió, los registros no sostienen la afirmación, o ninguna institución responde por el daño. Decenas de ideas murieron antes de los cuatro proyectos de arriba, cada una registrada con su razón.',
+        key: 'lince',
+        role: 'Fundador y desarrollador',
+        org: 'LINCE Sistemas',
+        orgHref: 'https://www.lincesistemas.com',
+        period: 'ene 2024 – hoy · Ciudad Victoria',
+        points: [
+          'Único desarrollador en cada proyecto: requisitos, arquitectura, desarrollo, despliegue, documentación y entrega.',
+        ],
       },
       {
-        key: 'own-numbers',
-        title: 'Corro los números de la propia agencia',
-        description:
-          'Cuando un estado publica una obligación de reporte, reconstruyo el panel y lo concilio contra los totales del propio estado antes de darlo por hallazgo. Las discrepancias son el hallazgo — y ya han revelado errores en los archivos de un estado.',
+        key: 'workowhole',
+        role: 'Business Development Partner',
+        org: 'Workowhole Studio',
+        period: 'ene 2021 – dic 2023 · remoto',
+        points: [
+          'Enlace técnico de más de 12 cuentas empresariales: traduje requisitos de negocio a especificaciones para los equipos de ingeniería y diseño, y coordiné la entrega entre áreas.',
+          'Subí la entrega a tiempo de cerca de 70% a más de 90% con gestión de sprints y control de alcance.',
+        ],
       },
       {
-        key: 'reproducible',
-        title: 'Verificado para poder reverificarse',
-        description:
-          'Las cifras se recalculan con un segundo lector escrito de forma independiente, y los archivos fuente se sellan de modo que cualquiera puede bajar la versión que leí. Cada proyecto lleva una bitácora de calidad de datos, incluidos mis propios errores, y una lista de lo que sigue sin verificar.',
+        key: 'tec',
+        role: 'Project Manager',
+        org: 'Token Engineering Commons',
+        period: 'jun 2020 – dic 2021 · remoto',
+        points: [
+          'Coordiné la entrega de 5 grupos de trabajo distribuidos. Pasé de practicante a Project Manager en 4 meses.',
+        ],
       },
       {
-        key: 'right-of-reply',
-        title: 'Justo antes de publicar',
-        description:
-          'Nada se afirma como hecho si no lo sostiene un registro primario. Cada agencia u operador nombrado recibe las afirmaciones concretas que pienso publicar, con un plazo real, y su respuesta corre junto al hallazgo.',
+        key: 'autonio',
+        role: 'Business Development Manager',
+        org: 'Autonio Foundation',
+        period: 'ene 2018 – dic 2019 · remoto',
+        points: ['Levanté US$40,000 de financiamiento y cerré US$35,000 en ventas.'],
       },
     ],
   },
 
-  about: {
-    eyebrow: 'Sobre mí',
-    title: 'Ya consta en los registros.',
-    paragraphs: [
-      'Los sistemas que le fallan a los niños y a las víctimas de trata están obligados por ley a dejar constancia de que lo hicieron, pero casi nada de eso se cuenta. Convierto esos registros en cifras por las que una institución puede responder — dos años construyendo sistemas de datos en producción, después de varios años en desarrollo de negocios, alcanzan para extraer un archivo que casi ningún analista abre y responder por el resultado. La mayoría de mis preguntas de investigación mueren en el mismo filtro, y dejo mis propios errores en el documento en vez de reescribir la conclusión.',
-      'Estudié retórica y escritura en la Universidad de Texas en Austin, y trabajo desde la frontera Texas–México — con doble nacionalidad, en cualquiera de los dos idiomas. Todo el trabajo aquí descrito está construido sobre registros federales y estatales de Estados Unidos.',
+  skills: {
+    eyebrow: 'Habilidades',
+    title: 'Con qué trabajo.',
+    rows: [
+      {
+        key: 'datos',
+        label: 'Datos y facturación',
+        value:
+          'CFDI 4.0 y complemento de Pagos 2.0 (XML), SQL, Python (pandas), margen por cliente y sucursal, detección de anomalías (Z-score, EWMA), cruce de registros sin llave común, diseño de indicadores y tableros',
+      },
+      {
+        key: 'desarrollo',
+        label: 'Desarrollo',
+        value:
+          'Python, TypeScript, Rust, Go · FastAPI, Axum, Next.js, React · PostgreSQL, SQLite, Supabase, Drizzle ORM · API de Claude (salida estructurada, uso de herramientas)',
+      },
+      {
+        key: 'sistemas',
+        label: 'Sistemas',
+        value:
+          'Vercel, Railway, Docker, Linux, servicios de Windows · row-level security, autenticación (Argon2), bitácoras de auditoría, aplicaciones que funcionan sin conexión, pruebas automáticas (pytest)',
+      },
+      {
+        key: 'traspaso',
+        label: 'Documentación',
+        value:
+          'Registro de decisiones técnicas (ADR), documentación técnica y entrega en los proyectos con cliente',
+      },
+      {
+        key: 'negocio',
+        label: 'Negocio',
+        value:
+          'Traducción de requisitos a especificaciones, coordinación de equipos distribuidos, desarrollo de negocio y ventas',
+      },
+    ],
+  },
+
+  education: {
+    eyebrow: 'Formación',
+    title: 'Estudios e idiomas.',
+    items: [
+      {
+        key: 'ga',
+        title: 'Certificado en Ciencia de Datos (420 horas)',
+        detail: 'General Assembly, 2023 · Python, SQL, estadística, machine learning, visualización',
+      },
+      {
+        key: 'ut',
+        title: 'Licenciatura (B.A.) en Retórica y Redacción',
+        detail: 'The University of Texas at Austin, 2016',
+      },
+      { key: 'idiomas', title: 'Idiomas', detail: 'Español e inglés nativos' },
     ],
   },
 
   contact: {
     eyebrow: 'Contacto',
     title: 'Hablemos.',
-    subtitle:
-      'Para equipos de investigación y política pública, quienes están dentro de estos sistemas, y colaboradores. Leo todo yo mismo y respondo rápido.',
+    subtitle: 'Leo todo yo mismo y respondo rápido.',
     doors: [
       {
-        key: 'commissions',
-        label: 'Investigación y política pública',
-        description:
-          'Disponible para trabajo por contrato con organizaciones de investigación, ONG y agencias: construir una base de datos que no existe, auditar una que sí, o sacar registros de un sistema que los publica mal. Datos, código y cálculos antes de comprometerse a nada.',
-        channelLabel: 'Correo',
-        channelValue: 'manuelfa92@gmail.com',
-        href: 'mailto:manuelfa92@gmail.com',
+        key: 'email',
+        label: 'Correo',
+        description: 'Para cualquier propuesta o pregunta.',
+        channelValue: EMAIL,
+        href: `mailto:${EMAIL}`,
       },
       {
-        key: 'sources',
-        label: 'Para quienes están dentro',
-        description:
-          'Si lo que queda registrado no coincide con lo que ves, protejo a quienes se acercan. Escríbeme primero por correo cifrado; para algo sensible, pasamos a Signal. Nunca te nombraré sin tu consentimiento.',
-        channelLabel: 'Confidencial',
-        channelValue: 'manuelfa92@gmail.com · Signal a solicitud',
-        href: 'mailto:manuelfa92@gmail.com',
+        key: 'company',
+        label: 'LINCE Sistemas',
+        description: 'Mi práctica de desarrollo de sistemas para negocios.',
+        channelValue: 'lincesistemas.com',
+        href: 'https://www.lincesistemas.com',
       },
       {
-        key: 'elsewhere',
-        label: 'Lo demás',
-        description: 'Para cualquier otra cosa, o para ver la trayectoria profesional.',
-        channelLabel: 'LinkedIn',
+        key: 'github',
+        label: 'GitHub',
+        description: 'Código y proyectos públicos.',
+        channelValue: 'github.com/mountmanu',
+        href: 'https://github.com/mountmanu',
+      },
+      {
+        key: 'linkedin',
+        label: 'LinkedIn',
+        description: 'La trayectoria profesional.',
         channelValue: 'manuel-flores-90653060',
         href: 'https://www.linkedin.com/in/manuel-flores-90653060/',
       },
     ],
-    locationLabel: 'Con base en la',
-    location: 'Frontera Texas–México · Trabajo en inglés y español',
+    locationLabel: 'Ubicación',
+    location: 'Ciudad Victoria, Tamaulipas · Me mudo a Monterrey',
   },
 
-  footer: 'Manuel Flores · Datos e investigación sobre trata y protección infantil',
+  footer: 'Manuel Flores · Datos y tecnología para negocios',
+};
+
+// ============================================================
+// English (/en)
+// ============================================================
+
+export const siteEn: SiteContent = {
+  lang: 'en',
+  altLangLabel: 'Español',
+  altLangHref: '/',
+  home: '/en',
+
+  nav: {
+    projects: 'Projects',
+    career: 'Career',
+    skills: 'Skills',
+    contact: 'Contact',
+  },
+
+  hero: {
+    eyebrow: 'Data & Technology · LINCE Sistemas',
+    headline: {
+      lead: 'I build data systems for businesses ',
+      emphasis: 'and hand them over to run without me.',
+    },
+    subtitle:
+      'Software and data developer. Since 2024 I have built and delivered systems for businesses: supplier price control for a hospital, KPIs for a 6-branch chain and a booking platform that processes real payments.',
+    primaryCta: 'Projects',
+    secondaryCta: 'Contact',
+  },
+
+  projects: {
+    eyebrow: 'Projects',
+    title: 'What I have built.',
+    subtitle:
+      'Client projects, delivered with documentation, and my own projects. Each one states where it stands.',
+    items: [
+      {
+        key: 'hospital',
+        client: 'Hospital La Salle',
+        title: 'Supplier price control',
+        dek: 'A single-executable service on the hospital’s internal network: imports supplier catalogues with hash validation, compares every price against its history and flags the variations. Role-based authentication (Argon2) and an audit log. Built in 10 days.',
+        stack: STACK.hospital,
+        status: 'Delivered and invoiced, May 2026',
+      },
+      {
+        key: 'consultorio',
+        client: 'Private practice',
+        title: 'Booking and payments platform',
+        dek: 'Secure-link booking, a 3-mode calendar with blocked days, Gmail and Google Docs integration, and live Stripe payments. Encrypted access tokens, soft delete and reply drafts with the Claude API in 3 tones.',
+        stack: STACK.consultorio,
+        status: 'In use, with real payments',
+      },
+      {
+        key: 'tota',
+        client: 'Gorditas Doña Tota',
+        title: 'KPIs for 6 branches',
+        dek: 'A platform with 110 endpoints and 38 indicators across the 6 branches. Statistical-threshold anomalies (Z-score) in inventory and sales, and forecasting with moving average, trend and seasonality.',
+        stack: STACK.tota,
+        status: 'Client project',
+      },
+      {
+        key: 'park',
+        client: 'Park & Wash Victoria',
+        title: '24/7 operations dashboard',
+        dek: 'Real-time bay availability and entry logging with a plate reader. Works offline: staff keep working when the internet drops, without losing data. Permissions with row-level security.',
+        stack: STACK.park,
+        status: 'Client project',
+      },
+      {
+        key: 'cfdi',
+        client: 'Own work',
+        title: 'CFDI 4.0 invoice reader and auditor',
+        dek: 'Reads Mexican electronic invoices (income, credit, payment and transfer, with Pagos 2.0), flags duplicate supplier invoices with three rules from most to least certain, and links each payment to the invoice it covers to compute balance and age. Computes margin by client and branch, and the cost of the 2026–2030 maximum work week. Exact decimal money; runs offline.',
+        stack: STACK.cfdi,
+        status: 'Test data · 318 automated tests',
+      },
+      {
+        key: 'imprenta',
+        client: 'Own project',
+        title: 'Business dashboard for a print shop',
+        dek: 'Quotes, production, inventory, payments and analytics over 12 tables and 6 materialized views. Role permissions (4 roles) with row-level security, an insert-only log and decisions documented as ADRs.',
+        stack: STACK.imprenta,
+        status: 'Pre-sale demo',
+      },
+      {
+        key: 'notaria',
+        client: 'Own project',
+        title: 'Infonavit case tracking for a notary office',
+        dek: 'A multi-tenant app with per-client data isolation (row-level security) and an audit log a trigger keeps from being edited, to track each case against its deadline.',
+        stack: STACK.notaria,
+        status: 'Demo',
+      },
+      {
+        key: 'conciliacion',
+        client: 'Own project',
+        title: 'Reconciling data with no common key',
+        dek: 'Matches records from three sources with no shared identifier (Jaro-Winkler fuzzy matching), detects anomalies with EWMA and uses the Claude API to draft a work order that a person reviews. 20 automated tests.',
+        stack: STACK.conciliacion,
+        status: 'Demo with synthetic data',
+      },
+    ],
+  },
+
+  career: {
+    eyebrow: 'Career',
+    title: 'From business to engineering.',
+    intro:
+      'Before building systems I was the technical liaison between enterprise accounts and engineering teams, coordinated distributed working groups and worked in business development. That is why I start with the requirements and finish with the documentation.',
+    roles: [
+      {
+        key: 'lince',
+        role: 'Founder and developer',
+        org: 'LINCE Sistemas',
+        orgHref: 'https://www.lincesistemas.com',
+        period: 'Jan 2024 – present · Ciudad Victoria',
+        points: [
+          'Sole developer on every project: requirements, architecture, development, deployment, documentation and handover.',
+        ],
+      },
+      {
+        key: 'workowhole',
+        role: 'Business Development Partner',
+        org: 'Workowhole Studio',
+        period: 'Jan 2021 – Dec 2023 · remote',
+        points: [
+          'Technical liaison for 12+ enterprise accounts: translated business requirements into specifications for engineering and design, and coordinated delivery across teams.',
+          'Raised on-time delivery from about 70% to over 90% through sprint management and scope control.',
+        ],
+      },
+      {
+        key: 'tec',
+        role: 'Project Manager',
+        org: 'Token Engineering Commons',
+        period: 'Jun 2020 – Dec 2021 · remote',
+        points: [
+          'Coordinated delivery for 5 distributed working groups. Went from intern to Project Manager in 4 months.',
+        ],
+      },
+      {
+        key: 'autonio',
+        role: 'Business Development Manager',
+        org: 'Autonio Foundation',
+        period: 'Jan 2018 – Dec 2019 · remote',
+        points: ['Raised US$40,000 in funding and closed US$35,000 in sales.'],
+      },
+    ],
+  },
+
+  skills: {
+    eyebrow: 'Skills',
+    title: 'What I work with.',
+    rows: [
+      {
+        key: 'datos',
+        label: 'Data and invoicing',
+        value:
+          'CFDI 4.0 and Pagos 2.0 (XML), SQL, Python (pandas), margin by client and branch, anomaly detection (Z-score, EWMA), record matching with no common key, KPI and dashboard design',
+      },
+      {
+        key: 'desarrollo',
+        label: 'Development',
+        value:
+          'Python, TypeScript, Rust, Go · FastAPI, Axum, Next.js, React · PostgreSQL, SQLite, Supabase, Drizzle ORM · Claude API (structured output, tool use)',
+      },
+      {
+        key: 'sistemas',
+        label: 'Systems',
+        value:
+          'Vercel, Railway, Docker, Linux, Windows services · row-level security, authentication (Argon2), audit logs, offline-first apps, automated testing (pytest)',
+      },
+      {
+        key: 'traspaso',
+        label: 'Documentation',
+        value:
+          'Architecture decision records (ADR), technical documentation and handover on client projects',
+      },
+      {
+        key: 'negocio',
+        label: 'Business',
+        value:
+          'Turning requirements into specifications, coordinating distributed teams, business development and sales',
+      },
+    ],
+  },
+
+  education: {
+    eyebrow: 'Education',
+    title: 'Studies and languages.',
+    items: [
+      {
+        key: 'ga',
+        title: 'Data Science Certificate (420 hours)',
+        detail: 'General Assembly, 2023 · Python, SQL, statistics, machine learning, visualization',
+      },
+      {
+        key: 'ut',
+        title: 'B.A. in Rhetoric and Writing',
+        detail: 'The University of Texas at Austin, 2016',
+      },
+      { key: 'idiomas', title: 'Languages', detail: 'Native Spanish and English' },
+    ],
+  },
+
+  contact: {
+    eyebrow: 'Contact',
+    title: 'Get in touch.',
+    subtitle: 'I read everything myself and respond quickly.',
+    doors: [
+      {
+        key: 'email',
+        label: 'Email',
+        description: 'For any proposal or question.',
+        channelValue: EMAIL,
+        href: `mailto:${EMAIL}`,
+      },
+      {
+        key: 'company',
+        label: 'LINCE Sistemas',
+        description: 'My practice building systems for businesses.',
+        channelValue: 'lincesistemas.com',
+        href: 'https://www.lincesistemas.com',
+      },
+      {
+        key: 'github',
+        label: 'GitHub',
+        description: 'Code and public projects.',
+        channelValue: 'github.com/mountmanu',
+        href: 'https://github.com/mountmanu',
+      },
+      {
+        key: 'linkedin',
+        label: 'LinkedIn',
+        description: 'The professional record.',
+        channelValue: 'manuel-flores-90653060',
+        href: 'https://www.linkedin.com/in/manuel-flores-90653060/',
+      },
+    ],
+    locationLabel: 'Location',
+    location: 'Ciudad Victoria, Tamaulipas · Moving to Monterrey',
+  },
+
+  footer: 'Manuel Flores · Data and technology for businesses',
 };

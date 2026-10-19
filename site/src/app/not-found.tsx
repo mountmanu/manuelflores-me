@@ -9,20 +9,20 @@ export default function NotFound() {
           className="text-balance"
           style={{ fontSize: 'var(--text-display-xl)' }}
         >
-          This page does not exist — yet.
+          Esta página no existe.
         </h1>
         <p
           className="mt-8 max-w-xl mx-auto leading-relaxed text-mute"
           style={{ fontSize: 'var(--text-body-lg)' }}
         >
-          Maybe it moved, maybe it has not been built. If it mattered, write me.
+          Quizá cambió de lugar. Si la buscabas por algo, escríbeme.
         </p>
         <div className="mt-12 flex justify-center gap-4">
           <Link href="/" className="btn-primary">
-            Home
+            Inicio
           </Link>
           <a href="mailto:manuelfa92@gmail.com" className="btn-secondary">
-            Email me
+            Escríbeme
           </a>
         </div>
       </div>

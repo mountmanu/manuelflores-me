@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? 'https://manuelflores.me',
   ),
   title: {
-    default: 'Manuel Flores — Data & Research, Trafficking and Child Protection',
+    default: 'Manuel Flores — Datos y tecnología para negocios',
     template: '%s · Manuel Flores',
   },
   description:
-    'Independent data and research work on human trafficking and child protection in the United States — built from primary administrative records, reconciled against the agencies’ own totals, and shipped with the code to re-run it.',
+    'Desarrollador de software y datos. Construyo y entrego sistemas para negocios: control de precios de proveedores, indicadores por sucursal, facturación CFDI y plataformas que procesan pagos reales.',
   authors: [{ name: 'Manuel Flores', url: 'https://manuelflores.me' }],
   creator: 'Manuel Flores',
 };
@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${ebGaramond.variable}`}>
+    <html lang="es" className={`${inter.variable} ${ebGaramond.variable}`}>
       <body className="min-h-screen flex flex-col">
         <main className="flex-1">{children}</main>
       </body>

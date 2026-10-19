@@ -1,6 +1,6 @@
 # manuelflores.me
 
-Personal site for Manuel Flores — independent data and research work on human trafficking and child protection in the United States. The repo also carries an older Claude skill folder (`SKILL.md`, `assets/`, `references/`) from a previous positioning; it is not deployed and does not affect the site.
+Personal site for Manuel Flores — the landing version of his CV: data and technology for businesses, through LINCE Sistemas. Spanish at `/`, English at `/en`. The repo also carries an older Claude skill folder (`SKILL.md`, `assets/`, `references/`) from a previous positioning; it is not deployed and does not affect the site.
 
 ## Repo structure
 

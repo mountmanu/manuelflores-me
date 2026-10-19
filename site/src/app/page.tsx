@@ -1,38 +1,37 @@
 import type { Metadata } from 'next';
 import { LandingPage } from '@/components/LandingPage';
-import { siteEn } from '@/data/landing-content';
+import { siteEs } from '@/data/landing-content';
 
-const TITLE = 'Manuel Flores — Data & Research, Trafficking and Child Protection';
+const TITLE = 'Manuel Flores — Datos y tecnología para negocios';
+const DESCRIPTION =
+  'Desarrollador de software y datos. Construyo y entrego sistemas para negocios: control de precios de proveedores, indicadores por sucursal, facturación CFDI y plataformas que procesan pagos reales.';
 
 export const metadata: Metadata = {
   title: TITLE,
-  description:
-    'Independent data and research work on human trafficking and child protection in the United States. Administrative records rebuilt into measurements, reconciled against the agencies’ own published totals, and shipped with the code and the data-quality log.',
+  description: DESCRIPTION,
   alternates: {
     canonical: '/',
     languages: {
-      en: '/',
-      es: '/es',
+      es: '/',
+      en: '/en',
     },
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    alternateLocale: 'es_MX',
+    locale: 'es_MX',
+    alternateLocale: 'en_US',
     title: TITLE,
-    description:
-      'Nobody knows how many trafficking victims there are; the records to count them already exist. US trafficking and child-protection data, built from primary records and shipped with the code to re-run it.',
+    description: DESCRIPTION,
     url: 'https://manuelflores.me/',
     siteName: 'Manuel Flores',
   },
   twitter: {
     card: 'summary_large_image',
     title: TITLE,
-    description:
-      'US trafficking and child-protection data, built from primary administrative records and shipped with the code to re-run it.',
+    description: DESCRIPTION,
   },
 };
 
 export default function HomePage() {
-  return <LandingPage content={siteEn} />;
+  return <LandingPage content={siteEs} />;
 }
